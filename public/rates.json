@@ -1,0 +1,375 @@
+{
+    "last_updated": "2016-01-01T22:34Z",
+    "disclaimer": "This data is compiled from official European Commission sources to be as accurate as possible, however no guarantee of accuracy is provided. Use at your own risk. Don't trust random people on the internet without doing your own research.",
+    
+    "rates": {
+        "AT": {
+            "country": {
+                "en": "Austria",
+                "it": "Austria",
+                "es": "Austria"
+            },
+            "standard_rate": 20.00,
+            "reduced_rate": 10.00,
+            "reduced_rate_alt": 13.00,
+            "super_reduced_rate": false,
+            "parking_rate": 12.00
+        },
+        "BE": {
+            "country": {
+                "en": "Belgium",
+                "it": "Belgio" ,
+                "es": "Bélgica"
+            },
+            "standard_rate": 21.00,
+            "reduced_rate": 12.00,
+            "reduced_rate_alt": 6.00,
+            "super_reduced_rate": false,
+            "parking_rate": 12.00
+        },
+        "BG": {
+            "country": {
+                "en": "Bulgaria",
+                "it": "Bulgaria",
+                "es": "Bulgaria"
+            },
+            "standard_rate": 20.00,
+            "reduced_rate": 9.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "CY": {
+            "country": {
+                "en": "Cyprus",
+                "it": "Cipro",
+                "es": "Chipre"
+            },
+            "standard_rate": 19.00,
+            "reduced_rate": 9.00,
+            "reduced_rate_alt": 5.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "CZ": {
+            "country": {
+                "en": "Czech Republic",
+                "it": "Repubblica Ceca",
+                "es": "República Checa"
+            },
+            "standard_rate": 21.00,
+            "reduced_rate": 15.00,
+            "reduced_rate_alt": 10.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "DK": {
+            "country": {
+                "en": "Denmark",
+                "it": "Danimarca",
+                "es": "Dinamarca"
+            },
+            "standard_rate": 25.00,
+            "reduced_rate": false,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "DE": {
+            "country": {
+                "en": "Germany",
+                "it": "Germania",
+                "es": "Alemania"
+            },
+            "standard_rate": 19.00,
+            "reduced_rate": 7.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "EE": {
+            "country": {
+                "en": "Estonia",
+                "it": "Estonia",
+                "es": "Estonia"
+            },
+            "standard_rate": 20.00,
+            "reduced_rate": 9.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "EL": {
+            "_comment": "While the EU uses the country code 'EL' for Greece, ISO uses 'GR' - both are included for convenience.",
+            "iso_duplicate": "GR",
+            "country": {
+                "en": "Greece",
+                "it": "Grecia",
+                "es": "Grecia"
+            },
+            "standard_rate": 24.00,
+            "reduced_rate": 13.00,
+            "reduced_rate_alt": 6.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "GR": {
+            "_comment": "Duplicate of EL for convenience; the EU uses the country code 'EL' for Greece, while ISO uses 'GR'.",
+            "iso_duplicate_of": "EL",
+            "country": {
+                "en": "Greece",
+                "it": "Grecia",
+                "es": "Grecia"
+            },
+            "standard_rate": 24.00,
+            "reduced_rate": 13.00,
+            "reduced_rate_alt": 6.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "ES": {
+            "country": {
+                "en": "Spain",
+                "it": "Spagna",
+                "es": "España"
+            },
+            "standard_rate": 21.00,
+            "reduced_rate": 10.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": 4.00,
+            "parking_rate": false
+        },
+        "FI": {
+            "country": {
+                "en": "Finland",
+                "it": "Finlandia",
+                "es": "Finlandia"
+            },
+            "standard_rate": 24.00,
+            "reduced_rate": 14.00,
+            "reduced_rate_alt": 10.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "FR": {
+            "country": {
+                "en": "France",
+                "it": "Francia",
+                "es": "Francia"
+            },
+            "standard_rate": 20.00,
+            "reduced_rate": 10.00,
+            "reduced_rate_alt": 5.50,
+            "super_reduced_rate": 2.10,
+            "parking_rate": false
+        },
+        "HR": {
+            "country": {
+                "en": "Croatia",
+                "it": "Croazia",
+                "es": "Croacia"
+            },
+            "standard_rate": 25.00,
+            "reduced_rate": 13.00,
+            "reduced_rate_alt": 5.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "IT": {
+            "country": {
+                "en": "Italy",
+                "it": "Italia",
+                "es": "Italia"
+            },
+            "standard_rate": 22.00,
+            "reduced_rate": 10.00,
+            "reduced_rate_alt": 4.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "LV": {
+            "country": {
+                "en": "Latvia",
+                "it": "Lettonia",
+                "es": "Letonia"
+            },
+            "standard_rate": 21.00,
+            "reduced_rate": 12.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "LT": {
+            "country": {
+                "en": "Lithuania",
+                "it": "Lituania",
+                "es": "Lituania"
+            },
+            "standard_rate": 21.00,
+            "reduced_rate": 9.00,
+            "reduced_rate_alt": 5.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "LU": {
+            "country": {
+                "en": "Luxembourg",
+                "it": "Lussemburgo",
+                "es": "Luxemburgo"
+            },
+            "standard_rate": 17.00,
+            "reduced_rate": 14.00,
+            "reduced_rate_alt": 8.00,
+            "super_reduced_rate": 3.00,
+            "parking_rate": 12.00
+        },
+        "HU": {
+            "country": {
+                "en": "Hungary",
+                "it": "Ungheria",
+                "es": "Hungría"
+            },
+            "standard_rate": 27.00,
+            "reduced_rate": 18.00,
+            "reduced_rate_alt": 5.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "IE": {
+            "country": {
+                "en": "Ireland",
+                "it": "Irlanda",
+                "es": "Irlanda"
+            },
+            "standard_rate": 23.00,
+            "reduced_rate": 13.50,
+            "reduced_rate_alt": 9.00,
+            "super_reduced_rate": 4.80,
+            "parking_rate": 13.50
+        },
+        "MT": {
+            "country": {
+                "en": "Malta",
+                "it": "Malta",
+                "es": "Malta"
+            },
+            "standard_rate": 18.00,
+            "reduced_rate": 7.00,
+            "reduced_rate_alt": 5.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "NL": {
+            "country": {
+                "en": "Netherlands",
+                "it": "Olanda",
+                "es": "Países Bajos"
+            },
+            "standard_rate": 21.00,
+            "reduced_rate": 6.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "PL": {
+            "country": {
+                "en": "Poland",
+                "it": "Polonia",
+                "es": "Polonia"
+            },
+            "standard_rate": 23.00,
+            "reduced_rate": 8.00,
+            "reduced_rate_alt": 5.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "PT": {
+            "country": {
+                "en": "Portugal",
+                "it": "Portogallo",
+                "es": "Portugal"
+            },
+            "standard_rate": 23.00,
+            "reduced_rate": 13.00,
+            "reduced_rate_alt": 6.00,
+            "super_reduced_rate": false,
+            "parking_rate": 13.00
+        },
+        "RO": {
+            "country": {
+                "en": "Romania",
+                "it": "Romania",
+                "es": "Rumania"
+            },
+            "standard_rate": 20.00,
+            "reduced_rate": 9.00,
+            "reduced_rate_alt": 5.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "SI": {
+            "country": {
+                "en": "Slovenia",
+                "it": "Slovenia",
+                "es": "Eslovenia"
+            },
+            "standard_rate": 22.00,
+            "reduced_rate": 9.50,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "SK": {
+            "country": {
+                "en": "Slovakia",
+                "it": "Slovacchia",
+                "es": "Eslovaquia"
+            },
+            "standard_rate": 20.00,
+            "reduced_rate": 10.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "SE": {
+            "country": {
+                "en": "Sweden",
+                "it": "Svezia",
+                "es": "Suecia"
+            },
+            "standard_rate": 25.00,
+            "reduced_rate": 12.00,
+            "reduced_rate_alt": 6.00,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "UK": {
+            "_comment": "While the EU uses the country code 'UK' for the United Kingdom, ISO uses 'GB' - both are included for convenience.",
+            "iso_duplicate": "GB",
+            "country": {
+                "en": "United Kingdom",
+                "it": "Regno Unito",
+                "es": "Reino Unido"
+            },
+            "standard_rate": 20.00,
+            "reduced_rate": 5.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        },
+        "GB": {
+            "_comment": "Duplicate of GB for convenience; the EU uses the country code 'UK' for the United Kingdom, while ISO uses 'GB'.",
+            "iso_duplicate_of": "UK",
+            "country": {
+                "en": "United Kingdom",
+                "it": "Regno Unito",
+                "es": "Reino Unido"
+            },
+            "standard_rate": 20.00,
+            "reduced_rate": 5.00,
+            "reduced_rate_alt": false,
+            "super_reduced_rate": false,
+            "parking_rate": false
+        }
+    }
+}

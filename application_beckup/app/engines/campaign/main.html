@@ -1,0 +1,47 @@
+<div>
+	<div class="campaign_menu">
+		<div class="campaign_menu_content">
+			<span ng-class="{campaign_menu_icons_container:true, selected_menu: campaignMenuItem.status == 'campaign.overview'}" ng-click="activeCampaignMenu('campaign.overview')" id="second_menu" ui-sref="campaign.overview">
+				<img src="assets/callburn/images/messages_menu_icons/overview.png" ng-show="campaignMenuItem.status == 'campaign.overview'" class="campaign_menu_icons" id="overview_icon">
+				<img src="assets/callburn/images/messages_menu_icons/overview_selected.png" ng-hide="campaignMenuItem.status == 'campaign.overview'" class="campaign_menu_icons" id="overview_icon">
+				<span class="campaign_menu_span">{{trans('message_overview')}}</span>
+			</span>
+		</div>
+		<div class="campaign_menu_content">
+			<span ng-class="{campaign_menu_icons_container:true, selected_menu: campaignMenuItem.status == 'campaign.compose'}" ng-click="activeCampaignMenu('campaign.compose')" ui-sref="campaign.compose">
+				<img src="assets/callburn/images/messages_menu_icons/compose.png" ng-show="campaignMenuItem.status == 'campaign.compose'" class="campaign_menu_icons">
+				<img src="assets/callburn/images/messages_menu_icons/compose_selected.png" ng-hide="campaignMenuItem.status == 'campaign.compose'" class="campaign_menu_icons">
+				<span class="campaign_menu_span">{{trans('message_compose_new')}}</span>
+			</span>	
+		</div>
+		<div class="campaign_menu_content">
+			<span ng-class="{campaign_menu_icons_container:true, selected_menu: campaignMenuItem.status == 'campaign.templates'}" ng-click="activeCampaignMenu('campaign.templates')" ui-sref="campaign.templates">
+				<img src="assets/callburn/images/messages_menu_icons/template.png" ng-show="campaignMenuItem.status == 'campaign.templates'" class="campaign_menu_icons">
+				<img src="assets/callburn/images/messages_menu_icons/template_selected.png" ng-hide="campaignMenuItem.status == 'campaign.templates'" class="campaign_menu_icons">
+				<span class="campaign_menu_span">{{trans('message_templates')}}</span>
+			</span>
+		</div>
+		<div class="campaign_menu_content">
+			<span ng-class="{campaign_menu_icons_container:true, selected_menu: campaignMenuItem.status == 'campaign.batch'}" ng-click="activeCampaignMenu('campaign.batch')" ui-sref="campaign.batch">
+				<img src="assets/callburn/images/messages_menu_icons/batch_send.png" ng-show="campaignMenuItem.status == 'campaign.batch'" class="campaign_menu_icons">
+				<img src="assets/callburn/images/messages_menu_icons/batch_send_selected.png" ng-hide="campaignMenuItem.status == 'campaign.batch'" class="campaign_menu_icons">
+				<span class="campaign_menu_span">{{trans('message_batch_send')}}</span>
+			</span>
+		</div>
+	</div>
+	<div class="back_next_container">
+		<div id="back" ng-show="showPreviousIcon" ng-click="previousStep()">
+			<span class="back_next_sp">BACK</span>
+		</div>
+		<div id="next" ng-show="showNextIcon" ng-click="nextStep()">
+			<span class="back_next_sp back_next_sp1">NEXT</span>
+		</div>
+	</div>
+	<div style="background: #fff;">
+		<div class="campaign_container">
+
+			<div ui-view></div>
+	
+		</div>
+	</div>
+</div>

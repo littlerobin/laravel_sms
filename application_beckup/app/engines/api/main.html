@@ -1,0 +1,39 @@
+
+<div>	
+	<div class="api_menu">
+		<div class="api_menu_content">
+			<span class="api_menu_icons_container" ui-sref-active="selected_menu">
+				<img src="assets/callburn/images/api_selected.png" ng-show="false" class="api_menu_icons">
+				<img src="assets/callburn/images/api_icon.png" ng-show="true" class="api_menu_icons">
+				<span class="api_menu_span">{{trans('api_settings')}}</span>
+			</span>	
+		</div>
+		<!-- <div class="api_menu_content">
+			<span class="api_menu_icons_container" ui-sref-active="selected_menu">
+				<span class="api_menu_span">{{trans('api_docs')}}</span>
+			</span>
+		</div> -->
+	</div>
+	<div class="back_next_container">
+		<div id="back" ng-show="showPreviousIcon" ng-click="previousStep()">
+			<span class="back_next_sp">BACK</span>
+		</div>
+		<div id="next" ng-show="showNextIcon" ng-click="nextStep()">
+			<span class="back_next_sp back_next_sp1">NEXT</span>
+		</div>
+	</div>
+	<div style="background: #fff;">
+		<div class="api_container">
+			<div class="dashboard_menu">
+				<div class="dashboard_menu_content">
+					<span class="dashboard_menu_icons_container">
+						<img src="assets/callburn/images/fill-88.png" class="dashboard_menu_icons">
+						<span class="dashboard_menu_span">{{trans('api_docs')}}</span>
+					</span>
+				</div>
+			</div>
+			<div ui-view></div>
+
+		</div>
+	</div>
+</div>

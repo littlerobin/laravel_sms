@@ -1,0 +1,891 @@
+
+<!-- Registration from mail modal -->
+<div class="modal_window modaleffect" ng-show="showRegModal">
+	<div class="modal_container">
+		<img src="/assets/callburn/images/front_account/x-icon.png" ng-click="showRegModal = false;" class="close_modal">
+		<span class="contact_us_sp1">Your CallBurn <b>account</b></span>
+		<span class="contact_us_sp5">(simple, fast!)</span>
+		<span class="reg_from_mail_modal_sp1">Look our documentation because is very detailed and simple, created for both users and developers. We also like to receive suggestions, so, chat with us in case of any :-)</span>
+		<span class="reg_from_mail_modal_sp1">After registration you can also provide more CallerID and choose which one use based on your preferences.</span>
+		<input type="text" ng-model="finishRegistrationData.phonenumber" placeholder="{{trans('price_input_placeholder_insert_number')}}" class="modal_insert_number_input">
+		<div class="invalid_login" ng-show="regVerificationStep > 1">
+			<img src="/assets/callburn/images/front_account/check-icon_green.png">
+			<span class="ng-binding">A Voice Message is being sent now, keep your phone free to receive that</span>
+		</div>
+		<div class="invalid_login" ng-show="regVerificationStep == 1 && phonenumberValidationError">
+			<img src="/assets/callburn/images/front_account/fill-1.png">
+			<span class="ng-binding">Phonenumber is not valid</span>
+		</div>
+		<button class="callerid_container_btn" ng-show="regVerificationStep == 1" ng-click="sendVerificationCallReg()">
+			<img src="/assets/callburn/images/front_account/send-verification-code-icon.png" class="settings_input_icons">
+			Send verification code to this phonenumber
+		</button>
+		<div ng-show="regVerificationStep >= 2">
+			<span class="reg_from_mail_modal_sp2">For assuring your identity, please put received verification code</span>
+			<div style="position: relative;">
+				<div class="send_varification_code_cointainer">
+					<img src="/assets/callburn/images/front_account/fill-37.png">
+					<span>Did you forgot it? Send it again</span>
+				</div>
+				<input type="text" class="varification_code_input" ng-model="finishRegistrationData.voice_code" placeholder="{{trans('price_input_placeholder_verifcatior_code')}}">
+			</div>	
+			<div class="invalid_login" ng-show="regVerificationStepError">
+				<img src="/assets/callburn/images/front_account/fill-1.png">
+				<span class="ng-binding">{{trans('wrong_verification_code_1')}}</span>
+			</div>
+			<button class="check_varification_code_btn" ng-click="validateVoiceCodeReg()">Check varification code</button>
+			<div ng-show="regVerificationStep >= 3">
+				<span class="reg_from_mail_modal_sp2">Now enter a secure password and you have done!</span>
+				<div class="modal_input_container">
+					<div class="modal_input_content">
+						<img src="/assets/callburn/images/front_account/key-icon.png" class="modal_icons" />
+						<input type="password" ng-model="finishRegistrationData.password" placeholder="{{trans('login_modal_input_placeholder2')}}" class="modal_input" />
+					</div>
+					<div class="modal_input_content">
+						<img src="/assets/callburn/images/front_account/key-icon.png" class="modal_icons" />
+						<input type="password" ng-model="finishRegistrationData.password_confirmation" placeholder="{{trans('login_modal_input_placeholder3')}}" class="modal_input" />
+					</div>
+				</div>
+				<span class="reg_modal_sp1">{{trans('reg_modal_by_clicking_one1')}}</span>
+				<span class="reg_modal_sp1"><b>{{trans('reg_modal_by_clicking_one2')}}</b> <b ng-click="PrivacyModal()" style="cursor: pointer;">{{trans('reg_modal_by_clicking_one2_1')}}</b> {{trans('reg_modal_by_clicking_one3')}} <b ng-click="ConditionsModal()" style="cursor: pointer;">{{trans('reg_modal_by_clicking_one4')}}</b></span>
+				<button class="reg_from_mail_btn" ng-click="submitSaving()">Finalize Registration</button>
+			</div>
+		</div>
+		<div class="modal_bottom">
+			<img src="/assets/callburn/images/front_account/arrow-icon.png" class="front_modal_arrow_icon" />
+			<span class="contact_us_sp1"><b>Having</b> troubles?</span>
+			<span class="contact_us_sp5">(<b>chat</b> with us, we can help you)</span>
+		</div>
+	</div>
+</div> 
+<!-- /Registration from mail modal -->
+
+<section class="voice_messege_container">
+	<span class="voice_message_sp1">{{trans('contac_us_text_in_a_world_full1')}}</span>
+	<span class="voice_message_sp1">{{trans('contac_us_text_in_a_world_full2')}} <b>#{{trans('contac_us_text_in_a_world_full3')}}!</b></span>
+	<span class="voice_message_sp1">{{trans('contac_us_text_start_now1')}} <b>{{trans('contac_us_text_start_now2')}}</b></span>
+	<div class="voice_message_menu_container">
+		<div class="voice_message_menu_cotent">
+			<img src="/assets/callburn/images/front_account/cheaper-icon.png" class="voice_message_icon voice_message_icon1">
+			<span class="voice_message_sp2">{{trans('contac_us_chapter')}}</span>
+		</div>
+		<div class="voice_message_menu_cotent">
+			<img src="/assets/callburn/images/front_account/useful.png" class="voice_message_icon voice_message_icon2">
+			<span class="voice_message_sp2">{{trans('contac_us_modular')}}</span>
+		</div>
+		<div class="voice_message_menu_cotent">
+			<img src="/assets/callburn/images/front_account/tts-powered-icon.png" class="voice_message_icon voice_message_icon3">
+			<span class="voice_message_sp2">{{trans('contac_us_text_text_to_speech')}}</span>
+		</div>
+		<div class="voice_message_menu_cotent">
+			<img src="/assets/callburn/images/front_account/interactive-icon.png" class="voice_message_icon voice_message_icon4">
+			<span class="voice_message_sp2">{{trans('contac_us_text_interactive')}}</span>
+		</div>
+		<div class="voice_message_menu_cotent">
+			<img src="/assets/callburn/images/front_account/api-icon.png" class="voice_message_icon voice_message_icon5">
+			<span class="voice_message_sp2">{{trans('contac_us_text_api_powered')}}</span>
+		</div>
+	</div>
+	<div class="start_callburn_btn">
+		{{trans('contac_us_text_start_use_callburn')}}
+	</div>
+	<div class="voice_messeges_ios_android_icons_container">
+		<img src="/assets/callburn/images/front_account/app-store-icon.png" class="voice_messeges_ios_android_icon">
+		<img src="/assets/callburn/images/front_account/android-icon.png" class="voice_messeges_ios_android_icon">
+	</div>
+	<div class="voice_messeges_down_arrow_container">
+		<a href="#voice_messeges_content_container"><img src="/assets/callburn/images/front_account/imported-layers.png" class="voice_messeges_down_arrow"/></a>
+	</div>		
+</section>
+
+
+
+<section id="voice_messeges_content_container" class="voice_messeges_content_container">
+	<div class="voice_message_block">
+		<span class="voice_message_block_sp1">{{trans('contac_us_text_callburn1')}} <b class="bold_sp">{{trans('contac_us_text_callburn2')}}</b></span>
+		<div class="voice_message_slider_container">
+			<img src="/assets/callburn/images/front_account/group.png" class="voice_message_block1_img" />
+			<div class="voice_message_slider_content_container" ng-show="messageSliderStep == 1">
+				<div class="voice_message_slider_content">
+					<div class="voice_message_slider" id="voice_message_slider">
+						Hi Paoul, a transaction of 390$ was just made with your credit card ending in 5832. Press one to  notify an unwanted operation
+					</div>	
+					<span id="voice_content_block_1_idea_triangle"></span>
+				</div>
+				<div class="voice_message_slider_content_container_pagination">
+					<span ng-click="goToMessageSlide(1)" class="voice_message_slider_pagination_content voice_message_active_page"></span>
+					<span ng-click="goToMessageSlide(2)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(3)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(4)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(5)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(6)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(7)" class="voice_message_slider_pagination_content"></span>
+				</div>
+			</div>
+			<div class="voice_message_slider_content_container" ng-show="messageSliderStep == 2">
+				<div class="voice_message_slider_content">
+					<div class="voice_message_slider" id="voice_message_slider">
+						Good morning from Callburn Air.Because of a strike, the flight number A250 of the 8:30 am, will depart late. For further information, press one. To repeat, press two
+					</div>
+					<span id="voice_content_block_1_idea_triangle"></span>
+				</div>
+				<div class="voice_message_slider_content_container_pagination">
+					<span ng-click="goToMessageSlide(1)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(2)" class="voice_message_slider_pagination_content voice_message_active_page"></span>
+					<span ng-click="goToMessageSlide(3)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(4)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(5)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(6)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(7)" class="voice_message_slider_pagination_content"></span>
+				</div>
+			</div>
+			<div class="voice_message_slider_content_container" ng-show="messageSliderStep == 3">
+				<div class="voice_message_slider_content">
+					<div class="voice_message_slider" id="voice_message_slider">
+					 	Hallo from Dama’s Pizza!Let’s take now, our special offer “Tonight Eat and Drink!"Order a familiar pizza, we give you 2 beers free!!!Press one to order and choose your pizza.Enjoy your dinner with Dama’s pizza
+					 </div>
+					<span id="voice_content_block_1_idea_triangle"></span>
+				</div>
+				<div class="voice_message_slider_content_container_pagination">
+					<span ng-click="goToMessageSlide(1)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(2)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(3)" class="voice_message_slider_pagination_content voice_message_active_page"></span>
+					<span ng-click="goToMessageSlide(4)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(5)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(6)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(7)" class="voice_message_slider_pagination_content"></span>
+				</div>
+			</div>
+			<div class="voice_message_slider_content_container" ng-show="messageSliderStep == 4">
+				<div class="voice_message_slider_content">
+					<div class="voice_message_slider" id="voice_message_slider">
+						Gentle Mrs. King, today , on her account, has received a request to charge by the Vodafone amounting to € 100.To confirm press the button one.To reject push the button two.For more information press the button three.Thank you, have a nice day
+					</div>
+					<span id="voice_content_block_1_idea_triangle"></span>
+				</div>
+				<div class="voice_message_slider_content_container_pagination">
+					<span ng-click="goToMessageSlide(1)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(2)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(3)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(4)" class="voice_message_slider_pagination_content voice_message_active_page"></span>
+					<span ng-click="goToMessageSlide(5)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(6)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(7)" class="voice_message_slider_pagination_content"></span>
+				</div>
+			</div>
+			<div class="voice_message_slider_content_container" ng-show="messageSliderStep == 5">
+				<div class="voice_message_slider_content">
+					<div class="voice_message_slider" id="voice_message_slider">
+						Dear Sir.Smith,We invite you to come to our salon to revise the car with license plate XYZ123 , expiring April 30, 2016.To confirm , press one .To repeat , press two .Thank you, and have a nice day
+					</div>
+					<span id="voice_content_block_1_idea_triangle"></span>
+				</div>
+				<div class="voice_message_slider_content_container_pagination">
+					<span ng-click="goToMessageSlide(1)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(2)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(3)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(4)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(5)" class="voice_message_slider_pagination_content voice_message_active_page"></span>
+					<span ng-click="goToMessageSlide(6)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(7)" class="voice_message_slider_pagination_content"></span>
+				</div>
+			</div>
+			<div class="voice_message_slider_content_container" ng-show="messageSliderStep == 6">
+				<div class="voice_message_slider_content">
+					<div class="voice_message_slider" id="voice_message_slider">
+						Dear parents,we want to inform you that on may 20th,in Auditorium class, there will be the conference,“Children in the Wild World: safe use of internet”and we invite you to partecipate.Press one to confirm your participation.Press two, to have more informations.Thank’s to listen.Have a nice day.
+					</div>
+					<span id="voice_content_block_1_idea_triangle"></span>
+				</div>
+				<div class="voice_message_slider_content_container_pagination">
+					<span ng-click="goToMessageSlide(1)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(2)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(3)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(4)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(5)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(6)" class="voice_message_slider_pagination_content voice_message_active_page"></span>
+					<span ng-click="goToMessageSlide(7)" class="voice_message_slider_pagination_content"></span>
+				</div>
+			</div>
+			<div class="voice_message_slider_content_container" ng-show="messageSliderStep == 7">
+				<div class="voice_message_slider_content">
+					<div class="voice_message_slider" id="voice_message_slider">
+						Goodmorning mr. Smiththe results of the medical examinations carried out on Monday 18 , is available for consultation . To book the withdrawal press one .Thank you
+					</div>
+					<span id="voice_content_block_1_idea_triangle"></span>
+				</div>
+				<div class="voice_message_slider_content_container_pagination">
+					<span ng-click="goToMessageSlide(1)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(2)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(3)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(4)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(5)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(6)" class="voice_message_slider_pagination_content"></span>
+					<span ng-click="goToMessageSlide(7)" class="voice_message_slider_pagination_content voice_message_active_page"></span>
+				</div>
+			</div>
+		</div>
+		<span class="voice_message_block_sp2">{{trans('contac_us_text_callburn_voice_message')}}</span>
+	</div>
+	<div class="voice_message_block">
+		<span class="voice_message_block_sp1"><b class="bold_sp">{{trans('contac_us_text_rigns_like1')}}</b> {{trans('contac_us_text_rigns_like2')}}</span>
+		<div class="voice_message_block2_img_container">
+			<img src="/assets/callburn/images/front_account/landline-call-icon.png" class="voice_message_block2_img1" />
+			<img src="/assets/callburn/images/front_account/mobile-call-icon.png" class="voice_message_block2_img2" />
+		</div>
+		<span class="voice_message_block_sp2">{{trans('contac_us_text_instead_notification')}}</span>
+	</div>
+	<div class="voice_message_block">
+		<span class="voice_message_block_sp1"><b class="bold_sp">{{trans('contac_us_text_send_it1')}}</b> {{trans('contac_us_text_send_it2')}}</span>
+		<div class="voice_message_block3_img_container">
+			<img src="/assets/callburn/images/front_account/blue-box-why-only-mobile-phones.png" class="voice_message_block3_img1" />
+			<!-- <img src="/assets/callburn/images/front_account/callburn-icon.png" class="voice_message_block3_img1" />
+			<img src="/assets/callburn/images/front_account/voicemail-icon.png" class="voice_message_block3_img" />
+			<img src="/assets/callburn/images/front_account/satellite-icon.png" class="voice_message_block3_img" />
+			<img src="/assets/callburn/images/front_account/landline-icon.png" class="voice_message_block3_img" /> -->
+		</div>
+		<span class="voice_message_block_sp2">{{trans('contac_us_text_your_recipients1')}} <b>{{trans('contac_us_text_your_recipients2')}}</b>{{trans('contac_us_text_your_recipients3')}}</span>
+	</div>
+	<div class="voice_message_block">
+		<span class="voice_message_block_sp1"><b class="bold_sp">{{trans('contac_us_useful')}}</b> & {{trans('contac_us_modular')}}</span>
+		<div class="voice_message_block4_img_container">
+			<div class="voice_message_block4_img_side_container">
+				<span class="voice_message_block_sp3">{{trans('contac_us_schools')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_hospitals')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_institutions')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_police')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_doctors')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_shops')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_shipping_companies')}}</span>
+			</div>
+			<img src="/assets/callburn/images/front_account/group1.png" class="voice_message_block4_img" />
+			<div class="voice_message_block4_img_side_container">
+				<span class="voice_message_block_sp3">{{trans('contac_us_emergencies')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_marketing')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_security')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_it_techonologies')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_reminders')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_military')}}</span>
+				<span class="voice_message_block_sp3">{{trans('contac_us_surveys')}}</span>
+			</div>
+		</div>
+		<span class="voice_message_block_sp2">{{trans('contac_us_text_when_designing_callburn1')}} <b>{{trans('contac_us_text_when_designing_callburn2')}}</b> {{trans('contac_us_text_when_designing_callburn3')}}</span>
+	</div>
+	<div class="voice_message_block">
+		<span class="voice_message_block_sp1">{{trans('contac_us_featuring_interactions1')}} <b class="bold_sp">{{trans('contac_us_featuring_interactions2')}}</b></span>
+		<div class="voice_message_block5_img_container">
+			<img src="/assets/callburn/images/front_account/interactions-icon.png" class="voice_message_block5_img" />
+			<div class="voice_message_block4_img_side_container">
+				<span class="voice_message_block_sp3"><b class="bold_sp">{{trans('contac_us_text_some_examples1')}}:</b></span>
+				<span class="voice_message_block_sp3"><b class="bold_sp">{{trans('contac_us_text_some_examples2')}}</b> {{trans('contac_us_text_some_examples3')}}</span>
+				<span class="voice_message_block_sp3"><b class="bold_sp">{{trans('contac_us_text_some_examples4')}}</b> {{trans('contac_us_text_some_examples5')}}</span>
+				<span class="voice_message_block_sp3"><b class="bold_sp">{{trans('contac_us_text_some_examples6')}}</b> {{trans('contac_us_text_some_examples7')}}</span>
+				<span class="voice_message_block_sp3"><b class="bold_sp">{{trans('contac_us_text_some_examples8')}}</b> {{trans('contac_us_text_some_examples9')}}</span></span>
+			</div>
+		</div>
+		<span class="voice_message_block_sp2">{{trans('contac_us_text_when_composing')}}</span>
+	</div>
+	<div class="voice_content_down_arrow">
+		<img src="/assets/callburn/images/front_account/go-down.png" class="blue_down_arrow" />
+	</div>		
+</section>
+
+
+
+<section class="switch_container">
+	<span class="voice_message_block_sp1">{{trans('contac_us_text_still_using1')}}</span>
+	<span class="voice_message_block_sp1">{{trans('contac_us_text_still_using2')}}</span>
+	<span class="voice_message_block_sp1"><b class="bold_sp">{{trans('contac_us_text_still_using3')}}</b> {{trans('contac_us_text_still_using4')}}!</span>
+	<div class="switch_block_notification" ng-show="sliderStep == 1">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/sms-notification-icon.png" class="switch_icon" />
+				<span class="switch_sp2">{{trans('contac_us_message_notification')}}</span>
+			</div>
+			<span id="sweeich_block_notification_center">{{trans('contac_us_notification_method')}}</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/callburn-rings-icon.png" class="switch_icon switch_icon2" />
+				<span class="switch_sp4">{{trans('contac_us_rings_like_phonecall')}}</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 2">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/icons-align-center.png" class="switch_icon" id="slider_img3" />
+				<span class="switch_sp2">Text only</span>
+			</div>
+			<span id="sweeich_block_notification_center">Message source</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/icons-align-center-group.png" class="switch_icon switch_icon3" id="slider_img4" />
+				<span class="switch_sp4">Text or Voice</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 3">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/coins-copy.png" class="switch_icon switch_icon4" />
+				<span class="switch_sp2">Billed</span>
+			</div>
+			<span id="sweeich_block_notification_center">Undelivered messages</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/oval-40-coins.png" class="switch_icon" id="slider_img6" />
+				<span class="switch_sp4">Free of charge</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 4">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/coins-copy.png" class="switch_icon switch_icon4" />
+				<span class="switch_sp2">Billed</span>
+			</div>
+			<span id="sweeich_block_notification_center">Undiscovered messages</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/oval-40-coins.png" class="switch_icon" id="slider_img6" />
+				<span class="switch_sp4">Free of charge</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 5">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/callburn-icon1.png" class="switch_icon switch_icon5" />
+				<span class="switch_sp2">Mobiles phones</span>
+			</div>
+			<span id="sweeich_block_notification_center">Supported delivery on</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/group2.png" class="switch_icon switch_icon6" />
+				<span class="switch_sp4">Landline,  Mobiles Satellitar, Voicemails</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 6">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/shape.png" class="switch_icon" id="slider_img9"/>
+				<span class="switch_sp2">NO</span>
+			</div>
+			<span id="sweeich_block_notification_center">Caller ID Support</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/check-icon.png" class="switch_icon" id="slider_img10"/>
+				<span class="switch_sp4">YES</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 7">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/notes.png" class="switch_icon switch_icon7" />
+				<span class="switch_sp2">160 characters only</span>
+			</div>
+			<span id="sweeich_block_notification_center">Message Length</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/group-shape.png" class="switch_icon switch_icon8" />
+				<span class="switch_sp4">UNLIMITED</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 8">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/shape.png" class="switch_icon" id="slider_img9" />
+				<span class="switch_sp2">Optional (and not free)</span>
+			</div>
+			<span id="sweeich_block_notification_center">{{trans('apples_delivery_notification')}}</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/check-icon.png" class="switch_icon" id="slider_img10" />
+				<span class="switch_sp4">Included (and free)</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 9">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/expensive-icon.png" class="switch_icon" id="slider_img15" />
+				<span class="switch_sp2">Expensive</span>
+			</div>
+			<span id="sweeich_block_notification_center">{{trans('apples_cost')}}</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/cheaper-icon1.png" class="switch_icon" id="slider_img16" />
+				<span class="switch_sp4">Cheaper (save up to 70% compared to sms)</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination pagination_active"></span>
+			<span ng-click="goToSlide(10)" class="pagination"></span>
+		</div>
+	</div>
+
+	<div class="switch_block_notification" ng-show="sliderStep == 10">
+		<img ng-click="prevSlide()" src="/assets/callburn/images/front_account/left_orange_arrow.png"  id="left_arrow" class="arrow" />
+		<img ng-click="nextSlide()" src="/assets/callburn/images/front_account/right_orange_arrow.png" id="right_arrow" class="arrow" />
+		<div class="switch_block_notification_content_container">
+			<div class="switch_block_notification_img_first_content">
+				<span class="switch_sp1">{{trans('contac_us_standard_sms')}}</span>
+				<img src="/assets/callburn/images/front_account/shape.png" class="switch_icon" id="slider_img9"/>
+				<span class="switch_sp2">NO</span>
+			</div>
+			<span id="sweeich_block_notification_center">Human Voice detection</span>
+			<div class="switch_block_notification_img_second_content">
+				<span class="switch_sp3">{{trans('contac_us_callburn_voice_message')}}</span>
+				<img src="/assets/callburn/images/front_account/check-icon.png" class="switch_icon" id="slider_img10"/>
+				<span class="switch_sp4">YES(and free)</span>
+			</div>
+		</div>
+		<div class="switch_block_pagination">
+			<span ng-click="goToSlide(1)" class="pagination"></span>
+			<span ng-click="goToSlide(2)" class="pagination"></span>
+			<span ng-click="goToSlide(3)" class="pagination"></span>
+			<span ng-click="goToSlide(4)" class="pagination"></span>
+			<span ng-click="goToSlide(5)" class="pagination"></span>
+			<span ng-click="goToSlide(6)" class="pagination"></span>
+			<span ng-click="goToSlide(7)" class="pagination"></span>
+			<span ng-click="goToSlide(8)" class="pagination"></span>
+			<span ng-click="goToSlide(9)" class="pagination"></span>
+			<span ng-click="goToSlide(10)" class="pagination pagination_active"></span>
+		</div>
+	</div>
+</section>
+
+
+<section class="cheapter_container">
+	<span class="cheapter_sp1">{{trans('contac_us_text_callburn_reinveted1')}} <b>{{trans('contac_us_text_callburn_reinveted2')}}</b> {{trans('contac_us_text_callburn_reinveted3')}} <b>{{trans('contac_us_text_callburn_reinveted4')}}</b></span>
+	<span class="cheapter_sp1">{{trans('contac_us_text_callburn_reinveted5')}} <b>{{trans('contac_us_text_callburn_reinveted6')}}</b> {{trans('contac_us_text_callburn_reinveted7')}} <b>{{trans('contac_us_text_callburn_reinveted8')}}</b> {{trans('contac_us_text_callburn_reinveted9')}} <b>{{trans('contac_us_text_callburn_reinveted10')}}</b> {{trans('contac_us_text_callburn_reinveted11')}} <b>{{trans('contac_us_text_callburn_reinveted12')}}</b> {{trans('contac_us_text_callburn_reinveted13')}} <b>{{trans('contac_us_text_callburn_reinveted14')}}</b> {{trans('contac_us_text_callburn_reinveted15')}}</span>
+	<div class="cheapter_content_container">
+		<div class="cheapter_content">
+			<img src="/assets/callburn/images/front_account/rocket-icon.png" class="cheapter_icon" id="rocket_icon" />
+			<span class="cheapter_sp2">{{trans('contac_us_incredible_fast')}}</span>
+			<span class="cheapter_sp3">{{trans('contac_us_text_forgot_about')}}</span>
+		</div>
+		<div class="cheapter_content">
+			<img src="/assets/callburn/images/front_account/pig-icon.png" class="cheapter_icon" />
+			<span class="cheapter_sp2">{{trans('contac_us_pay_only_discovered_messages')}}</span>
+			<span class="cheapter_sp3">{{trans('contac_us_text_even_if_your')}}</span>
+		</div>
+		<div class="cheapter_content">
+			<img src="/assets/callburn/images/front_account/contract-icon.png" class="cheapter_icon" id="rocket_icon" />
+			<span class="cheapter_sp2">{{trans('contac_us_no_contracts')}}</span>
+			<span class="cheapter_sp3">{{trans('contac_us_text_pay_only_if')}}</span>
+		</div>
+	</div>
+	<div class="cheapter_content_container">
+		<div class="cheapter_content">
+			<img src="/assets/callburn/images/front_account/docs-icon.png" class="cheapter_icon" />
+			<span class="cheapter_sp2">{{trans('contac_us_created_for_developers')}}</span>
+			<span class="cheapter_sp3">{{trans('contac_us_text_with_amazing_features')}}</span>
+		</div>
+		<div class="cheapter_content">
+			<img src="/assets/callburn/images/front_account/crypted-icon.png" class="cheapter_icon" id="rocket_icon" />
+			<span class="cheapter_sp2">{{trans('contac_us_cry_for_your_privacy')}}</span>
+			<span class="cheapter_sp3">{{trans('contac_us_text_all_the_connections')}}</span>
+		</div>
+		<div class="cheapter_content">
+			<img src="/assets/callburn/images/front_account/earth-icon.png" class="cheapter_icon" />
+			<span class="cheapter_sp2">{{trans('contac_us_multilanguage_chat_support')}}</span>
+			<span class="cheapter_sp3">{{trans('contac_us_text_fast_than_email')}}</span>
+		</div>
+	</div>
+</section>
+
+<section class="use_container">
+	<span class="contact_us_sp1">{{trans('contac_us_how_to_use1')}} <b class="bold_sp">{{trans('contac_us_how_to_use2')}}?</b></span>
+	<span class="contact_us_sp5">({{trans('contac_us_text_we_like')}})</span>
+	<div class="use_content_container">
+		<img src="/assets/callburn/images/front_account/number1.png" class="use_container_number_img" />
+		<span class="use_sp1">{{trans('contac_us_text_sign_up')}}</span>
+		<div style="margin-top: 30px;">
+			<div class="content_icon_conteiner" ng-click="loginFacebook()">
+				<div class="content_icon_content_container1"><img src="/assets/callburn/images/front_account/icons-facebook1.png" class="content_icon1" /></div>
+				<span class="content_sp2 content_sp21">{{trans('price_facebook')}}</span>
+			</div>
+			<div class="content_icon_conteiner" ng-click="loginGoogle()">
+				<div class="content_icon_content_container2"><img src="/assets/callburn/images/front_account/icons-google1.png" class="content_icon1" /></div>
+				<span class="content_sp2 content_sp21">{{trans('price_google')}}</span>
+			</div>
+			<div class="content_icon_conteiner" ng-click="showRegModal()">
+				<div class="content_icon_content_container3"><img src="/assets/callburn/images/front_account/mail-paint.png" class="content_icon1" /></div>
+				<span class="content_sp2 content_sp21">{{trans('price_mail')}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="use_content_container">
+		<img src="/assets/callburn/images/front_account/number2.png" class="use_container_number_img" />
+		<span class="use_sp1">{{trans('contac_us_text_compose_voice_message1')}}</span>
+		<span class="use_sp1">{{trans('contac_us_text_compose_voice_message2')}}</span>
+		<div style="margin-top: 30px;">
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/icons-attachment.png" class="content_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_upload_file')}}</span>
+			</div>
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/tts-icon-copy.png" class="content_icon" id="use_tts_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_write_text')}}</span>
+			</div>
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/record-icon.png" class="content_icon record_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_record_edit_cut')}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="use_content_container">
+		<img src="/assets/callburn/images/front_account/number3.png" class="use_container_number_img" />
+		<span class="use_sp1">{{trans('contac_us_text_choose_message_recipients1')}}</span>
+		<span class="use_sp1">{{trans('contac_us_text_choose_message_recipients2')}}</span>
+		<div style="margin-top: 30px;">
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/import-from-mobile-app.png" class="content_icon" id="import_from_mobile_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_import_from')}}</span>
+			</div>
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/add-icon.png" class="content_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_import_from_file')}}</span>
+			</div>
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/contacs-icon.png" class="content_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_add_it_by_copy')}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="use_content_container">
+		<img src="/assets/callburn/images/front_account/number4.png" class="use_container_number_img" />
+		<span class="use_sp1">{{trans('contac_us_text_review_and_send1')}}</span>
+		<span class="use_sp1">{{trans('contac_us_text_review_and_send2')}}</span>
+		<div style="margin-top: 30px;">
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/eye.png" class="content_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_before_sending')}}</span>
+			</div>
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/interactions-icon.png" class="content_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_you_can_also_configure')}}</span>
+			</div>
+			<div class="content_icon_conteiner">
+				<img src="/assets/callburn/images/front_account/schedule-or-send-it-icon.png" class="content_icon" id="schedule_icon" />
+				<span class="content_sp2 content_sp21">{{trans('contac_us_text_schedule_your_message')}}</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="content_block1">
+	<div class="api_img_container">
+		<img src="/assets/callburn/images/front_account/api-icon.png" class="content-api_icon" />
+	</div>
+	<span class="content_sp1"><b>{{trans('price_text_api_support_quickly1')}}</b></span>
+	<span class="content_sp1">{{trans('price_text_api_support_quickly2')}}</span>
+	<span class="content_sp1">{{trans('price_text_api_support_quickly3')}}</span>
+	<span class="content_sp1">{{trans('price_text_api_support_quickly4')}}</span>
+</div>
+
+<section class="think_about_us_container">
+	<span class="contact_us_sp1">{{trans('contac_us_text_what_our_customers1')}} <b>{{trans('contac_us_text_what_our_customers2')}}</b> {{trans('contac_us_text_what_our_customers3')}}?</span>
+	<span class="contact_us_sp5">({{trans('contac_us_text_we_love_our_customers')}})</span>
+	<div class="think_about_us_content_container">
+		<div class="think_about_us_content">
+			<img src="/assets/callburn/images/front_account/oval-23.png" class="about_us_icon">
+			<span class="content_sp2 content_sp21">"{{trans('contac_us_text_with_this_amazing_service')}}"</span>
+			<span class="voice_message_block_sp3">Susan Hernandez (Flower Shop)</span>
+		</div>
+		<div class="think_about_us_content">
+			<img src="/assets/callburn/images/front_account/oval-24.png" class="about_us_icon">
+			<span class="content_sp2 content_sp21">"{{trans('contac_us_text_i_was_loosing')}}"</span>
+			<span class="voice_message_block_sp3">Jenny Guzman (Laundry Service)</span>
+		</div>
+		<div class="think_about_us_content">
+			<img src="/assets/callburn/images/front_account/oval-25.png" class="about_us_icon">
+			<span class="content_sp2 content_sp21">"{{trans('contac_us_text_i_was_searching')}}"</span>
+			<span class="voice_message_block_sp3">Jose' Fernandez (App Developer)</span>
+		</div>
+	</div>
+</section>
+
+<section class="fully_professional_container">
+	<img src="/assets/callburn/images/front_account/fill-135.png" class="clock_icon" />
+	<img src="/assets/callburn/images/front_account/dashboard-icons.png" class="dashboard_icons" />
+	<span class="content_sp1"><b>{{trans('contac_us_text_featuring_fully_professional1')}}</b></span>
+	<span class="content_sp1">{{trans('contac_us_text_featuring_fully_professional2')}}</span>
+	<span class="content_sp1">{{trans('contac_us_text_featuring_fully_professional3')}}</span>
+	<div class="fully_professional_content_container">
+		<div class="fully_professional_block">
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/icons-user.png" class="about_us_content_icon">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_organize_your_contacts')}}</span>
+			</div>
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/fill-38.png" class="about_us_content_icon">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_save_your_message')}}</span>
+			</div>
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/fill-134.png" class="about_us_content_icon" id="fully_professional_img1">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_broadcast_your_message')}}</span>
+			</div>
+		</div>
+		<div class="fully_professional_block">
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/saved-messages-icon.png" class="about_us_content_icon">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_batch_contacts')}}</span>
+			</div>
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/delivery-rate-icon.png" class="about_us_content_icon" id="fully_professional_img2">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_analyze_delivery')}}</span>
+			</div>
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/export-icon.png" class="about_us_content_icon">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_export_statistics')}}</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="fully_professional_content_container1">
+		<div class="fully_professional_block">
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/icons-user.png" class="about_us_content_icon">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_organize_your_contacts')}}</span>
+			</div>
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/fill-38.png" class="about_us_content_icon">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_save_your_message')}}</span>
+			</div>
+		</div>
+		<div class="fully_professional_block">
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/fill-134.png" class="about_us_content_icon" id="fully_professional_img1">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_broadcast_your_message')}}</span>
+			</div>
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/saved-messages-icon.png" class="about_us_content_icon">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_batch_contacts')}}</span>
+			</div>
+		</div>
+		<div class="fully_professional_block">
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/delivery-rate-icon.png" class="about_us_content_icon" id="fully_professional_img2">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_analyze_delivery')}}</span>
+			</div>
+			<div class="fully_professional_content">
+				<img src="/assets/callburn/images/front_account/export-icon.png" class="about_us_content_icon">
+				<span class="contact_us_sp3_1">{{trans('contac_us_text_export_statistics')}}</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section1">
+	<img src="/assets/callburn/images/front_account/blue-box-why-only-mobile-phones.png" class="section1_icon">
+	<span class="section_sp1"><b>{{trans('contac_us_text_why_only_mobile_phones1')}}</b></span>
+	<span class="section_sp1">{{trans('contac_us_text_why_only_mobile_phones2')}}</span>
+	<span class="section_sp2">{{trans('contac_us_text_why_only_mobile_phones3')}}</span>
+</section>
+
+<section class="section2">
+	<img src="/assets/callburn/images/front_account/schedule-icon.png" class="section2_icon">
+	<span class="section_sp1 section_sp1_1"><b>{{trans('contac_us_text_schedule_your_delivery1')}}</b></span>
+	<span class="section_sp1 section_sp1_1">{{trans('contac_us_text_schedule_your_delivery2')}}</span>
+	<span class="section_sp2 section_sp1_1">{{trans('contac_us_text_schedule_your_delivery3')}}</span>
+</section>
+
+<section class="section1">
+	<img src="/assets/callburn/images/front_account/callerid-icon.png" class="section3_icon">
+	<span class="section_sp1"><b>{{trans('contac_us_text_use_your_own_caller1')}}</b></span>
+	<span class="section_sp1">{{trans('contac_us_text_use_your_own_caller2')}}</span>
+	<span class="section_sp2">{{trans('contac_us_text_use_your_own_caller3')}}</span>
+</section>
+
+<div class="content_block2">
+	<img src="/assets/callburn/images/front_account/callburn-forward-icon.png" class="big_icons1" />
+	<img src="/assets/callburn/images/front_account/white-u.png" class="big_icons2" />
+	<span class="content_sp1">{{trans('price_text_try_it_now1')}}</span>
+	<span class="content_sp1 content_sp1_3">{{trans('price_text_try_it_now2')}}</span>
+	<span class="content_sp1 content_sp1_3">{{trans('price_text_try_it_now3')}}</span>
+	<span class="content_sp1 content_sp1_2">{{trans('price_text_less_than_minute')}}</span>
+	<div class="content_block2_select_container">
+		<input type="text" placeholder="{{trans('price_input_placeholder_insert_number')}}" class="content_block2_input" ng-model="registrationData.phonenumber" />
+		<!-- <div class="select_container">
+			<img src="/assets/callburn/images/front_account/country-icon.png" class="price_input_icon price_input_icon1">
+			<select class="content_block2_select">
+				<option>{{trans('price_text_country')}}</option>
+			</select>
+			<img src="/assets/callburn/images/front_account/dropdown-icon.png" class="select_drop_down_arrow">
+		</div> -->
+		<button class="content_block2_select_btn" ng-click="sendVerificationCall()">{{trans('button_make_verification_call')}}</button>
+	</div>
+	<div ng-show="verificationStep > 1">
+		<span class="content_sp2">{{trans('price_text_a_voice_message')}}</span>
+		<div class="content_block2_input_container">
+			<input type="text" placeholder="{{trans('price_input_placeholder_verifcatior_code')}}?" class="content_block2_input1" ng-model="registrationData.voice_code" />
+			<button class="content_block2_input_btn" ng-click="validateVoiceCode()">{{trans('button_check_code')}}</button>
+		</div>
+	</div>
+
+	<div ng-show="verificationStep > 2">
+		<span class="content_sp2">{{trans('price_text_for_assuring')}}</span>
+		<span class="content_sp2 content_sp2_1">{{trans('price_text_finalize_registration')}}</span>
+		<div class="content_icon_container">
+			<div class="content_icon_conteiner" ng-click="loginFacebook()">
+				<img src="/assets/callburn/images/front_account/icons-facebook.png" class="content_icon" />
+				<span class="content_sp2">{{trans('price_facebook')}}</span>
+			</div>
+			<div class="content_icon_conteiner" ng-click="loginGoogle()">
+				<img src="/assets/callburn/images/front_account/icons-google.png" class="content_icon" />
+				<span class="content_sp2">{{trans('price_google')}}</span>
+			</div>
+			<div class="content_icon_conteiner" ng-click="showRegModal()">
+				<img src="/assets/callburn/images/front_account/icons-mail.png" class="content_icon" />
+				<span class="content_sp2">{{trans('price_mail')}}</span>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="content_wrapper"></div>	
+</div>

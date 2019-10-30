@@ -1,0 +1,83 @@
+<!-- compose step 1 -->
+<div class="compose_container">
+    <div class="compose_content_container">
+        <div class="compose_method_container">
+            <span class="compose_sp">{{trans('compose_step_1_method_1')}}</span>
+            <span class="compose_sp">{{trans('compose_step_1_method_1_text')}}</span>
+            <div class="compose_method">
+                <div class="choose_lang_and_voice_container">
+
+
+
+                    <callburn-select
+                            ng-model="ttsData.language"
+                            options="CampaignComposeService.ttsLanguages"
+                            show-attr="selectView"
+                            keep-attr='ttsEngine'
+                            image-url="/assets/callburn/images/TTSicon@2x.png"
+                            select-text="{{trans('compose_step_1_method_1_select_default')}}">
+                    </callburn-select>
+                    <div class="listen_voice_container" ng-show="ttsData.language">
+						<span class="listen_voice_content" ng-click="playTTSDemo()">
+							<img src="/assets/callburn/images/play.png" class="tts_select_play_icon"> Listen Voice
+						</span>
+                    </div>
+                </div>
+                <textarea ng-model="ttsData.text" class="compose_method1_textarea"
+                          placeholder="{{trans('compose_step_1_method_1_placeholder')}}"></textarea>
+                <span class="characters_count">{{trans('compose_step_1_method_1_characters_count')}}: {{ttsData.text.length}}</span>
+                <button class="compose_method1_btn" ng-click="showTtsNotification('voice_file')">
+                    {{trans('compose_step_1_method_1_compose')}}
+                </button>
+            </div>
+        </div>
+        <audio id="ttsDemoAudio" ng-show="false" ng-if="ttsData.language" ng-src="{{getTTSUrl()}}"></audio>
+        <div class="compose_method_container">
+            <span class="compose_sp">{{trans('compose_step_1_method_2')}}</span>
+            <span class="compose_sp">{{trans('compose_step_1_method_2_text')}}</span>
+            <div class="compose_method">
+                <div class="compose_method2_drag_container">
+                    <div class="compose_drag_drop_input">
+                        <img src="/assets/callburn/images/Attachment.png" class="compose_method2_input_img">
+                        <input readonly="true" type="text" class="compose_method2_input"
+                               placeholder="{{trans('compose_step_1_method_2_input_placeholder')}}"/>
+                        <input ng-show="false" id="campaignVoiceFileInput1" type="file" nv-file-select
+                               uploader="campaignVoiceMessageUpload"/>
+                        <div class="compose_method2_input_btns_container">
+                            <button class="compose_method2_input_btns" ng-click="openCampaignVoiceFileSelect()">
+                                {{trans('button_upload')}}
+                            </button>
+                        </div>
+                    </div>
+                    <div nv-file-drop="" uploader="campaignVoiceMessageUpload" class="drag_drop">
+                        <p ng-show="uploadingAudioName">{{uploadingAudioName}}</p>
+                        <p ng-show="!uploadingAudioName">{{trans('compose_step_1_method_2_dropzone1')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="compose_content_container">
+        <div class="compose_method_container">
+            <span class="compose_sp">{{trans('compose_step_1_method_3')}}</span>
+            <span class="compose_sp">{{trans('compose_step_1_method_3_text')}}</span>
+            <div class="compose_method">
+                <div class="compose_method3" ui-sref="campaign.templates">
+                    <img src="/assets/callburn/images/messages_menu_icons/template_selected.png"
+                         class="compose_method3_template_icon">
+                    <span class="compose_method3_sp">{{trans('message_templates')}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="compose_method_container">
+            <div class="compose_app_container">
+                <div class="android_ios_img_container">
+                    <img src="/assets/callburn/images/ios.png" class="android_ios_img" id="ios_img">
+                    <img src="/assets/callburn/images/android.png" class="android_ios_img" id="android_img">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end compose step 1 -->

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url>
+  <loc>https://callburn.com/en</loc>
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="it"
+                 href="https://callburn.com/it"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="es"
+                 href="https://callburn.com/es"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://callburn.com/en"
+                 />
+</url>
+<url>
+  <loc>https://callburn.com/en/voice-message</loc>
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="it"
+                 href="https://callburn.com/it/voice-message"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="es"
+                 href="https://callburn.com/es/voice-message"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://callburn.com/en/voice-message"
+                 />                 
+</url>
+<url>
+  <loc>https://callburn.com/en/documentation</loc>
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="it"
+                 href="https://callburn.com/it/documentation"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="es"
+                 href="https://callburn.com/es/documentation"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://callburn.com/en/documentation"
+                 />
+</url>
+<url>
+  <loc>https://callburn.com/en/contact-us</loc>
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="it"
+                 href="https://callburn.com/it/contact-us"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="es"
+                 href="https://callburn.com/es/contact-us"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://callburn.com/en/contact-us"
+                 />               
+</url>
+<url>
+  <loc>https://callburn.com/en/privacy</loc>
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="it"
+                 href="https://callburn.com/it/privacy"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="es"
+                 href="https://callburn.com/es/privacy"
+                 />
+  <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://callburn.com/en/privacy"
+                 />
+</url>
+</urlset>

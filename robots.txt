@@ -1,0 +1,4 @@
+Host: callburn.com
+User-agent: *
+
+Sitemap: https://callburn.com/sitemap.xml

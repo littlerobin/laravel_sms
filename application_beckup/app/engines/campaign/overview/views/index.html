@@ -1,0 +1,193 @@
+<div class="overview_container">
+	<div class="campaign_absolute_container" ng-if="false">
+		<span class="campaign_sp campaign_first_sp">{{trans('campaign_text_you_still')}}</span>
+		<span class="campaign_sp">{{trans('campaign_text_here_you_still')}}</span>
+		<span class="campaign_sp2">{{trans('campaign_text_go_to_compose')}}!!!</span>
+	</div>
+	<div>
+		<h3 class="campaign_sp1">
+			{{trans('overview_text')}}
+		</h3>
+		<div class="overwiev_border_dashed_container">
+			<div class="overwiev_border_dashed_container1">
+				<span class="sp1">{{trans('overview_choose_filter')}}:</span>
+				<div class="overwiev_border_dashed_content_container1">
+					<span class="sp2">{{trans('overview_date')}}</span>	
+					<div class="overwiev_border_dashed_content">
+						<img src="/assets/callburn/images/date_filter.png" id="overview_select_icon">
+						<select class="source_contents3" ng-model="filterData.date_range" ng-change="filterCampaigns()">
+							<option value="">{{trans('overview_select_option_range')}}</option>
+							<option value="1">{{trans('overview_select_option_day')}}</option>
+							<option value="7">{{trans('overview_select_option_week')}}</option>
+							<option value="30">{{trans('overview_select_option_month')}}</option>
+							<option value="90">{{trans('overview_select_option_90days')}}</option>
+						</select>
+						<img src="/assets/callburn/images/dropdown-icon.png" class="drop_down_arrow1">
+					</div>
+				</div>
+			</div>
+			<div class="overwiev_border_dashed_container2">
+				<div class="overwiev_border_dashed_content_container2">
+					<span class="sp2">{{trans('overview_message')}}</span>
+					<div class="phonenumbers_source_export_content">
+						<div ng-class="{source_contents:true, source_contents4:true, source_contents_selected: filterData.status == 'all'}" ng-click="filterCampaigns('all');">
+							<img src="/assets/callburn/images/phone_icon.png" ng-hide="filterData.status == 'all'" class="overview_source_icon" id="overview_source_phone_icon">
+							<img src="/assets/callburn/images/messages_selected.png" ng-show="filterData.status == 'all'" class="overview_source_icon" id="overview_source_phone_icon">
+							{{trans('overview_all')}}
+						</div>
+						<div ng-class="{source_contents:true, source_contents4:true, source_contents_selected: filterData.status == 'sent'}" ng-click="filterCampaigns('sent');">
+							<img src="/assets/callburn/images/overview_selected.png" ng-hide="filterData.status == 'sent'" class="overview_source_icon overview_source_icon1">
+							<img src="/assets/callburn/images/overview.png" ng-show="filterData.status == 'sent'" class="overview_source_icon overview_source_icon1" id="overview_white_icon">
+							{{trans('overview_sent')}}
+						</div>
+						<div ng-class="{source_contents:true, source_contents4:true, source_contents_selected: filterData.status == 'scheduled'}" ng-click="filterCampaigns('scheduled');">
+							<img src="/assets/callburn/images/scheduled-icon.png" ng-hide="filterData.status == 'scheduled'" class="overview_source_icon" id="schedule_icon">
+							<img src="/assets/callburn/images/scheduled-icon-white.png" ng-show="filterData.status == 'scheduled'" class="overview_source_icon" id="schedule_icon">
+							{{trans('overview_schedule')}}
+						</div>
+						<div ng-class="{source_contents:true, source_contents4:true, source_contents_selected: filterData.status == 'draft'}" ng-click="filterCampaigns('draft');">
+							<img src="/assets/callburn/images/draft.png" ng-hide="filterData.status == 'draft'" class="overview_source_icon">
+							<img src="/assets/callburn/images/draft-icon-white.png" ng-show="filterData.status == 'draft'" class="overview_source_icon">
+							{{trans('overview_draft')}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="second_menu_container">
+			<div class="second_menu_content1" id="overview_search_container">
+				<img src="/assets/callburn/images/searchicon.png" class="icon1" />
+				<input type="text" placeholder="{{trans('overview_input_placeholder')}}" ng-model="filterData.search_name"  ng-change="filterCampaigns()" />
+			</div>
+			<div class="second_menu_content">
+				<span class="sp2">Statistics</span>
+				<span class="second_menu_content_center">
+					<a ng-click="exportCampaign()">
+						<img src="/assets/callburn/images/export_icon.png" class="second_menu_icons"/>
+						<span class="second_menu_span">{{trans('second_menu_export')}}</span>
+					</a>
+				</span>
+			</div>
+			<div class="message_recipients_top">
+				<span class="sp2">Reuse</span>
+				<div>
+					<div class="second_menu_content" id="message_content" ng-click="reuseMessage()">
+						<span class="second_menu_content_center">
+							<img src="/assets/callburn/images/message_icon.png" class="second_menu_icons"/>
+							<span class="second_menu_span">{{trans('second_menu_message')}}</span>
+						</span>
+					</div>
+					<div class="second_menu_content" ng-click="reuseReceipents()">
+						<span class="second_menu_content_center">
+							<img src="/assets/callburn/images/recipient_icon.png" class="second_menu_icons"/>
+							<span class="second_menu_span">{{trans('second_menu_recipients')}}</span>
+						</span>
+					</div>
+				</div>	
+			</div>
+			<div class="second_menu_content" id="send_again" ng-click="reuseCampaign()">
+				<span class="sp2" style="opacity: 0;">Statistics</span>
+				<span class="second_menu_content_center">
+					<img src="/assets/callburn/images/phone_icon.png" class="second_menu_icons" id="overview_menu_phone_icon" />
+					<span class="second_menu_span">{{trans('second_menu_send_again')}}!</span>
+					<img src="/assets/callburn/images/pagination_arrow_right1.png" class="second_menu_icons second_menu_send_arrow" />
+				</span>
+			</div>
+		</div> 
+		<div class="table-responsive">
+			<table class="table">
+				<tr class="table_first_tr">
+					<td class="table_select_all" tooltips tooltip-title="Select All" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="top" tooltip-size="small">
+						<span class="check_span">
+							<img ng-show="isAllChecked" src="/assets/callburn/images/check-icon.png" class="check_icon2">
+						</span>
+					</td>
+					<td>{{trans('overview_table_features')}}</td>
+					<td ng-click="changeOrder('campaign_name')" tooltips tooltip-title="Click for change order" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="top" tooltip-size="small">
+						{{trans('overview_table_name')}}
+					</td>
+					<td ng-click="changeOrder('created_at')">{{trans('overview_table_created')}}</td>
+					<!-- <td>{{trans('overview_table_message')}}</td>
+					<td ng-click="changeOrder('caller_id')">{{trans('overview_table_callerid')}}</td> -->
+					<td>{{trans('overview_table_status')}}</td>
+					<td ng-click="changeOrder('success')">{{trans('overview_table_delivered')}}</td>
+					<td>{{trans('overview_table_cost')}}</td>
+					<td class="phonenumbers_content"></td>
+				</tr>
+				<tr ng-class="{selected_row: selectedCampaign == campaign._id}" ng-repeat="campaign in campaigns" ng-if="campaigns.length > 0" ng-click="changeSelectedCampaign(campaign._id)">
+					<td class="phonenumbers_content table_select_all"></td>
+					<td>
+						<div class="overview_table_icon_container">
+							<img src="/assets/callburn/images/caller-id-icon_green.png" class="overview_table_icons" id="callerid_icon" />
+							<img src="/assets/callburn/images/message-icon.png" class="overview_table_icons" id="messages_icon" />
+							<img src="/assets/callburn/images/fill-112.png" class="overview_table_icons" id="deliver_icon" />
+						</div>	
+					</td>
+					<td class="phonenumbers_content">
+						<a href ng-init="showInput[campaign._id] = false; nameInputText[campaign._id] = campaign.campaign_name;" ng-show="!showInput[campaign._id]" ng-click="showInput[campaign._id] = true;">{{ campaign.campaign_name ? campaign.campaign_name : 'Add Name' }}</a>
+						<div  ng-show="showInput[campaign._id]">
+							<img ng-click="changeCampaignName(campaign._id, nameInputText[campaign._id])" src="/assets/callburn/images/check-icon.png" class="check_icon">
+							<input type="text" ng-model="nameInputText[campaign._id]" class="table_input" style="width:100%;"/>
+						</div>
+					</td>
+					<td class="phonenumbers_content">{{campaign.created_at}}</td>
+					<!-- <td class="phonenumbers_content">
+						<span ng-if="ifVoiceFileSame(campaign)" tooltips tooltip-html="{{getAudioTooltipHtml(campaign)}}" tooltip-title="Preview" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="top" tooltip-show-trigger="click" tooltip-hide-trigger="click" tooltip-size="small">
+							{{campaign.voice_file.length}}
+						</span>
+						<span ng-if="!ifVoiceFileSame(campaign)" ui-sref="campaign.statistics({campaign_batch: campaign.unique_string_for_batch_grouping, is_multiple: (campaign.batches.length > 1)})">
+							Multiple
+						</span>
+					</td>
+					<td class="phonenumbers_content">+{{campaign.caller_id}}</td> -->
+					<td class="phonenumbers_content">
+						<span ng-if="campaign.status == 'scheduled'" tooltips tooltip-html="{{getSchedulationTooltipHtml(campaign)}}" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="bottom">Scheduled</span>
+						<span ng-if="campaign.status == 'dialing_completed'">Sent</span>
+						<span ng-if="campaign.status == 'start'">In Progress</span>
+						<span ng-if="campaign.status == 'saved'">Saved as Draft</span>
+						<span class="waiting_batch_sp" ng-show="campaign.status == 'dialing_completed' && campaign.remaining_repeats > 0">…waiting for next batch</span>
+					</td>
+					<td class="phonenumbers_content"  tooltips tooltip-title="{{trans('overview_tooltips_text')}}" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="right">
+						<span ui-sref="campaign.statistics({repeats_grouping_string: campaign.repeats_grouping_string, campaign_batch: campaign.unique_string_for_batch_grouping, is_multiple: (campaign.batches.length > 1)})">
+							{{getSuccessOfCampaign(campaign)}} of {{getTotalOfCampaign(campaign)}}
+						</span>
+						<span class="waiting_batch_sp" ng-show="campaign.repeats.length > 1">(on batch #{{campaign.repeats.length}})</span>
+					</td>
+					<td class="phonenumbers_content">
+						<span ui-sref="campaign.statistics({repeats_grouping_string: campaign.repeats_grouping_string, campaign_batch: campaign.unique_string_for_batch_grouping, is_multiple: (campaign.batches.length > 1)})">
+							€{{getCostOfCampaign(campaign)}}
+						</span>
+					</td>
+					<td class="phonenumbers_content phonenumbers_content1">
+						<span ng-if="(campaign.status == 'scheduled' || campaign.status == 'saved') && campaign.batches.length == 1">
+							<a href ui-sref="campaign.edit({campaign_id: campaign._id})">Edit</a> or <a href ng-click="removeCampaign(campaign._id)">Cancel</a>
+						</span>
+						<span ng-if="campaign.status != 'scheduled' && campaign.status != 'saved' && campaign.prototype">
+							<a href ui-sref="campaign.edit({campaign_id: campaign.prototype._id})">Edit next batch</a>
+						</span>
+					</td>
+				</tr>
+			</table>
+			<div class="empty_table"  ng-if="campaigns.length == 0">{{trans('empty_table_text')}}</div>
+		</div>
+		<div class="pagination_container" ng-if="campaigns.length > 0">
+			<div class="pagination_right_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows" ng-click="changePage(campaignsPage)"/>
+				<img src="/assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1" ng-click="changePage(pagesCount - 1)"/>
+			</div>
+			<div class="pagination_left_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_left1.png" class="pagination_arrows1" ng-click="changePage(0)"/>
+				<img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows" ng-click="changePage(campaignsPage - 2)" />
+			</div>
+			<div class="pagination_content">{{trans('pagination_page')}}{{campaignsPage}} {{trans('pagination_of')}} {{pagesCount}}</div>
+		</div>
+	</div>
+</div> 
+
+
+
+
+
+
+
+

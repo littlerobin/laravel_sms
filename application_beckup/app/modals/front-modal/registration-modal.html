@@ -1,0 +1,57 @@
+
+
+
+
+	<div class="modal_window" ng-show="showRegistrationModal"></div>
+		
+		<div class="modal_container" ng-show="showRegistrationModal">
+			<img src="assets/callburn/images/front_account/x-icon@3x.png" class="close_modal" ng-click="hideModal()">
+			<div class="modal_container_title">
+				<p>
+					Still not <b>registered</b>
+				</p>
+				<span>
+					(do it now,it's easy)
+				</span>
+			</div>
+			<div class="modal_container_content">
+				<span class="modal_container_content_row">
+					<img src="assets/callburn/images/front_account/Fill6Copy@2x.png" ui-sref="registration"/>
+					<input type="text" placeholder="Your email addres" ng-model="registrationData.email"/>
+				</span>
+				<span class="modal_container_content_row">
+					<img src="assets/callburn/images/front_account/KeyIcon.png" />
+					<input type="password" placeholder="Your password" ng-model="registrationData.password"/>
+				</span>
+
+				<span class="modal_container_content_row">
+					<img src="assets/callburn/images/front_account/dable_key.png" />
+					<input type="password" placeholder="Your password" ng-model="registrationData.password_confirmation"/>
+				</span>	
+				<div class="modal_container_content_text">
+					By clicking one of belows Sign up buttons, you agree to the CallBurn <b>service agreement privac policy</b> and <b>terms and conditions</b>
+				</div>
+										
+				<div class="modal_container_sms"  ng-click="makeRegistration()">
+					<img src="assets/callburn/images/front_account/signup-with-mail@3x.png">
+					<span>Sing up with Email Address</span>
+				</div>
+
+			</div>
+			<div class="modal_container_social">
+				<div class="modal_container_social_face">
+					<img src="assets/callburn/images/front_account/facebook.png">
+					<span>Sing up with Facebook</span>
+				</div>
+				<div class="modal_container_social_google">
+					<img src="assets/callburn/images/front_account/google-login@3x.png">
+					<span>Sing up with Google+</span>
+				</div>
+			</div>
+
+			<div class="not_reg">
+				<p>Already <b>registered?</b></p>
+				<span>(go to <b>login</b>)</span>
+				<img src="assets/callburn/images/front_account/arrow-icon@3x.png" />
+			</div>
+		</div>

@@ -1,0 +1,23 @@
+<div id="selectBoxMain" ng-click="showSelect = !showSelect;" class="select global_class">
+    <img data-ng-show="imageUrl" ng-src="{{imageUrl}}" class="select-first-img" id="data-show-right"
+         title="{{selectedValue? selectedValue :selectText ? selectText : 'Select'}}">
+    <span id="data-show-right1" class="span-callb">{{selectedValue? selectedValue :selectText ? selectText : 'Select'}}</span>
+    <img src="/assets/callburn/images/images/subsections/normal/dropdown-icon-normal.svg"
+         class="image-select" id="show-selecct-icon"/>
+</div>
+<div class="arrow_box_select" ng-show="showSelect"></div>
+
+<div ng-show="showSelect">
+    <div ng-show="showAutocomplete"  class="callburn-select callburn-select-autocomplete">
+        <input type="text" id="callburn-autocomplete" class="form-control" ng-model="filtering.showAttr">
+    </div>
+</div>
+<ul ng-show="showSelect" class="select-open">
+
+    <!--| orderBy:selectedValue-->
+    <li class="li-hovered" ng-repeat="option in options | toArray | filter:filtering.showAttr track by $index" ng-class="languageSelected[$index]" ng-click="keepObject ? valueSelected(option,option,option,$index) : valueSelected(option[showAttr],option[keepAttr],option[optionImage],$index)">
+        <img data-ng-show="imageAttr" ng-src="{{option[optionImage]?option[optionImage] : imageAttr[$index]}}">&nbsp;
+        {{option[showAttr]}}
+    </li>
+</ul>
+

@@ -1,0 +1,317 @@
+<!-- BATCH send screen -->
+<div class="batch_container" ng-show="batchStep == 1">
+	<div class="batch_send_sp_container">
+		<span class="batch_send_sp1">{{trans('batch_send_text_you_can_send')}} <span class="batch_send_sp2">{{trans('batch_send_text_phonenumber_message')}}</span></span>
+		<span class="batch_send_sp1">{{trans('batch_send_text_phonenumber_should_contain')}} <span class="batch_send_sp2">. , : | tab</span></span>
+		<span class="batch_send_sp1">{{trans('batch_send_text_more_information')}} <span class="batch_send_sp2">{{trans('batch_send_text_document')}}</span></span>
+		<span class="batch_send_sp1">{{trans('batch_send_text_after_file_upload')}}</span>
+	</div>
+	<div class="batch_send_container">
+		<div class="batch_send_select_container">
+			<span class="compose_sp compose_sp1">{{trans('batch_send_left_input_top_text')}}</span>
+			<div class="choose_lang_and_voice_container">
+				<callburn-select
+						ng-model="batchTtsData.tts_language"
+						options="CampaignComposeService.ttsLanguages"
+						show-attr="selectView"
+						keep-attr='ttsEngine'
+						image-url="/assets/callburn/images/TTSicon@2x.png"
+						select-text="{{trans('compose_step_1_method_1_select_default')}}">
+				</callburn-select>
+				<!--<img src="/assets/callburn/images/TTSicon@2x.png" class="select_icon">-->
+				<!--<select class="choose_lang_and_voice" ng-model="batchTtsData.tts_language">
+					<option value="">{{trans('compose_step_1_method_1_select_default')}}</option>
+					<option ng-repeat="ttsLanguage in ttsLanguages" value="{{ttsLanguage.ttsEngine}}">{{ttsLanguage.languageName + '-' + ttsLanguage.ttsEngine}}</option>
+				</select>-->
+				<!--<img src="assets/callburn/images/Settingicon.png" class="drop_down_arrow">-->
+				<div class="listen_voice_container" ng-show="batchTtsData.tts_language">
+					<span class="listen_voice_content" ng-click="playTTSDemo()">
+						<img src="/assets/callburn/images/play.png" class="tts_select_play_icon"> Listen Voice
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="batch_send_drag_container">
+			<div class="compose_method_container batch_send_method_container">
+				<span class="compose_sp">{{trans('batch_send_right_input_top_text')}}</span>
+				<div class="compose_method">
+					<div class="compose_method2_drag_container">
+						<div class="batch_drag_drop_input">
+							<img src="assets/callburn/images/Attachment.png" class="compose_method2_input_img">
+							<input readonly="true" type="text" class="compose_method2_input" placeholder="{{trans('batch_send_input_placeholder')}}" />
+							<input ng-show="false" id="campaignBatchFileInput"  type="file" nv-file-select uploader="campaignBatchFileUpload" />
+							<div class="compose_method2_input_btns_container"><button class="compose_method2_input_btns" ng-click='openBatchFileSelect()'>{{trans('button_upload')}}</button></div>
+						</div>
+						<div nv-file-drop=""  uploader="campaignBatchFileUpload" class="drag_drop">
+							<p ng-show="uploadingBatchName">{{uploadingBatchName}}</p>
+							<p ng-show="!uploadingBatchName">{{trans('batch_send_dropzone')}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END BATCH send screen -->
+<div class="batch_container" ng-show="batchStep == 2">
+	<h3>
+		{{trans('batch_send_text_revise')}}
+	</h3>
+	<div class="table-responsive">
+		<div class="second_menu_min_content" id="next_step">
+			<span class="second_menu_min_content_center" ng-click="nextStep()">
+				<span class="second_menu_min_span second_menu_min_span1">{{trans('compose_step_1_next_step')}}</span>
+				<img src="assets/callburn/images/pagination_arrow_right1.png" class="second_menu_min_icons"/>
+			</span>
+		</div>
+		<table class="table">
+			<tr class="table_first_tr">
+				<td>{{trans('addressbook_table_phonenumbers')}}</td>
+				<td>Voice message text</td>
+				<td></td>
+			</tr>
+			<tr ng-repeat="phonenumberWithText in campaignData.phonenumbers_with_text | limitTo: 10: listingSkip  track by $index" ng-if="campaignData.phonenumbers_with_text.length > 0" >
+				<td class="phonenumbers_content" contenteditable ng-keyup="inlineDataChanged('phonenumber', $index, $event)">
+					{{phonenumberWithText.phonenumber}}
+				</td>
+				<td class="phonenumbers_content" contenteditable ng-keyup="inlineDataChanged('text', $index, $event)">{{phonenumberWithText.text}}</td>
+				<td>
+					<img src="/assets/callburn/images/basket.png" class="table_icons" ng-click="removeOneBatch($index)">
+				</td>
+			</tr>
+		</table>
+		<div class="empty_table" ng-if="campaignData.phonenumbers_with_text.length == 0">{{trans('empty_table_text')}}</div>
+		<div class="pagination_container">
+			<div class="pagination_right_arrow_container">
+				<img src="assets/callburn/images/pagination_arrow_right.png" ng-click="changePage(page + 1)" id="arrow_right" class="pagination_arrows" />
+				<img src="assets/callburn/images/pagination_arrow_right1.png" ng-click="changePage(pagesCount - 1)" class="pagination_arrows1" />
+			</div>
+			<div class="pagination_left_arrow_container">
+				<img src="assets/callburn/images/pagination_arrow_left1.png"  ng-click="changePage(0)" class="pagination_arrows1" />
+				<img src="assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows"  ng-click="changePage(page - 1)"/>
+			</div>
+			<div class="pagination_content">{{trans('pagination_page')}} {{page + 1}} {{trans('pagination_of')}} {{pagesCount}}</div>
+		</div>
+	</div>
+</div>
+<!-- compose step 3 -->
+<div class="compose_container" ng-show="batchStep == 3">
+	<div class="compose3_content_container">
+		<div class="sp_container">
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_voice_message')}}</span>
+				<span class="blue_sp">MULTIPLE</span>
+				<span class="blue_sp_min" ng-click="batchStep = 2;">({{trans('compose_step_3_text_revise_or_preview')}})</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_recipients')}}</span>
+				<span class="blue_sp">{{finalStepData.numbersCount}}:</span>
+				<span class="blue_sp_min" ng-click="batchStep = 2;">({{trans('compose_step_3_text_revise')}})</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_estimated_sending_time')}}</span>
+				<span class="blue_sp">Less than {{finalStepData.sendingTime}} minute</span>
+				<span class="blue_sp_min" ng-click="showBatchesChangeMessageDeliverySpeedModal()">({{trans('compose_step_3_text_change')}})</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_maximum_costs')}}</span>
+				<span class="blue_sp">{{finalStepData.maxCost}}</span>
+				<span class="blue_sp_min">({{trans('compose_step_3_text_why')}}?)</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_sending_from_callerID')}}</span>
+				<span class="blue_sp">+{{campaignData.caller_id}}</span>
+				<span class="blue_sp_min"  ng-click="showCallerIdModal()">({{trans('compose_step_3_text_select_another')}})</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_email_notifications')}}</span>
+				<span class="blue_sp">{{campaignData.get_email_notifications ? 'enabled' : 'disabled'}}</span>
+				<span class="blue_sp_min" ng-click="campaignData.get_email_notifications = !campaignData.get_email_notifications;">({{trans('compose_step_3_text_change')}})</span>
+			</div>
+		</div>
+		<div class="compose3_left_container">
+			<div id="tag_with_name">
+				<img src="assets/callburn/images/Tag@2x.png" id="tag_with_name_icon" class="compose_step3_btn_icon">
+				<input class="btn_sp" id="tag_with_name_sp" placeholder="{{trans('button_tag_with_name')}}" ng-model="campaignData.campaign_name" />
+			</div>
+			<div class="compose3_send_it_container">
+				<div class="compose3_send_it_content_container">
+					<span class="sp2">{{trans('compose_step_3_buttons_top_text')}}</span>
+					<!-- <div class="compose3_send_it_content">
+						<div class="border_dashed1" id="first_border_dashed_content"></div>
+						<span class="sp2">{{trans('compose_step_3_buttons_top_text')}}</span>
+						<div class="border_dashed1" id="second_border_dashed_content"></div>
+					</div> -->
+					<div class="compose3_send_it_content">
+						<div id="batch_btn" ng-click="showVoiceMessageModal()">
+							<img src="assets/callburn/images/WhiteSendIcon@2x.png" id="send_white_icon" class="compose_step3_btn_icon">
+							{{trans('button_now')}}
+						</div>
+						<!-- <div class="source_contents1" ng-click="showSchedulationModal = true;">
+							<img src="assets/callburn/images/WhiteCalendarIconCopy@2x.png" id="calendar_white_icon" class="compose_step3_btn_icon">
+							{{trans('button_schedule')}}
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<!-- <div class="compose3_left_second_container" ng-click="saveAsDraft()">
+				<span class="compose3_sp3">{{trans('button_save_as_draft_text')}}</span>
+				<span class="save_as_draft">
+					<img src="assets/callburn/images/draft.png" id="save_as_draft_icon" class="compose_step3_btn_icon">
+					{{trans('button_save_as_draft')}}
+				</span>
+			</div> -->
+		</div>
+	</div>
+	<div class="compose3_content_container">
+		<span class="compose3_sp4">{{trans('compose_step_3_text_give_more_power')}}!</span>
+		<div class="choose_keypress_container">
+			<div class="choose_keypress_content">
+				<div class="on_off_content" ng-click="replayDigit.onOff = 'off';" ng-show="replayDigit.onOff == 'on'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content" ng-click="showInteractionModal()" ng-show="replayDigit.onOff == 'off'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+				<span class="keypress_sp1">{{trans('compose_step_3_replay_voice_message')}}</span>
+				<span class="keypress_sp2">{{trans('compose_step_3_let_your_recipients')}}</span>
+				<div class="choose_keypress_select_container">
+					<div class="choose_keypress_select">
+						<span class="keypress_sp3" ng-click="replayDigit.showNumbersSelect = !replayDigit.showNumbersSelect">
+							<img src="assets/callburn/images/keypress-icon.png" class="choose_keypress_icon">
+							{{ campaignData.replay_digit ? 'Keypress ' + campaignData.replay_digit : 'Choose a keypress' }}
+						</span>
+						<div class="choose_keypress_select_container_open" ng-show="replayDigit.showNumbersSelect" >
+							<select-number interaction="'replay_digit'" camelinteraction="replayDigit" origscope="this"></select-number>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="choose_keypress_content">
+				<div class="on_off_content" ng-click="transferDigit.onOff = 'off';" ng-show="transferDigit.onOff == 'on'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content" ng-click="showTransferModal()" ng-show="transferDigit.onOff == 'off'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+				<span class="keypress_sp1">{{trans('compose_step_3_call_live_tranfer')}}</span>
+				<span class="keypress_sp2">{{trans('compose_step_3_let_your_recipients')}}</span>
+				<div class="choose_keypress_select_container">
+					<div class="choose_keypress_select">	
+						<span class="keypress_sp3" ng-click="transferDigit.showNumbersSelect = !transferDigit.showNumbersSelect">
+							<img src="assets/callburn/images/keypress-icon.png" class="choose_keypress_icon">
+							{{ campaignData.transfer_digit ? 'Keypress ' + campaignData.transfer_digit : 'Choose a keypress' }}
+						</span>
+						<div class="choose_keypress_select_container_open" ng-show="transferDigit.showNumbersSelect">
+							<select-number interaction="'transfer_digit'" camelinteraction="transferDigit" origscope="this"></select-number>
+						</div>
+					</div>
+				</div>
+				<span class="choose_voice_message" ng-click="showTransferModal()">
+					Choose caller id
+				</span>
+			</div>
+			<div class="choose_keypress_content">
+				<div class="on_off_content" ng-click="callbackDigit.onOff = 'off';" ng-show="callbackDigit.onOff == 'on'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content" ng-click="showComposeActivateCallbackModal()" ng-show="callbackDigit.onOff == 'off'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+				<span class="keypress_sp1">{{trans('compose_step_3_call_me_back')}}</span>
+				<span class="keypress_sp2">{{trans('compose_step_3_let_your_recipients')}}</span>
+				<div class="choose_keypress_select_container">
+					<div class="choose_keypress_select">	
+						<span class="keypress_sp3" ng-click="callbackDigit.showNumbersSelect = !callbackDigit.showNumbersSelect">
+							<img src="assets/callburn/images/keypress-icon.png" class="choose_keypress_icon">
+							{{ campaignData.callback_digit ? 'Keypress ' + campaignData.callback_digit : 'Choose a keypress' }}
+						</span>
+						<div class="choose_keypress_select_container_open" ng-show="callbackDigit.showNumbersSelect">
+							<select-number interaction="'callback_digit'" camelinteraction="callbackDigit" origscope="this"></select-number>
+						</div>
+					</div>
+				</div>
+				<span class="choose_voice_message" ng-click="showComposeActivateCallbackModal()">
+					{{trans('compose_step_3_choose_voice_message')}}
+				</span>
+			</div>
+			<div class="choose_keypress_content">
+				<div class="on_off_content" ng-click="doNotCallDigit.onOff = 'off';" ng-show="doNotCallDigit.onOff == 'on'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content"  ng-click="showComposeActivateCallbackModal()" ng-show="doNotCallDigit.onOff == 'off'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+				<span class="keypress_sp1">{{trans('compose_step_3_blacklist_me')}}</span>
+				<span class="keypress_sp2">{{trans('compose_step_3_let_your_recipients')}}</span>
+				<div class="choose_keypress_select_container">
+					<div class="choose_keypress_select">	
+						<span class="keypress_sp3" ng-click="doNotCallDigit.showNumbersSelect = !doNotCallDigit.showNumbersSelect">
+							<img src="assets/callburn/images/keypress-icon.png" class="choose_keypress_icon">
+							{{ campaignData.do_not_call_digit ? 'Keypress ' + campaignData.do_not_call_digit : 'Choose a keypress' }}
+						</span>
+						<div class="choose_keypress_select_container_open" ng-show="doNotCallDigit.showNumbersSelect">
+							<select-number interaction="'do_not_call_digit'" camelinteraction="doNotCallDigit" origscope="this"></select-number>
+						</div>
+					</div>
+				</div>
+				<span class="choose_voice_message" ng-click="showDoNotCallModal()">
+					{{trans('compose_step_3_choose_voice_message')}}
+				</span>		
+			</div>
+		</div>
+	</div>
+</div>
+<!-- CONFIRM TTS -->
+<div class="modal_window modaleffect" ng-show="showTtsPriceNotificationModal">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			NOTE
+			<img src="assets/callburn/images/exit_icon.png" class="modal_exit_icon" ui-sref="campaign.overview">
+		</div>
+		<span class="modal_sp1">Making this action will charge {{ 0.01 * finalStepData.numbersCount }} from your balance.</span>
+		<span class="modal_sp1">Do you want to continue?</span>
+		<div class="modal_btn_container">
+			<button class="modal_save_btn" ng-click="agreeToTtsPrice()">
+				<span class="modal_btn">Yes</span>
+			</button>
+			<button class="modal_save_btn" ui-sref="campaign.overview">
+				<span class="modal_btn">No</span>
+			</button>
+		</div>
+	</div>
+</div>
+<!-- /Message Delivery Speed modale -->
+
+<!-- Mobileappsuggestion modal-->
+<div class="modal_window modaleffect" ng-show="composeModalShow == 15">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			{{trans('modal_title_also_available')}}
+			<img ng-click="showSelectCallerIdModel = false;" src="assets/callburn/images/exit_icon.png" class="modal_exit_icon">
+		</div>
+		<span class="modal_sp1">{{trans('mobile_app_suggestion_modal_text_mobile_application_available')}}</span>
+		<span class="modal_sp1">{{trans('mobile_app_suggestion_modal_text_you_will_be')}}:</span>
+		<span class="modal_sp2">
+			<b> {{trans('mobile_app_suggestion_modal_text_export_your_device_phonebook1')}} </b> {{trans('mobile_app_suggestion_modal_text_export_your_device_phonebook2')}} <b> {{trans('mobile_app_suggestion_modal_text_export_your_device_phonebook3')}} </b> {{trans('mobile_app_suggestion_modal_text_export_your_device_phonebook4')}} <b> {{trans('mobile_app_suggestion_modal_text_export_your_device_phonebook5')}} </b> {{trans('mobile_app_suggestion_modal_text_export_your_device_phonebook6')}} <b> {{trans('mobile_app_suggestion_modal_text_export_your_device_phonebook7')}} </b> {{trans('mobile_app_suggestion_modal_text_export_your_device_phonebook8')}}
+		</span>
+		<div class="android_ios_img_container">
+					<img src="assets/callburn/images/ios.png" class="android_ios_img" id="ios_img">
+					<img src="assets/callburn/images/android.png" class="android_ios_img" id="android_img">
+				</div>
+		<div class="modal_btn_container">
+			<button class="modal_send_btn">{{trans('button_close_this_window')}}</button>
+		</div>
+	</div>
+</div>
+<!-- /Mobileappsuggestion modal-->
+
+

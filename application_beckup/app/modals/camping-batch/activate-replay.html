@@ -1,0 +1,26 @@
+<!-- REPLAY INTERACTION MODAL -->
+<div class="modal_window modaleffect">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			{{trans('modal_title_active_new_interaction')}}
+			<img ng-click="hideOverlay()" src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon">
+		</div>
+		<span class="modal_sp1">{{trans('activate_new_interaction_modal_text_you_have_chosen')}}</span>
+		<span class="modal_sp2">{{trans('compose_step_3_replay_voice_message')}}</span>
+		<span class="modal_sp1">{{trans('replay_interaction_modal_text_activating_this_feature')}}</span>
+		<span class="modal_sp2">
+			({{trans('replay_interaction_modal_text_for_example')}}).
+		</span>
+		<span class="modal_sp1">{{trans('replay_interaction_modal_text_for_your_security')}}</span>
+		<div class="modal_check_container">
+			<div class="modal_check_content" ng-click="CampaignComposeService.replayDigit.checkboxChecked = !CampaignComposeService.replayDigit.checkboxChecked">
+				<img src="/assets/callburn/images/check-icon.png" class="modal_check_icon" ng-show="CampaignComposeService.replayDigit.checkboxChecked">
+			</div>
+			<span class="modal_sp4">{{trans('check_container_text1')}}</span>
+		</div>
+		<div class="modal_btn_container">	
+			<button class="modal_send_btn" ng-click="replyDigitActivated()">{{trans('button_activate_replay_voice_message')}}</button>
+		</div>		
+	</div>	
+</div>
+<!-- /REPLAY INTERACTION MODAL -->

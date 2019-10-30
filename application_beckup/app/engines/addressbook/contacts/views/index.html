@@ -1,0 +1,208 @@
+<h3>
+    {{trans('addressbook_contacts_text1')}}<img src="/assets/callburn/images/Quickaddicon.png" class="text_icon"/>{{trans('addressbook_contacts_text2')}}.
+</h3>
+<div class="second_menu_container">
+    <div class="second_menu_content second_menu_content1">
+        <img src="/assets/callburn/images/searchicon.png" class="icon1" ng-click="filterContacts()"/>
+        <img src="/assets/callburn/images/Quickaddicon.png" class="icon2" ng-click="addContact()"/>
+        <input type="text" placeholder="{{trans('addressbook_contacts_input_placeholder')}}"
+               ng-model="filterOrAddData.phone_number"/>
+    </div>
+    <div class="second_menu_content">
+		<span class="second_menu_content_center" ng-click="removeContacts()">
+			<img src="/assets/callburn/images/basket.png" class="second_menu_icons"/>
+			<span class="second_menu_span">{{trans('second_menu_delete')}}</span>
+		</span>
+    </div>
+    <div class="second_menu_content">
+		<span class="second_menu_content_center" ng-click="sendMessage()">
+			<img src="/assets/callburn/images/phone_icon.png" class="second_menu_icons" id="contacts_phone_icon"/>
+			<span class="second_menu_span">{{trans('second_menu_send_message')}}</span>
+		</span>
+    </div>
+    <div class="second_menu_content">
+		<span class="second_menu_content_center" ng-click="openAddToGroupModal()">
+			<img src="/assets/callburn/images/recipient_icon.png" class="second_menu_icons" id="icon4"/>
+			<span class="second_menu_span">{{trans('second_menu_add_group')}}</span>
+		</span>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <tr class="table_first_tr" ng-click="checkUncheckAll()">
+            <td class="table_select_all">
+				<span class="check_span">
+					<img ng-show="isAllChecked" src="/assets/callburn/images/check-icon.png" class="check_icon2">
+				</span>
+            </td>
+            <td>{{trans('addressbook_table_phonenumbers')}}</td>
+            <td>{{trans('addressbook_table_group')}}</td>
+            <td>{{trans('addressbook_table_name')}}</td>
+            <td id="table_delete_icon_container"></td>
+        </tr>
+        <tr ng-repeat="contact in contacts" ng-if="contacts.length > 0"
+            ng-click="checkedUncheckContact(contact._id, $event)"
+            ng-class="{selected_row: checkedContacts[contact._id] }">
+            <td class="phonenumbers_content table_select_all">
+            </td>
+            <td class="phonenumbers_content">
+                <p class="table_p" ng-show="contact.tariff">
+                    <img ng-src="/assets/callburn/images/flags/{{contact.tariff.country.code}}.png"
+                         class="table_icons1">
+                    {{ '+' + contact.phone_number }}
+                </p>
+                <p class="table_p" ng-show="!contact.tariff">
+                    <font color="#2aaee6" size="5px">?</font>
+                    {{ contact.phone_number }}
+                </p>
+            </td>
+            <td class="phonenumbers_content">
+                <span ng-repeat="group in contact.groups"><span
+                        ng-if="contact.groups.length == 1">{{ group.name }}</span><span
+                        ng-if="contact.groups.length > 1">,{{ group.name }}</span></span>
+            </td>
+            <td class="phonenumbers_content">
+                <a href ng-init="showInput[contact._id] = false; nameInputText[contact._id] = contact.name;"
+                   ng-show="!showInput[contact._id]" ng-click="showInput[contact._id] = true;">{{ contact.name ?
+                    contact.name : 'Add Name' }}</a>
+                <div ng-show="showInput[contact._id]">
+                    <img ng-click="changeName(contact._id, nameInputText[contact._id])"
+                         src="/assets/callburn/images/check-icon.png" class="check_icon">
+                    <input type="text" ng-model="nameInputText[contact._id]" class="table_input"/>
+                </div>
+            </td>
+            <td class="phonenumbers_content" id="table_delete_icon_container">
+                <img src="/assets/callburn/images/basket.png" class="table_icons"
+                     ng-click="removeOneContact(contact._id)">
+            </td>
+        </tr>
+        <!-- <tr class="phonenumbers_content_container" ng-click="checkUncheckAll()">
+            <td class="phonenumbers_content table_select_all">
+                <span>
+                    <img ng-show="isAllChecked" src="/assets/callburn/images/check-icon.png" class="check_icon2">
+                </span>
+            </td>
+            <td class="phonenumbers_content">{{trans('addressbook_table_phonenumbers')}}</td>
+            <td class="phonenumbers_content">{{trans('addressbook_table_group')}}</td>
+            <td class="phonenumbers_content">{{trans('addressbook_table_name')}}</td>
+            <td class="phonenumbers_content" id="table_delete_icon_container"></td>
+        </tr>
+        <tr ng-repeat="contact in contacts" ng-click="checkedUncheckContact(contact._id, $event)" ng-class="{phonenumbers_content_container: true, selected_row: checkedContacts[contact._id] }">
+            <td class="phonenumbers_content table_select_all">
+            </td>
+            <td class="phonenumbers_content">
+                <p class="table_p" ng-show="contact.tariff">
+                    <img ng-src="/assets/callburn/images/flags/{{contact.tariff.country.code}}.png" class="table_icons1">
+                    {{ '+'  + contact.phone_number }}
+                </p>
+                <p class="table_p" ng-show="!contact.tariff">
+                    <font color="#2aaee6" size="5px">?</font>
+                    {{ contact.phone_number }}
+                </p>
+            </td>
+            <td class="phonenumbers_content"><span ng-repeat="group in contact.groups">{{ group.name }}</span></td>
+            <td class="phonenumbers_content">
+                <a href ng-init="showInput[contact._id] = false; nameInputText[contact._id] = contact.name;" ng-show="!showInput[contact._id]" ng-click="showInput[contact._id] = true;">{{ contact.name ? contact.name : 'Add Name' }}</a>
+                <div  ng-show="showInput[contact._id]">
+                    <img ng-click="changeName(contact._id, nameInputText[contact._id])" src="/assets/callburn/images/check-icon.png" class="check_icon">
+                    <input type="text" ng-model="nameInputText[contact._id]" class="table_input" />
+                </div>
+            </td>
+            <td class="phonenumbers_content" id="table_delete_icon_container">
+                <img src="/assets/callburn/images/basket.png" class="table_icons" ng-click="removeOneContact(contact._id)">
+            </td>
+        </tr> -->
+        <!-- <tr class="phonenumbers_content_container" ng-click="checkUncheckAll()">
+            <td class="phonenumbers_content table_select_all">
+                <span>
+                    <img ng-show="isAllChecked" src="/assets/callburn/images/check-icon.png" class="check_icon2">
+                </span>
+            </td>
+            <td class="phonenumbers_content">{{trans('addressbook_table_phonenumbers')}}</td>
+            <td class="phonenumbers_content">{{trans('addressbook_table_group')}}</td>
+            <td class="phonenumbers_content">{{trans('addressbook_table_name')}}</td>
+            <td class="phonenumbers_content" id="table_delete_icon_container"></td>
+        </tr>
+        <tr ng-repeat="contact in contacts" ng-click="checkedUncheckContact(contact._id, $event)" ng-class="{phonenumbers_content_container: true, selected_row: checkedContacts[contact._id] }">
+            <td class="phonenumbers_content table_select_all">
+            </td>
+            <td class="phonenumbers_content">
+                <p class="table_p" ng-show="contact.tariff">
+                    <img ng-src="/assets/callburn/images/flags/{{contact.tariff.country.code}}.png" class="table_icons1">
+                    {{ '+'  + contact.phone_number }}
+                </p>
+                <p class="table_p" ng-show="!contact.tariff">
+                    <font color="#2aaee6" size="5px">?</font>
+                    {{ contact.phone_number }}
+                </p>
+            </td>
+            <td class="phonenumbers_content"><span ng-repeat="group in contact.groups">{{ group.name }}</span></td>
+            <td class="phonenumbers_content">
+                <a href ng-init="showInput[contact._id] = false; nameInputText[contact._id] = contact.name;" ng-show="!showInput[contact._id]" ng-click="showInput[contact._id] = true;">{{ contact.name ? contact.name : 'Add Name' }}</a>
+                <div  ng-show="showInput[contact._id]">
+                    <img ng-click="changeName(contact._id, nameInputText[contact._id])" src="/assets/callburn/images/check-icon.png" class="check_icon">
+                    <input type="text" ng-model="nameInputText[contact._id]" class="table_input" />
+                </div>
+            </td>
+            <td class="phonenumbers_content" id="table_delete_icon_container">
+                <img src="/assets/callburn/images/basket.png" class="table_icons" ng-click="removeOneContact(contact._id)">
+            </td>
+        </tr> -->
+    </table>
+    <div class="empty_table" ng-if="contacts.length == 0">{{trans('empty_table_text')}}</div>
+    <div class="pagination_container" ng-if="contacts.length > 0">
+        <div class="pagination_right_arrow_container">
+            <img src="/assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows"
+                 ng-click="changePage(contactsPage)"/>
+            <img src="/assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1"
+                 ng-click="changePage(pagesCount - 1)"/>
+        </div>
+        <div class="pagination_left_arrow_container">
+            <img src="/assets/callburn/images/pagination_arrow_left1.png" class="pagination_arrows1"
+                 ng-click="changePage(0)"/>
+            <img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows"
+                 ng-click="changePage(contactsPage - 2)"/>
+        </div>
+        <div class="pagination_content">{{trans('pagination_page')}} {{contactsPage}} {{trans('pagination_of')}}
+            {{pagesCount > 0 ? pagesCount : 1}}
+        </div>
+    </div>
+</div>
+
+<!-- ADD TO GROUP MODAL -->
+<div class="modal_window" ng-show="showAddToGroupModal">
+    <div class="modal_container">
+        <div class="modal_top_content">
+            {{trans('button_add_to_group')}}
+            <img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon"
+                 ng-click="showAddToGroupModal = false;">
+        </div>
+        <div class="modal_select_container modal_select_container1">
+            <div class="modal_select_content">
+                <img src="/assets/callburn/images/quick-add-group-icon.png" class="icon2 icon3" ng-click="addGroup()"/>
+                <input type="text" placeholder="{{trans('addressbook_groups_input_placeholder')}}"
+                       ng-model="groupData.name" class="add_group_modal_input">
+            </div>
+            <div class="modal_select_content">
+                <callburn-select ng-model="items"
+                                 options="attachContactsData.group_id"
+                                 show-attr="languageName"
+                                 keep-attr='languageId'
+                                 image-attr="images"
+                                 image-url="/assets/callburn/images/Attachment.png"
+                                 select-text="Here set text">
+                </callburn-select>
+                <!--<select class="settings_input setting_select add_group_modal_select" ng-init="attachContactsData.group_id = null;" ng-model="attachContactsData.group_id"
+                      ng-options="group._id as group.name for group in groups" >
+                      <option value="">{{trans('addressbook_contacts_select')}}</option>
+                </select>-->
+                <img src="/assets/callburn/images/Settingicon.png" class="drop_down_arrow">
+            </div>
+
+        </div>
+        <div class="modal_btn_container">
+            <button class="modal_send_btn" ng-click="attachToGroup()">{{trans('button_add_to_group')}}</button>
+        </div>
+    </div>
+</div>
+<!-- END ADD TO GROUP MODAL -->

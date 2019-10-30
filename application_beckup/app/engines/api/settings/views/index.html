@@ -1,0 +1,92 @@
+<div class="api_settings_container">
+	<h3>
+		{{trans('api_settings_text')}}
+	</h3>
+	<div class="api_settings_content_container">
+		<div class="api_settings_content">
+			<span class="api_settings_sp1">{{trans('api_settings_access_key')}}</span>
+			<div class="add_access_key_container">
+				<div class="api_settings_input_container">
+					<input type="text" placeholder="{{trns('api_settings_input_placeholder_description')}}" class="api_settings_input" ng-model="newKeydata.description"/>
+					<img src="assets/callburn/images/Tag@2x.png" class="api_settings_input_icons">
+				</div>
+				<div class="api_checkbox_container">
+					<div class="checkbox_content" ng-click="newKeydata.type = 'test';">
+						<div class="api_checkbox">
+							<div class="checked" ng-show="newKeydata.type == 'test';"></div>
+						</div>
+						<span class="api_checkbox_sp">{{trans('api_settings_test_key')}}</span>
+					</div>
+					<div class="checkbox_content" ng-click="newKeydata.type = 'live';">
+						<div class="api_checkbox">
+							<div class="checked" ng-show="newKeydata.type == 'live';"></div>
+						</div>
+						<span class="api_checkbox_sp">{{trans('api_settings_production_key')}}</span>
+					</div>
+				</div>
+				<span class="api_settings_sp2">
+					{{trans('api_settings_text_the_difference_between')}}
+				</span>
+				<span class="api_settings_btn" ng-click="addKey()">
+					<img src="assets/callburn/images/djg.png" class="api_settings_btn_icons">
+					<span class="api_settings_btn_sp">{{trans('button_add_access_key')}}</span>
+				</span>
+			</div>
+		</div>
+		<div class="api_settings_content">
+			<span class="api_settings_sp1">{{trans('api_settings_access_key_list')}}:</span>
+			<div class="table-responsive">
+				<table class="table">
+					<tr class="table_first_tr">
+						<td>{{trans('api_settings_table_description')}}</td>
+						<td>{{trans('api_settings_table_type')}}</td>
+						<td>{{trans('api_settings_table_access_key')}}</td>
+						<td class="api_settings_table_td" id="table_delete_icon_container">
+						</td>
+					</tr>
+					<tr ng-repeat="key in apiKeys" ng-if="apiKeys.length > 0">
+						<td class="api_settings_table_td">
+							{{key.description}}
+						</td>
+						<td class="api_settings_table_td">
+							{{key.type}}
+						</td>
+						<td class="api_settings_table_td">
+							{{key.key}}
+						</td>
+						<td class="api_settings_table_td" id="table_delete_icon_container">
+							<img ng-click="removeKey(key._id)" src="assets/callburn/images/basket.png" class="table_icons">
+						</td>
+					</tr>
+				</table>
+				<div class="empty_table" ng-if="apiKeys.length == 0">{{trans('empty_table_text')}}</div>
+			</div>	
+		</div>
+	</div>
+	<div class="api_settings_content_container">
+		<div class="api_settings_content">
+			<span class="api_settings_sp1">{{trans('api_settings_delivery_reports_url')}}</span>
+			<div class="api_settings_input_container">
+				<img src="assets/callburn/images/delivery-report-u-r-l-icon.png" class="delivery_reports_icon">	
+				<input type="text" placeholder="http://sendreplyhere.com/mycustomapp" class="api_settings_input" />
+				<button class="api_settings_input_btn">Save</button>
+			</div>	
+		</div>
+		<div class="api_settings_content">
+			<span class="api_settings_sp1">{{trans('api_settings_download_api')}}</span>
+			<div class="api_settings_btns_container">
+				<span class="api_settings_btns">
+					<img src="assets/callburn/images/ertr.png" class="api_settings_btns_icons">
+					<span class="api_settings_btn_sp">{{trans('button_api_log')}}</span>
+				</span>
+				<span class="api_settings_btns">
+					<img src="assets/callburn/images/ertr.png" class="api_settings_btns_icons">
+					<span class="api_settings_btn_sp">{{trans('button_http_log')}}</span>
+				</span>
+			</div>
+			<span class="api_settings_sp2">
+				{{trans('api_settings_text_here_you_can')}}
+			</span>
+		</div>
+	</div>		
+</div>

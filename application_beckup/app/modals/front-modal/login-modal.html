@@ -1,0 +1,50 @@
+<div class="modal_window" ng-show="showLoginModal"></div>
+
+		<div class="modal_container" ng-show="showLoginModal">
+			<img src="assets/callburn/images/front_account/x-icon@3x.png" ng-click="hideModal()" class="close_modal">
+			<div class="modal_container_title">
+				<p>
+					<b>Login</b> into callburn
+				</p>
+				<span>
+					(we are happy to see you again)
+				</span>
+			</div>
+			<div class="modal_container_content">
+				<span class="modal_container_content_row">
+					<img src="assets/callburn/images/front_account/Fill6Copy@2x.png" />
+					<input type="text" placeholder="Your email addres" />
+				</span>
+				<span class="modal_container_content_row">
+					<img src="assets/callburn/images/front_account/KeyIcon.png" />
+					<input type="password" placeholder="Your password" />
+				</span>
+				<div class="invalid_login">
+					<img src="assets/callburn/images/front_account/be-careful@3x.png" />
+					<span>Invalid username or password</span>
+				</div>
+				<div class="modal_container_sms" ng-click="login()">
+					<img src="assets/callburn/images/front_account/signup-with-mail@3x.png">
+					<span>Login with your credentials</span>
+				</div>
+			</div>
+			<div class="modal_container_social">
+				<div class="modal_container_social_face">
+					<img src="assets/callburn/images/front_account/facebook.png">
+					<span>Login with Facebook</span>
+				</div>
+				<div class="modal_container_social_google">
+					<img src="assets/callburn/images/front_account/google-login@3x.png">
+					<span>Login with Google+</span>
+				</div>
+			</div>
+			<div class="cant_login">
+				<span>Can't login?Try to</span>
+				<span ng-click="showRecovery()">recover your login or password</span>
+			</div>
+			<div class="not_reg">
+				<p>Still <b>not registered?</b></p>
+				<span>(<b>register</b> now,it's free)</span>
+				<img src="assets/callburn/images/front_account/arrow-icon@3x.png" />
+			</div>
+		</div>

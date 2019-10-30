@@ -1,0 +1,48 @@
+<div class="financials_container">
+	<span class="financials_sp6">
+		{{trans('account_financials_step3_text1')}} {{invoice.hash | removeFirstPart}}, {{trans('account_financials_step3_text2')}} €{{invoice.total}} {{trans('account_financials_step3_text3')}}
+	</span>
+	<div class="financials_content_first_container">
+		<div class="details_container">
+			<div ng-class="{bank_account_details_container: true, selected_row: activeMethod == 'paypal'}" ng-click="activeMethod = 'paypal';">
+				<div class="financials_div1">PayPal</div>
+				<div class="details_content">
+					<span class="financials_sp8">
+						{{trans('account_financials_step3_paypal_text')}}					
+					</span>
+				</div>
+			</div>
+			<div ng-class="{bank_account_details_container: true, selected_row: activeMethod == 'bank'}" ng-click="activeMethod = 'bank';">
+				<div class="financials_div1">Bank Transfer</div>
+				<div class="details_content">
+					<span class="financials_sp8">
+						{{trans('account_financials_step3_bank_tranfer_text')}}
+					</span>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="financials_content_second_container">
+		<span class="financials_sp1">{{trans('account_financials_step2_orderid')}} {{invoice.hash | removeFirstPart}}</span>
+		<div class="financials_third_content">
+			<div class="financials_sp_container">
+				<div class="financials_sp_contant">
+					<span class="financials_sp4">{{trans('account_financials_total1')}}</span>
+					<span class="financials_sp5">€ {{invoice.amount}}</span>
+				</div>
+				<div class="financials_sp_contant">
+					<span class="financials_sp4">{{trans('account_financials_total2')}} ({{invoice.vat_percentage}}%)</span>
+					<span class="financials_sp5">€ {{invoice.vat_amount}}</span>
+				</div>
+				<div class="financials_sp_contant">
+					<span class="financials_sp4">{{trans('account_financials_total3')}}</span>
+					<span class="financials_sp5">€ {{ invoice.total}}</span>
+				</div>
+			</div>
+			<span class="financials_first_content_btn">
+				<img src="/assets/callburn/images/rechargeiconwithusandpig@2x.png" class="financials_btn_icons">
+				<span class="financials_btn_sp" ng-click="proceedPayment()">{{trans('button_pay_with_selected_method')}}</span>
+			</span>	
+		</div>	
+	</div>
+</div>	

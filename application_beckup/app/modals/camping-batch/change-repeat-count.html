@@ -1,0 +1,45 @@
+<!-- Repeat delivery modal1 -->
+<div class="modal_window modaleffect">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon"  ng-click="hideOverlay()">
+			Repeat delivery
+		</div>
+		<div class="repeat_delivery_modal_select_container">
+			<span class="modal_sp1">Delivery count</span>
+			<div class="repeat_delivery_modal_select_content_container">
+				<callburn-select
+						ng-model="repeatSource"
+						options="repeatDevilery"
+						show-attr="text"
+						keep-attr='value'
+						image-url="/assets/callburn/images/fill-112.png"
+						select-text="">
+				</callburn-select>
+				<!--<img src="/assets/callburn/images/fill-112.png" class="repeat_delivery_icon">
+				<select class="repeat_delivery_modal_select" ng-model="repeatSource">
+					<option value="once">Deliver once</option>
+					<option value="custom">Custom</option>
+				</select>
+				<img src="/assets/callburn/images/Settingicon.png" class="modal_drop_down_arrow">-->
+			</div>
+		</div>
+		<div class="delivary_for">
+			repeat delivery for other <input type="text" class="delivery_for_input" ng-disabled="repeatSource == 'once'" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="CampaignComposeService.campaignData.remaining_repeats"/> time/s every
+			<input type="text" class="delivery_for_input" ng-disabled="repeatSource == 'once'" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="CampaignComposeService.campaignData.repeat_days_interval"/> day/s
+		</div>
+		<span class="modal_sp3">Before message sending you can revise the scheduled date/s</span>
+		<div class="modal_btn_container">
+			<button class="modal_discard_btn" ng-click="discardRepeat()">
+				<img src="/assets/callburn/images/discard-icon.png" class="modal_icons modal_icons1" />
+				<span class="modal_btn_sp">{{trans('button_discard')}}</span>
+			</button>
+			</button>
+			<button class="modal_save_btn" ng-click="saveRepeat()">
+				<img src="/assets/callburn/images/save-icon.png" class="modal_icons" id="button_save_icon" />
+				<span class="modal_btn_sp">{{trans('button_save')}}</span>
+			</button>
+		</div>
+	</div>
+</div>		
+<!-- /Repeat delivery modal1 -->

@@ -1,0 +1,231 @@
+<!-- compose step 2 -->
+<div class="compose_container">
+	<div class="compose_content_container">
+		<div class="phonenumbers_source_export_container">
+			<span class="sp1">{{trans('compose_step_2_choose_source')}}</span>
+			<div class="phonenumbers_source_export_content_container">
+				<div class="phonenumbers_source_export_content">
+					<div class="compose_step2_contacts_groups_container">
+						<span class="sp2">{{trans('compose_step_2_source_phonebook')}}</span>
+						<div class="compose_step2_contacts_groups_content">
+							<span ng-click="changeNumbersSource('contacts')">
+								<div class="source_contents" ng-class="{source_contents_selected: activeCampaignSubmenuItem.status == 'contacts'}" ng-click="activeCampaignSubmenu('contacts')">
+									<img src="/assets/callburn/images/contacs-icon.png" ng-hide="activeCampaignSubmenuItem.status == 'contacts'" class="source_icon">
+									<img src="/assets/callburn/images/contacs-icon-copy.png" ng-show="activeCampaignSubmenuItem.status == 'contacts'" class="source_icon">
+									{{trans('compose_step_2_source_contacts')}}
+								</div>
+							</span>
+							<span ng-click="changeNumbersSource('groups')">
+								<div class="source_contents" ng-class="{source_contents_selected: activeCampaignSubmenuItem.status == 'groups'}" ng-click="activeCampaignSubmenu('groups')">
+									<img src="/assets/callburn/images/recipient_icon.png" ng-hide="activeCampaignSubmenuItem.status == 'groups'" class="source_icon">
+									<img src="/assets/callburn/images/group-icon-copy.png" ng-show="activeCampaignSubmenuItem.status == 'groups'" class="source_icon">
+									{{trans('compose_step_2_source_groups')}}
+								</div>
+							</span>
+						</div>	
+					</div>
+					<div class="compose_step2_mobile_device_container">
+						<span class="sp2">iOS & Android</span>
+						<div class="compose_step2_contacts_groups_content">
+							<span ng-click="changeNumbersSource('contacts')">		
+								<div class="source_contents" id="mobile_device" ng-class="{source_contents_selected: activeCampaignSubmenuItem.status == 'contact'}" ng-click="activeCampaignSubmenu('contact')">
+									Import from your mobile device
+								</div>
+							</span>
+						</div>	
+					</div>
+					<span ng-click="changeNumbersSource('manually')"> 	  
+						<div class="source_contents" id="manually_input" ng-class="{source_contents_selected: activeCampaignSubmenuItem.status == 'manually'}" ng-click="activeCampaignSubmenu('manually')">
+							<img src="/assets/callburn/images/manually-or-file.png" ng-hide="activeCampaignSubmenuItem.status == 'manually'" class="source_icon">
+							<img src="/assets/callburn/images/manually-or-file-icon.png" ng-show="activeCampaignSubmenuItem.status == 'manually'" class="source_icon">
+							{{trans('compose_step_2_source_manually')}}
+						</div>
+					</span>	
+				</div>
+			</div>
+		</div>
+			<div class="second_menu_container">
+				<button id="contacts_btn" ng-click="contactsModalShow = true;" ng-show="isEdit">
+					Show Contacts
+				</button>
+			 	<!-- <div class="second_menu_content" id="second_content">
+					<span class="second_menu_content_center" ng-click="goToStep3()">
+						<span class="second_menu_span" id="final_step_text">{{trans('compose_step_2_final_step')}}</span>
+						<img src="/assets/callburn/images/pagination_arrow_right1.png" class="second_menu_icons second_menu_icons1" />
+					</span>	
+				</div> -->
+			</div>
+
+			<div class="manually_container" ng-show="numbersSource == 'manually'">
+				<div class="manually_container_left_content">
+					<div class="import_step1 manually_step1">
+						<span>{{trans('compose_step_2_method_1')}}</span>
+						<span>{{trans('compose_step_2_method_1_text')}}</span>
+						<div class="import_step1_input_container">
+							<img src="/assets/callburn/images/Quickaddicon.png" class="import_step1_input_img">
+							<textarea ng-model="addNumbersManually.phonenumbers" class="import_step1_input" placeholder="{{trans('compose_step_2_method_1_input_placeholder')}}"></textarea>
+							<button class="import_step1_input_btns" ng-click="addNumbers()">{{trans('button_add')}}</button>
+						</div>
+					</div>
+					<div class="import_step1 manually_step1">
+						<span>{{trans('compose_step_2_method_2')}}</span>
+						<span>{{trans('compose_step_2_method_2_text')}}</span>
+						<div class="import_step1_input_container" id="manually_step1_input_container">
+							<img src="/assets/callburn/images/Attachment.png" class="import_step1_input_img">
+							<input readonly="true" type="text"class="import_step1_input" placeholder="{{trans('compose_step_2_method_2_input_placeholder')}}" />
+							<input ng-show="false" id="hiddenNumbersFileInput"  type="file" nv-file-select uploader="numbersFileUpload" />
+							<button class="import_step1_input_btns" ng-click='openFileSelect()'>{{trans('button_upload')}}</button>
+							<div nv-file-drop=""  uploader="numbersFileUpload" class="drag_drop">
+								<p ng-show="uploadingImageName">{{uploadingImageName}}</p>
+								<p ng-show="!uploadingImageName">{{trans('compose_step_2_method_2_dropzone')}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div  class="manually_container_right_content">
+					<div class="second_menu_min_container">
+						<div class="second_menu_min_content" id="next_step">
+							<span class="second_menu_content_center" ng-click="goToStep3()">
+								<span class="second_menu_span" id="final_step_text">{{trans('compose_step_2_final_step')}}</span>
+								<img src="/assets/callburn/images/pagination_arrow_right1.png" class="second_menu_icons second_menu_icons1" />
+							</span>	
+						</div>
+					</div>
+					<div class="table-responsive">
+						<table class="table">
+							<tr class="table_first_tr">
+								<td>{{trans('compose_step_2_manually_voice_table_phonebook')}}</td>
+								<td>{{trans('compose_step_2_manually_voice_table_status')}}</td>
+								<td id="table_delete_icon_container"></td>
+							</tr>
+							<tr ng-repeat="number in manuallyAddedNumbers | limitTo: 7: listingSkip track by $index " ng-if="manuallyAddedNumbers.length > 0">
+								<td class="phonenumbers_content phonenumbers_content1">
+									<p class="table_p" ng-show="number.tariff">
+										<img ng-src="/assets/callburn/images/flags/{{number.tariff.country.code}}.png" class="table_icons1">
+										{{ '+' + number.number }}
+									</p>
+									<p class="table_p" ng-show="!number.tariff">
+										<font color="#2aaee6" size="5px">?</font>
+										{{ number.number }}
+									</p>
+								</td>
+								<td class="phonenumbers_content phonenumbers_content1">{{number.status}}</td>
+								<td class="phonenumbers_content" id="table_delete_icon_container">
+									<img src="/assets/callburn/images/basket.png" class="table_icons" ng-click="removeManuallyAddedContact($index)">
+								</td>
+							</tr>
+						</table>
+						<div class="empty_table" ng-if="manuallyAddedNumbers.length == 0">{{trans('empty_table_text')}}</div>
+					</div>
+				</div>
+				<div class="pagination_container" ng-if="manuallyAddedNumbers.length > 0">
+					<div class="pagination_right_arrow_container">
+						<img src="/assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows" ng-click="changeManuallyAddedPage(manuallyAddedPage + 1)"/>
+						<img src="/assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1" ng-click="changeManuallyAddedPage(manuallyAddedPagesCount - 1)"/>
+					</div>
+					<div class="pagination_left_arrow_container">
+						<img src="/assets/callburn/images/pagination_arrow_left1.png"  ng-click="changeManuallyAddedPage(0)" class="pagination_arrows1" />
+						<img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows"ng-click="changeManuallyAddedPage(manuallyAddedPage-1)"/>
+					</div>
+					<div class="pagination_content">Page {{manuallyAddedPage + 1}} of {{manuallyAddedPagesCount}}</div>
+				</div>	
+			</div>
+
+			<div ng-show="numbersSource == 'contacts'">
+				<div class="table-responsive">
+					<div class="second_menu_content" id="second_content">
+						<span class="second_menu_content_center" ng-click="goToStep3()">
+							<span class="second_menu_span" id="final_step_text">{{trans('compose_step_2_final_step')}}</span>
+							<img src="/assets/callburn/images/pagination_arrow_right1.png" class="second_menu_icons second_menu_icons1" />
+						</span>	
+					</div>
+					<table class="table">
+						<tr class="table_first_tr" ng-click="checkUncheckAllContacts()">
+							<td id="table_select_all">
+								<span class="check_span">
+									<img src="/assets/callburn/images/check-icon.png" class="check_icon2">
+								</span>
+							</td>
+							<td>{{trans('compose_step_2_contacts_voice_table_phonenumbers')}}</td>
+							<td>{{trans('compose_step_2_contacts_voice_table_group')}}</td>
+							<td>{{trans('compose_step_2_contacts_voice_table_name')}}</td>
+						</tr>
+						<tr ng-repeat="contact in contacts" ng-if="contacts.length > 0" ng-click="checkedUncheckContact(contact._id, $event)" ng-class="{selected_row: checkedContacts[contact._id] }">
+							<td class="compose1_content" id="table_select_all">
+							</td>
+							<td class="phonenumbers_content">
+							<p ng-show="contact.tariff">
+									<img ng-src="/assets/callburn/images/flags/{{contact.tariff.country.code}}.png">
+									{{ '+' + contact.phone_number }}
+								</p>
+								<p ng-show="!contact.tariff">
+									<font color="#2aaee6" size="8px">?</font>
+									{{ contact.phone_number }}
+								</p>
+							</td>
+							<td class="phonenumbers_content"><span ng-repeat="group in contact.groups">{{ group.name }},</span></td>
+
+							<td class="phonenumbers_content">
+								{{contact.name}}
+							</td>
+						</tr>
+					</table>
+					<div class="empty_table" ng-if="contacts.length == 0">{{trans('empty_table_text')}}</div>
+				</div>	
+				<div class="pagination_container">
+					<div class="pagination_right_arrow_container">
+						<img src="/assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows" ng-click="changeContactsPage(contactsPage)"/>
+						<img src="/assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1" ng-click="changeContactsPage(contactsPagesCount - 1)"/>
+					</div>
+					<div class="pagination_left_arrow_container">
+						<img src="/assets/callburn/images/pagination_arrow_left1.png" class="pagination_arrows1" ng-click="changeContactsPage(contactsPage - 1)"/>
+						<img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows" ng-click="changeContactsPage(0)" />
+					</div>
+					<div class="pagination_content">{{trans('pagination_page')}} {{contactsPage}} {{trans('pagination_of')}} {{contactsPagesCount}}</div>
+				</div>
+
+			</div>
+			<div  ng-show="numbersSource == 'groups'">
+				<div class="table-responsive">
+					<div class="second_menu_content" id="second_content">
+						<span class="second_menu_content_center" ng-click="goToStep3()">
+							<span class="second_menu_span" id="final_step_text">{{trans('compose_step_2_final_step')}}</span>
+							<img src="/assets/callburn/images/pagination_arrow_right1.png" class="second_menu_icons second_menu_icons1" />
+						</span>	
+					</div>
+					<table class="table">
+						<tr class="table_first_tr" ng-click="checkUncheckAllGroups()">
+							<td id="table_select_all">
+								<span class="check_span">
+									<img src="/assets/callburn/images/check-icon.png" class="check_icon2">
+								</span>
+							</td>
+							<td>{{trans('compose_step_2_groups_voice_table_group')}}</td>
+							<td>{{trans('compose_step_2_groups_voice_table_NoOfContacts')}}</td>
+							<td>{{trans('compose_step_2_groups_voice_table_LastUpdate')}}</td>
+						</tr>
+						<tr  ng-click="checkedUncheckGroup(group._id)" ng-class="{selected_row: checkedGroups[group._id] }" ng-repeat="group in groups"  ng-if="groups.length > 0">
+							<td id="table_select_all">
+							</td>
+							<td class="phonenumbers_content">{{group.name}}</td>
+							<td class="phonenumbers_content">{{group.contact_count[0].count}}</td>
+							<td class="phonenumbers_content">{{group.updated_at}}</td>
+						</tr>
+					</table>
+					<div class="empty_table" ng-if="groups.length == 0">{{trans('empty_table_text')}}</div>
+				</div>
+				<div class="pagination_container">
+					<div class="pagination_right_arrow_container">
+						<img src="/assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows" ng-click="changeGroupsPage(groupsPage)"/>
+						<img src="/assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1" ng-click="changeGroupsPage(groupsPagesCount - 1)"/>
+					</div>
+					<div class="pagination_left_arrow_container">
+						<img src="/assets/callburn/images/pagination_arrow_left1.png" class="pagination_arrows1" ng-click="changeGroupsPage(groupsPage - 1)"/>
+						<img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows" ng-click="changeGroupsPage(0)" />
+					</div>
+					<div class="pagination_content">{{trans('pagination_page')}} {{groupsPage}} {{trans('pagination_of')}} {{groupsPagesCount}}</div>
+				</div>
+			</div>
+	</div>
+</div>			 
+<!-- end compose step 2 -->

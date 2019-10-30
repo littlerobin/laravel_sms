@@ -1,0 +1,78 @@
+<h3 class="campaign_sp1">
+	<span>{{trans('account_invoices_header_text')}}</span>
+</h3>
+<div class="invoices_container">
+	<div class="invoices_table_container">
+		<span class="invoices_table_top_sp">{{trans('account_invoices_table_top_your_invoices')}}</span>
+		<div class="table-responsive">
+			<table class="table">
+				<tr class="table_first_tr" tooltips tooltip-title="lorem ipsum lorem ipsum lorem ipusm" tooltip-side="left" tooltip-class="customizeTooltip tooltip left_tooltip" tooltip-show-trigger="click" tooltip-hide-trigger="click">
+					<td>{{trans('account_invoices_table_invoice')}}</td>
+					<td>{{trans('account_invoices_table_date')}}</td>
+					<td>{{trans('account_invoices_table_amount')}}</td>
+					<td id="table_delete_icon_container"></td>
+				</tr>
+				<tr ng-repeat="invoice in invoices" ng-if="invoices.length > 0">
+					<td class="invoices_table_td" >{{invoice.unique_name}}</td>
+					<td class="invoices_table_td">{{invoice.created_at}}</td>
+					<td class="invoices_table_td" id="settings_table_last_td">
+						€ {{invoice.total}}
+					</td>
+					<td id="table_delete_icon_container">
+						<a  ng-href="/billings/download-invoice/{{invoice._id}}">
+							<img src="/assets/callburn/images/pdficon.png" class="table_icons">
+						</a>
+					</td>
+				</tr>
+			</table>
+			<div class="empty_table" ng-if="invoices.length == 0">{{trans('empty_table_text')}}</div>
+		</div>
+		<div class="pagination_container" ng-if="invoices.length > 0">
+			<div class="pagination_right_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows" ng-click="changeInvoicesPage(invoicesPage)"/>
+				<img src="/assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1" ng-click="changeInvoicesPage(invoicesPagesCount - 1)"/>
+			</div>
+			<div class="pagination_left_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_left1.png" class="pagination_arrows1" ng-click="changeInvoicesPage(0)"/>
+				<img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows" ng-click="changeInvoicesPage(invoicesPage - 1)" />
+			</div>
+			<div class="pagination_content">{{trans('pagination_page')}} {{invoicesPage}} {{trans('pagination_of')}} {{invoicesPagesCount > 0 ? invoicesPagesCount: 1}}</div>
+		</div>
+	</div>
+	<div class="invoices_table_container">
+		<span class="invoices_table_top_sp">{{trans('account_invoices_table_top_your_panding_orders')}}</span>
+		<div class="table-responsive">
+			<table class="table">
+				<tr class="table_first_tr">
+					<td>{{trans('account_invoices_table_order_id')}}</td>
+					<td>{{trans('account_invoices_table_date')}}</td>
+					<td>{{trans('account_invoices_table_amount')}}</td>
+					<td></td>
+				</tr>
+				<tr ng-repeat="order in orders" ng-if="orders.length > 0">
+					<td class="invoices_table_td">{{order.hash | removeFirstPart }}</td>
+					<td class="invoices_table_td">{{order.created_at}}</td>
+					<td class="invoices_table_td">
+						€ {{order.amount}}
+					</td>
+					<td class="phonenumbers_content1">
+						<span ui-sref="account.financials({invoice_id: order._id})">{{trans('account_invoices_table_click_here')}}</span>
+						<!-- ng-if="order.method == 'not_selected'" -->
+					</td>
+				</tr>
+			</table>
+			<div class="empty_table" ng-if="orders.length == 0">{{trans('empty_table_text')}}</div>
+		</div>
+		<div class="pagination_container" ng-if="orders.length > 0">
+			<div class="pagination_right_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows" ng-click="changeOrdersPage(ordersPage)"/>
+				<img src="/assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1" ng-click="changeOrdersPage(ordersPagesCount - 1)"/>
+			</div>
+			<div class="pagination_left_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_left1.png" class="pagination_arrows1" ng-click="changeOrdersPage(0)"/>
+				<img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows" ng-click="changeOrdersPage(ordersPage - 1)" />
+			</div>
+			<div class="pagination_content">{{trans('pagination_page')}} {{ordersPage}} {{trans('pagination_of')}} {{ordersPagesCount > 0 ? ordersPagesCount : 1}}</div>
+		</div>
+	</div>
+</div>

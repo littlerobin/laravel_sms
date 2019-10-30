@@ -1,0 +1,340 @@
+<?php
+
+return [
+	
+	'log_out' => 'Log Out',
+	'registr_title' => 'AHORA, DIFUSIÓN DE MENSAJES DE VOZ CON CALLBURN',
+	'registr_text' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+	'telephone_val' => 'Numero de telefono...',
+	'call_now' => 'Call Now',
+	'cuenta' => 'Ya tengo cuenta',
+	'entrar' => 'Entrar',
+	'sub_menu' => 'Escribe tu numero de TELEFONO para ragistrarte',
+	'sub_menu1' => 'Where do you whant to send',
+	'sub_menu2' => 'What do you want to tell?',
+	'sub_menu3' => 'SEND the message',
+	'tango_cuenta' => 'Ya tengo cuenta,',
+	'registration' => 'Registrarme',
+	'login' => 'Login',
+
+	'login_title' => 'Now broadcast voice message with callburn',
+	'login_text' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+	'email_val' => 'Enter your email',
+	'password_val' => 'Enter your password',
+
+	'registr_title1' => 'Now broadcast voice message with callburn',
+	'registr_text1' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+	'llamada' => 'No recibiste la llamada',
+	'nuevo' => 'Intentalo de nuevo',
+	'sumbit' => 'Submit',
+
+	'registr_title2' => 'Now broadcast voice message with callburn',
+	'registr_text2' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+	'reenviar' => 'Reenviar',
+
+	'registr_title3' => 'Now broadcast voice message with callburn',
+	'registr_text3' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+	'login' => 'LogIn',
+	'sub_menu_registr' => 'Escribe tu numero de TELEFONO para ragistrarte',
+	'choose_password' => 'Choose your password',
+	'repeat_password' => 'Repeat your password',
+	'checkbox_val' => 'Hi leido y acepto la politica de privacidad',
+
+
+	//-----------view where-send---------//
+
+	'create_campaign' => 'Create Campaign',
+	'edit_campaign' => 'Edit Campaign',
+	'edit_account' => 'Edit Account',
+	'companas' => 'Companas',
+	'title_add_phonenumbers' => 'Write your destinations',
+	'solder_phone' => 'Phone number...',
+	'title_upload_csv' => 'Upload a Csc,txt or excel file',
+	'solder_csv' => 'Csc,txt or excel file...',
+	'title_drop' => 'Drag and drop',
+	'save' => 'Save',
+	'add_contact_content' => 'Contactos añadidos',
+	'upload' => 'Upload',
+	'title_phone_add' => 'Contactos escritos a mano',
+	'title_phone_files' => 'Archivos',
+	'next' => 'Next',
+	'back' => 'Volver',
+	'title_where_send2' => 'Campañas anteriores',
+	'campaign' => 'Campaña',
+	'fecha' => 'Fecha',
+	'contacts' => 'Contactos',
+	'telephone' => 'Teléfono de envío',
+	'message' => 'Mensaje',
+	'record_menu' => 'Record your message',
+	'upload_menu' => 'Upload a voice recording file',
+	'message_menu' => 'Write your text message',
+	'next_page' => 'Paso final',
+	'title_records' => 'What do you want to tell?',
+	'title_record_message' => 'Record your message',
+	'record' => 'Record',
+	'save_record' => 'Guardar',
+	'use' => 'Use',
+	'title_uplad_records' => 'What do you want to tell?',
+	'title_upload_records_1' => 'Upload a voice recording file',
+	'solder_records' => 'Voice recording file...',
+	'save_records' => 'Save records',
+	'title_message' => 'What do you want to tell?',
+	'title_message_1' => 'Write your text message',
+	'solder_message' => 'Message',
+	'title_send' => 'Send the message',
+	'name_campaign' => 'Name da la compana',
+	'solder_campaign' => 'Campaign Name',
+	'caller_id' => 'Caller Id',
+	'elegir' => 'Elegir',
+	'link_text' => 'un numero de rigen nuevo',
+	'contacts_list' => 'Ver contactos',
+	'zona' => 'Zona horaria',
+	'text_send_1' => 'Tiempo estimado de envio: 2 minutos',
+	'text_send_2' => 'Prescio maximo de enivo: 50,00',
+	'text_send_3' => 'Si la llamada no es atendida se haran 5 intentos mas cada 5 minutos',
+	'title_voice' => 'Características Premium',
+	'title_voice_1' => 'Pagas sólo por los clientes que pulsan.',
+	'replay' => 'Reescuchar',
+	'transfer' => 'Pasar la llamada',
+	'colback' => 'Rellamar',
+	'dontcolback' => 'No recibir más llamadas',
+	'pulse' => 'Pulse',
+	'enviar' => 'Enviar prueba',
+	'guardar' => 'Guardar',
+	'later' => 'Send later',
+	'schedule' => 'Schedule',
+	'contacts_modal' => 'CONTACTOS',
+	'ok' => 'Ok',
+	'title_modal_transfer' => 'CARACTERÍSTICAS PREMIUM',
+	'telephone_list_transfer' => 'Telefonp al que se pasara la llamada',
+	'title_modal_colback' => 'CARACTERÍSTICAS PREMIUM',
+	'colback_menu' => 'Mensaje',
+	'grabar' => 'Grabar',
+	'subir' => 'Subir',
+	'escribir' => 'Escribir',
+	'title_modal_dontcolback' => 'CARACTERÍSTICAS PREMIUM',
+	'dontcolback_menu' => 'Mensaje',
+	'title_modal_later' => 'SEND LATER',
+	'from_dey' => 'Mes',
+	'to_dey' => 'Dia',
+	'show_new' => 'Show new',
+	'title_modal_schedule' => 'MANAGE TIMESLOTS',
+	'from_schedule' => 'FROM',
+	'to_schedule' => 'TO',
+	'day' => 'Day',
+	'sun' => 'Sun',
+	'mon' => 'Mon',
+	'tue' => 'Tue',
+	'wed' => 'Wed',
+	'thu' => 'Thu',
+	'fri' => 'Fri',
+	'sat' => 'Sat',
+	'add_time' => 'Add time slot',
+	'cleare_time' => 'Clear selected',
+	'sunday' => 'Sunday',
+	'monday' => 'Monday',
+	'tuesday' => 'Tuesday',
+	'wednesday' => 'Wednesday',
+	'thursday' => 'Thursday',
+	'friday' => 'Friday',
+	'saturday' => 'Saturday',
+	'cancel' => 'Cancel',
+
+	//-----companas-----//
+
+	'title_campaigns' => 'Estadísticas',
+	'estado' => 'Estado',
+	'success' => 'Success',
+	'live' => 'Live',
+	'ans' => 'No Ans',
+	'dns' => 'DNS',
+	'transfer' => 'Transfer',
+	'busy' => 'Busy',
+	'error' => 'Error',
+	'retries' => 'Retries',
+	'misc' => 'Misc',
+	'acciones' => 'Acciones',
+	'title_remove_compaign' => 'Remove Compaign',
+	'text_remove_compaign' => 'Contrary to popular belief',
+	'yes' => 'Yes',
+	'no' => 'No',
+	'title_export_compaign' => 'Export file',
+	'text_export_compaign' => 'Contrary to popular belief',
+	'csv' => 'CSV',
+	'pdf' => 'PDF',
+
+	//-----dashboard------//
+
+	'welcome_callburn' => 'WELCOME TO CALLBURN!',
+	'text_callburn' => 'Now you can start to send FREE Voice',
+	'text_callburn_page' => 'SMS to your Contacts',
+
+	//----edit account------//
+
+	'title_edit_account' => 'Mi cuenta',
+	'electronico' => 'Correo electronico',
+	'zona' => 'Zona horaria',
+	'facturacion' => 'Facturación',
+	'patos' => 'Patos de acceso',
+	'numero' => 'Numbre',
+	'cif' => 'CIF',
+	'telephone_title' => 'Teléfono',
+	'email' => 'Email',
+	'direction' => 'Direccion',
+	'change_password' => 'Cambiar contrasenia',
+	'change_email' => 'Cambiar email',
+	'credit' => 'Crédito',
+	'resargar_credito' => 'Resargar credito',
+	'phone_number' => 'Phone number',
+	'save_telephone' => 'Añadir teléfono',
+	'voice_code' => 'Voice Code',
+	'code' => 'Code',
+	'title_edit_password' => 'CAMBIAR CONTRASEÑA',
+	'text_edit_password' => 'Modifica tu contraseña fácilmente rellenando estos campos.',
+	'solder_edit_password' => 'Contraseña actual...',
+	'solder_new_password' => 'Nueva contraseña..',
+	'solder_password_confirmation' => 'Repetir nueva contraseña...',
+	'save_password' => 'Actualizar',
+	'title_edit_email' => 'CAMBIAR EMAIL',
+	'text_edit_email' => 'Modifica tu contraseña fácilmente rellenando estos campos.',
+	'solder_edit_email' => 'Email...',
+	'solder_email_confirmation' => 'Email Confirmation...',
+	'solder_password' => 'solder_email_confirmation',
+	'title_remove_number' => 'Remove Number',
+	'text_remove_number' => 'Modifica tu contraseña fácilmente rellenando estos campos.',
+	'title_credit' => 'Edit credit',
+	'text_credit' => 'Modifica tu contraseña fácilmente rellenando estos campos.',
+	'first_name' => 'First Name',
+	'last_name' => 'Last Name',
+	'number' => 'Number',
+	'expiry_month' => 'Expiry Month',
+	'expiry_year' => 'Expiry Year',
+	'cvv' => 'CVV',
+	'billing_address1' => 'Billing Address1',
+	'billing_country' => 'Billing Country',
+	'billing_city' => 'Billing City',
+	'billing_postcode' => 'Billing Postcode',
+	'billing_state' => 'Billing State',
+	'amount' => 'Amount',
+	'currency' => 'Currency',
+	'save_credtit' => 'Actualizar',
+
+	//---------number list-------------//
+
+	'title_number_list' => 'Pone numbers',
+	'uniq_id' => 'Uniq_ID',
+	'phonenumber' => 'Phonenumber',
+	'status' => 'Status',
+	'creting_time' => 'Creting Time',
+	'dialed_time' => 'Dialed Time',
+	'duration' => 'Duration',
+	'status0' => 'not dialled',
+	'status1'  => 'dialed',
+ 	'status2' => 'live (call in progress)',
+ 	'status3' => 'no answer',
+	'status4' =>'busy',
+	'status5' => 'transfer',
+	'status6' => 'do not call',
+	'status7' => 'error due to channel unavailable',
+	'status8' => 'misc',
+	'status9' => 'Machine',
+	'status10' => 'success',
+	'status11' => 'error due to congestion',
+	'status12' => 'error marked on stucked calls',
+
+	//---footer--////
+
+	'how_is_works' => 'API',
+	'faq' => 'FAQ',
+	'politica' => 'Terminos y condiciones',
+	'contacto' => 'Contacto',
+
+	//--------contacto----/
+
+	'contactanos' => 'Contactanos',
+	'chat' => 'Chat',
+	'telefono' => 'Telefono',
+	'formolarode' => 'Formolarode conecto',
+	'title_formolarode' => 'FORMULARIO DE CONTACTO',
+	'solder_numbro' => '*Numbro',
+	'solder_correo_email' => '*Correo electronico',
+	'solder_telefono' => '*telefono',
+	'solder_coment' => '*Comentario',
+	'solder_checkbox' => 'He leidoy acepto la politica de privacidad',
+	'contact_enviar' => 'Enviar',
+	'telephone_solder' => 'TELÉFONO',
+
+	//-----------success-data-----//
+
+	'title_success' => 'ENHORABUENA!',
+	'text_success' => 'Tu mensaje ha sido enviado con éxito',
+	'text_success_page' => 'Programado para:',
+	'date_add' => '2 Agosto 2015',
+	'count_number' => '150 contactos',
+	'date_add1' => '2 Agosto 2015',
+	'count_number1' => '150 contactos',
+
+
+
+	'contact_telefonio' => 'Londres (Reio Unido)',
+	'button_contact' => 'Otros países',
+
+	'title_faq1' => 'Question 1',
+	'title_faq2' => 'Question 2',
+	'title_faq3' => 'Question 3',
+	'title_faq4' => 'Question 4',
+	'title_faq5' => 'Question 5',
+	'title_faq6' => 'Question 6',
+	'title_faq7' => 'Question 7',
+	'title_faq8' => 'Question 8',
+	'text_faq1' => 'Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				    mauris vel est.',
+	'text_faq2' => 'Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				    mauris vel est.',
+	'text_faq3' => 'Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				    mauris vel est.',
+	'text_faq4' => 'Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				    mauris vel est.',
+	'text_faq5' => 'Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				    mauris vel est.',
+	'text_faq6' => 'Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				    mauris vel est.',
+	'text_faq7' => 'Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				    mauris vel est.',
+	'text_faq8' => 'Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+				    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+				    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+				    mauris vel est.',
+
+	'title_privacy' => 'POLITICA DE PRIVACIDAD',
+	'text_privacy' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the",
+	'title_privacy_submenu1' => 'TITULO PRIMERO',
+	'text_privacy_submenu1' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).	
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+	'title_privacy_submenu2' => 'TITULO SEGUNDO',
+	'text_privacy_submenu_li1' => 'Lorem Ipsum is simply dummy',
+	'text_privacy_submenu_li2' => 'Lorem Ipsum is simply dummy',
+	'text_privacy_submenu_li3' => 'Lorem Ipsum is simply dummy',
+	'text_privacy_submenu_li4' => 'Lorem Ipsum is simply dummy',
+	'text_privacy_submenu_li5' => 'Lorem Ipsum is simply dummy',
+	'text_privacy_submenu_li6' => 'Lorem Ipsum is simply dummy',
+	'text_privacy_submenu_li7' => 'Lorem Ipsum is simply dummy',
+	'text_privacy_submenu_li8' => 'Lorem Ipsum is simply dummy',
+
+	'funciona' => 'Como funciona'
+
+];

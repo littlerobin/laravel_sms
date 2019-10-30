@@ -1,0 +1,134 @@
+<section class="price_container">
+	<div class="price_content_block">
+		<span class="contact_us_sp1"><b>{{trans('price_pricing')}}</b></span>
+		<span class="contact_us_sp5">{{trans('price_text_lower_than')}}</span>
+		<div class="price_conent_block">
+			<div class="calculator_content_container">
+				<div class="calculator_content">
+					<span class="price_sp1">{{trans('price_text_select_your_country')}}</span>
+					<div class="price_select_container">
+						<ui-select ng-model="financialCalculator.callRoute" theme="select2" ng-disabled="disabled" style="min-width: 100%;">
+							<ui-select-match placeholder="Select Call route">
+								<img ng-src="/assets/callburn/images/flags/{{$select.selected.country.code}}.png">
+							  	+{{$select.selected.prefix}} ({{$select.selected.country.name}})
+							</ui-select-match>
+							<ui-select-choices repeat="callRoute in callRoutes | orderBy:'country.code' | filter:$select.search">
+							  	<img ng-src="/assets/callburn/images/flags/{{callRoute.country.code}}.png">
+							  	{{callRoute.country.name}} (+{{callRoute.prefix}})
+							</ui-select-choices>
+						</ui-select>
+					</div>
+					<span class="price_sp2"  ng-show="financialCalculator.callRoute">
+					{{trans('price_text_in_this_country1')}} <b>{{financialCalculator.callRoute.custom_price}} &#162</b> {{trans('price_text_in_this_country2')}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="pricing_center_container">
+			<div class="pricing_center_container_top"></div>
+			<span class="contact_us_sp1" style="margin-top: 50px; color: #23bdff;"><b>{{trans('price_price')}}</b></span>
+			<span class="contact_us_sp1">&#8364; 0.0015 <span class="price_sp3">/{{trans('price_listened_second')}}</span></span>
+			<span class="contact_us_sp2">{{trans('price_text_per_second1')}} <b>{{trans('price_text_per_second2')}}</b></span>
+			<span class="contact_us_sp2"><b>20’’</b> {{trans('price_text_per_second3')}}</span>
+			<span class="price_sp1" style="margin-top: 50px;">{{trans('price_text_lets_make_an_example')}}</span>
+			<div class="pricing_center_content_container">
+				<div class="pricing_center_content">
+					<span class="price_sp4">{{trans('price_message_lenght')}}</span>
+					<div class="pricing_center_content_block">
+						<div class="pricing_center_content_block_top">
+							<img src="/assets/callburn/images/front_account/time-icon.png" class="pricing_time_icon">
+						</div>
+						<span class="price_sp4" style="margin-top: 20px;">20 {{trans('price_seconds')}}</span>
+						<span class="contact_us_sp2" style="margin-top: 20px;"><b>{{trans('price_fully_listened_message')}}</b></span>
+						<span class="contact_us_sp2"><b>(+- 160 {{trans('price_characters')}})</b></span>
+						<span class="price_sp5">&#8364; 0,029 <span class="price_sp6">(2,9{{trans('price_cents')}})</span></span>
+					</div>
+				</div>
+				<div class="pricing_center_content">
+					<span class="price_sp4">{{trans('price_quantity')}}</span>
+					<div class="pricing_center_content_block">
+						<div class="pricing_center_content_block_top">
+							<img src="/assets/callburn/images/front_account/messages-icon.png" class="pricing_messages_icon">
+						</div>
+						<span class="price_sp4" style="margin-top: 20px;">1000 {{trans('price_messages')}}</span>
+						<span class="contact_us_sp2" style="margin-top: 20px;"><b>{{trans('price_delivered_listened')}}</b></span>
+						<span class="contact_us_sp2"><b>{{trans('price_total_lenght')}} 20’’</b></span>
+						<span class="price_sp5">&#8364; 29,00</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<span class="price_sp1">{{trans('price_text_dont_look')}}?</span>
+		<span class="contact_us_sp1" style="margin-top: 30px;">{{trans('price_text_we_bill_only1')}} <b>{{trans('price_text_we_bill_only2')}}</b></span>
+		<span class="contact_us_sp5">{{trans('price_text_may_be')}}?</span>
+		<div class="pricing_line"></div>
+		<div class="price_content_container">
+			<div class="price_content">
+				<img src="/assets/callburn/images/front_account/pig-icon.png" id="price_pig_icon" class="contact_us_content_icon" />
+				<span class="contact_us_sp2"><b>{{trans('price_text_pay_only_discovered_messages')}}</b></span>
+				<span class="contact_us_sp3">{{trans('price_text_even_if_your')}}</span>
+			</div>
+			<div class="price_content">
+				<img src="/assets/callburn/images/front_account/contract-icon.png" class="contact_us_content_icon" />
+				<span class="contact_us_sp2"><b>{{trans('contac_us_no_contracts')}}</b></span>
+				<span class="contact_us_sp3">{{trans('price_text_pay_only')}}</span>
+			</div>
+		</div>
+		<span class="contact_us_sp1">{{trans('any_questions1')}} <b>{{trans('any_questions2')}}?</b></span>
+		<span class="contact_us_sp5" style="margin-bottom: 30px;">(<b>{{trans('price_chat_with_us1')}}</b> {{trans('price_chat_with_us2')}})</span>
+	</div>
+	<div class="price_conent_block" ng-if="financialCalculator.quantity">
+		<span class="contact_us_sp1">{{trans('price_text_maximum_price1')}} <b>{{trans('price_text_maximum_price2')}}</b> {{trans('price_text_maximum_price3')}}</span>
+		<span class="price_sp2 price_spa2b"><b>{{getMaxCostForAllMessages()}} &#162</b></span>
+		<span class="contact_us_sp2">{{trans('price_fully_dicovered')}}</span>
+		<span class="price_sp2">{{trans('price_text_otherwise_you_will1')}} <b>{{ getMaxCostforOneMessage() }} &#162</b> {{trans('price_text_otherwise_you_will2')}}</span>
+		<span class="contact_us_sp2"><b>({{trans('price_text_otherwise_you_will3')}})</b></span>
+	</div>
+	<div class="content_block2">
+	<img src="/assets/callburn/images/front_account/callburn-forward-icon.png" class="big_icons1" />
+	<img src="/assets/callburn/images/front_account/white-u.png" class="big_icons2" />
+	<span class="content_sp1"><b>{{trans('price_text_try_it_now1')}}!</b></span>
+	<span class="content_sp1 content_sp1_3">{{trans('price_text_try_it_now2')}}</span>
+	<span class="content_sp1 content_sp1_3">{{trans('price_text_try_it_now3')}}</span>
+	<span class="content_sp1 content_sp1_2">{{trans('price_text_less_than_minute')}}</span>
+	<div class="content_block2_select_container">
+		<input type="text" placeholder="{{trans('price_input_placeholder_insert_number')}}" class="content_block2_input" ng-model="registrationData.phonenumber" />
+		<!-- <div class="select_container">
+			<img src="/assets/callburn/images/front_account/country-icon.png" class="price_input_icon price_input_icon1">
+			<select class="content_block2_select">
+				<option>{{trans('price_text_country')}}</option>
+			</select>
+			<img src="/assets/callburn/images/front_account/dropdown-icon.png" class="select_drop_down_arrow">
+		</div> -->
+		<button class="content_block2_select_btn" ng-click="sendVerificationCall()">{{trans('button_make_verification_call')}}</button>
+	</div>
+	<div ng-show="verificationStep > 1">
+		<span class="content_sp2">{{trans('price_text_a_voice_message')}}</span>
+		<div class="content_block2_input_container">
+			<input type="text" placeholder="{{trans('price_input_placeholder_verifcatior_code')}}?" class="content_block2_input1" ng-model="registrationData.voice_code" />
+			<button class="content_block2_input_btn" ng-click="validateVoiceCode()">{{trans('button_check_code')}}</button>
+		</div>
+	</div>
+
+	<div ng-show="verificationStep > 2">
+		<span class="content_sp2">{{trans('price_text_for_assuring')}}</span>
+		<span class="content_sp2 content_sp2_1">{{trans('price_text_finalize_registration')}}</span>
+		<div class="content_icon_container">
+			<div class="content_icon_conteiner" ng-click="loginFacebook()">
+				<img src="/assets/callburn/images/front_account/icons-facebook.png" class="content_icon" />
+				<span class="content_sp2">{{trans('price_facebook')}}</span>
+			</div>
+			<div class="content_icon_conteiner" ng-click="loginGoogle()">
+				<img src="/assets/callburn/images/front_account/icons-google.png" class="content_icon" />
+				<span class="content_sp2">{{trans('price_google')}}</span>
+			</div>
+			<div class="content_icon_conteiner" ng-click="showRegModal()">
+				<img src="/assets/callburn/images/front_account/icons-mail.png" class="content_icon" />
+				<span class="content_sp2">{{trans('price_mail')}}</span>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="content_wrapper"></div>	
+</div>
+</section>

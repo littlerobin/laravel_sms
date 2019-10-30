@@ -1,0 +1,26 @@
+<!-- Send a preview modale -->
+<div class="modal_window modaleffect">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			{{trans('modal_title_send_preview')}}
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon" ng-click="hideOverlay()">
+		</div>
+		<span class="modal_sp1">{{trans('send_preview_modal_text_you_have_chosen')}}</span>
+		<span class="modal_sp1">{{trans('send_preview_modal_text_a_callburn_voice')}}</span>
+		<span class="modal_sp2">+{{campaignData.caller_id}}</span>
+		<span class="modal_sp3">{{trans('send_preview_modal_text_this_will_billed')}}</span>
+		<span class="modal_sp1">{{trans('send_preview_modal_text_do_you_want')}}?</span>
+		<span class="modal_sp1" ng-show="sendPreviewCallSuccessText">{{sendPreviewCallSuccessText}}</span>
+		<div class="modal_btn_container">
+			<button class="modal_discard_btn" ng-click="hideOverlay()">
+				<img src="/assets/callburn/images/discard-icon.png" class="modal_icons modal_icons1" />
+				<span class="modal_btn_sp">{{trans('button_discard')}}</span>
+			</button>
+			<button class="modal_save_btn" ng-click="sendPreviewToYourPhone()">
+				<img src="/assets/callburn/images/Ciconselected.png" class="modal_icons" />
+				<span class="modal_btn_sp">{{trans('button_send_it_now')}}</span>
+			</button>
+		</div>
+	</div>	
+</div>
+<!-- /Send a preview modale -->

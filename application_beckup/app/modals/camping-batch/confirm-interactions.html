@@ -1,0 +1,23 @@
+<!-- Confirm interactions keypress -->
+<div class="modal_window modaleffect">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			{{trans('modal_title_confirm_interactions_keypress')}}
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon" ng-click="dismissModal()">
+		</div>
+		<span class="modal_sp1">{{trans('confirm_interactions_keypress_modal_text_you_have_chosen')}}</span>
+		<span class="modal_sp2" ng-repeat="interaction in interactionsForModal">{{interaction.action + ' on Keypress ' + interaction.keypress }}</span>
+		<span class="modal_sp3">{{trans('confirm_interactions_keypress_modal_text_be_sure_that')}}</span>
+		<span class="modal_sp1">{{trans('confirm_interactions_keypress_modal_text_examples')}}</span>
+		<div class="modal_check_container">
+			<div class="modal_check_content" ng-init="saveWithInteractionsCheckbox = false;" ng-click="saveWithInteractionsCheckbox = !saveWithInteractionsCheckbox">
+				<img src="/assets/callburn/images/check-icon.png" class="modal_check_icon" ng-show="saveWithInteractionsCheckbox">
+			</div>
+			<span class="modal_sp4">{{trans('confirm_interactions_keypress_modal_check_text')}}</span>
+		</div>
+		<div class="modal_btn_container">
+			<button class="modal_send_btn" ng-disabled="!saveWithInteractionsCheckbox" ng-click="proceedToSaveWithInteraction()">{{trans('button_send_voice_message')}}</button>
+		</div>	
+	</div>	
+</div>
+<!-- /Confirm interactions keypress -->

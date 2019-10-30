@@ -1,0 +1,42 @@
+<div class="modal_window modaleffect">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			<img ng-click="contactsModalShow = false;" src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon">
+			Manage Phonenumbers
+		</div>
+		<div class="groups_modal_table_container">
+			<div class="table-responsive">
+				<table class="table">
+					<tr class="table_first_tr">
+						<td>{{trans('addressbook_table_phonenumbers')}}</td>
+						<td id="table_delete_icon_container"></td>
+					</tr>
+					<tr ng-repeat="phonenumber in currentPhonenumbers" ng-if="currentPhonenumbers.length > 0">
+						<td ng-class="{table_deleted_row: campaignData.removed_phonenumbers.indexOf(phonenumber._id) != -1}">
+							<p class="table_p">
+								<!-- <img ng-src="/assets/callburn/images/flags/Armenia.png" class="table_icons1"> -->
+								+{{phonenumber.phone_no}}
+							</p>
+						</td>
+						<td id="table_delete_icon_container">
+							<img ng-if="campaignData.removed_phonenumbers.indexOf(phonenumber._id) == -1" src="/assets/callburn/images/basket.png" class="table_icons" ng-click="editPhonenumbersRemove(phonenumber._id)">
+							<img ng-if="campaignData.removed_phonenumbers.indexOf(phonenumber._id) != -1" src="/assets/callburn/images/undo_arrow.png" class="table_icons" ng-click="editPhonenumbersReadd(phonenumber._id)">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="empty_table" ng-if="currentPhonenumbers.length == 0">{{trans('empty_table_text')}}</div>
+		</div>
+		<!-- <div class="pagination_container">
+			<div class="pagination_right_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows" ng-click="changeContactsPage(contactsPage)"/>
+				<img src="/assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1" ng-click="changeContactsPage(contactsPagesCount - 1)"/>
+			</div>
+			<div class="pagination_left_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_left1.png" class="pagination_arrows1" ng-click="changeContactsPage(contactsPage - 1)"/>
+				<img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows" ng-click="changeContactsPage(0)" />
+			</div>
+			<div class="pagination_content">{{trans('pagination_page')}} {{contactsPage}} {{trans('pagination_of')}} {{contactsPagesCount}}</div>
+		</div> -->
+	</div>	
+</div>

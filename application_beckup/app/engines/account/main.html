@@ -1,0 +1,40 @@
+<div>
+	<div class="black_line"></div>
+	<!-- <div class="account_menu">
+		<div class="account_menu_content">
+			<span class="account_menu_icons_container" ui-sref-active="selected_menu" ui-sref="account.settings">
+				<img src="/assets/callburn/images/account_menu_icons/settings.png" ng-show="false" class="account_menu_icons">
+				<img src="/assets/callburn/images/account_menu_icons/settings_selected.png" ng-show="true" class="account_menu_icons" id="account_settings_selected_icon">
+				<span class="account_menu_span">{{trans('account_settings')}}</span>
+			</span>	
+		</div>
+		<div class="account_menu_content">
+			<span class="account_menu_icons_container" ui-sref-active="selected_menu" ui-sref="account.financials">
+				<img src="/assets/callburn/images/account_menu_icons/financials.png" ng-show="false" class="account_menu_icons" id="account_financials_icon">
+				<img src="/assets/callburn/images/account_menu_icons/financials_selected.png" ng-show="true" class="account_menu_icons" id="account_financials_selected_icon">
+				<span class="account_menu_span">{{trans('account_financials')}}</span>
+			</span>
+		</div>
+		<div class="account_menu_content" ui-sref-active="selected_menu" ui-sref="account.invoices">
+			<span class="account_menu_icons_container selected_menuunt_menu_icons/invoices.png" class="account_menu_icons">
+				<img src="/assets/callburn/images/account_menu_icons/invoices_selected.png" ng-show="true" class="account_menu_icons" id="account_invoices_selected_icon">
+				<span class="account_menu_span">{{trans('account_invoices')}}</span>
+			</span>
+		</div>
+	</div> -->
+	<div class="back_next_container">
+		<div id="back" ng-show="showPreviousIcon" ng-click="previousStep()">
+			<span class="back_next_sp">BACK</span>
+		</div>
+		<div id="next" ng-show="showNextIcon" ng-click="nextStep()">
+			<span class="back_next_sp back_next_sp1">NEXT</span>
+		</div>
+	</div>
+	<div style="background: #fff;">
+		<div class="account_container">
+
+			<div ui-view></div>
+
+		</div>
+	</div>	
+</div>	

@@ -1,0 +1,205 @@
+<div class="dashboard_container1">
+	<span class="dashboard_container_h3">{{trans('dashboard_greeting')}} <span class="dashboard_container1_h3">{{currentUser.email}}</span>, {{trans('dashboard_greeting_text')}}</span>
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="campaign.overview({status: 'draft'})">
+			<img src="assets/callburn/images/dashboard_icons/1.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.saved_messages}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_saved_messages')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.overview({status: 'scheduled'})">
+			<img src="assets/callburn/images/dashboard_icons/2.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.scheduled_messages}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_scheduled_messages')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.overview({status: 'scheduled'})">
+			<img src="assets/callburn/images/dashboard_icons/3.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.retained_balance}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_retained_balance')}}</span>
+			</div>
+		</div>
+	</div>
+	<!-- <callburn-select ng-model="a" options="options1" show-attr='a' keep-attr='b'></callburn-select> -->
+	<div class="dashboard_content_container">
+		<div class="dashboard_content"  ui-sref="campaign.statistics({status: 'sent'})">
+			<img src="assets/callburn/images/dashboard_icons/4.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.sent_messages}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_sent_messages')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.statistics({status: 'success'})">
+			<img src="assets/callburn/images/dashboard_icons/5.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.delivered_messages}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_delivered_messages')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content">
+			<img src="assets/callburn/images/dashboard_icons/6.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.deliver_rate}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_delivery_rate')}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="addressbook.contacts">
+			<img src="assets/callburn/images/dashboard_icons/7.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.phonebook_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_phonebook_items')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="account.settings">
+			<img src="assets/callburn/images/dashboard_icons/8.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.caller_ids_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_registered_caller_id')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.templates">
+			<img src="assets/callburn/images/dashboard_icons/9.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.message_templates_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_message_template')}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="campaign.statistics({action: 'TRANSFER_REQUESTED'})">
+			<img src="assets/callburn/images/dashboard_icons/10.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.transfer_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_live_transfer')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.statistics({action: 'CALLBACK_REQUESTED'})">
+			<img src="assets/callburn/images/dashboard_icons/11.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.callback_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_call_me_back')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.statistics({action: 'DONOTCALL_REQUESTED'})">
+			<img src="assets/callburn/images/dashboard_icons/12.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.blacklist_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_blacklist')}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="dashboard_container2" >
+	<span class="dashboard_container_h3">{{trans('dashboard_greeting')}} <span class="dashboard_container1_h3">{{currentUser.email}}</span>, {{trans('dashboard_greeting_text')}}</span>
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="campaign.overview({status: 'draft'})">
+			<img src="assets/callburn/images/dashboard_icons/1.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.saved_messages}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_saved_messages')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.overview({status: 'scheduled'})">
+			<img src="assets/callburn/images/dashboard_icons/2.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.scheduled_messages}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_scheduled_messages')}}</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="campaign.overview({status: 'scheduled'})">
+			<img src="assets/callburn/images/dashboard_icons/3.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.retained_balance}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_retained_balance')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content"  ui-sref="campaign.statistics({status: 'sent'})">
+			<img src="assets/callburn/images/dashboard_icons/4.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.sent_messages}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_sent_messages')}}</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="campaign.statistics({status: 'success'})">
+			<img src="assets/callburn/images/dashboard_icons/5.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.delivered_messages}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_delivered_messages')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content">
+			<img src="assets/callburn/images/dashboard_icons/6.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.deliver_rate}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_delivery_rate')}}</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="addressbook.contacts">
+			<img src="assets/callburn/images/dashboard_icons/7.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.phonebook_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_phonebook_items')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="account.settings">
+			<img src="assets/callburn/images/dashboard_icons/8.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.caller_ids_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_registered_caller_id')}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="campaign.compose">
+			<img src="assets/callburn/images/dashboard_icons/9.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.message_templates_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_message_template')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.statistics({action: 'TRANSFER_REQUESTED'})">
+			<img src="assets/callburn/images/dashboard_icons/10.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.transfer_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_live_transfer')}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="dashboard_content_container">
+		<div class="dashboard_content" ui-sref="campaign.statistics({action: 'CALLBACK_REQUESTED'})">
+			<img src="assets/callburn/images/dashboard_icons/11.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.callback_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_call_me_back')}}</span>
+			</div>
+		</div>
+		<div class="dashboard_content" ui-sref="campaign.statistics({action: 'DONOTCALL_REQUESTED'})">
+			<img src="assets/callburn/images/dashboard_icons/12.png" class="dashboard_icons">
+			<div class="dashboard_span_container">
+				<span class="dashboard_sp1">{{dashboardData.blacklist_count}}</span>
+				<span class="dashboard_sp2">{{trans('dashboard_blacklist')}}</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

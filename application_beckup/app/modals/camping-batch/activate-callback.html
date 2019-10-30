@@ -1,0 +1,192 @@
+<!-- CALL ME BACK INTERACTION MODALS -->
+<div class="modal_window modaleffect">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			<span class="back">Back</span>
+			<img src="/assets/callburn/images/modal_back_arrow.png" class="modal_back_arrow">
+			{{trans('modal_title_active_new_interaction')}}
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon" ng-click="hideOverflow()">
+		</div>
+		<span class="modal_sp1">{{trans('blacklist_me_interaction_modal_text_you_have_chosen')}}</span>
+		<span class="modal_sp2">{{trans('blacklist_me_interaction_modal_text_call_me_back')}}</span>
+		<span class="modal_sp1">{{trans('blacklist_me_interaction_modal_text_activating_this_feature')}}</span>
+		<span class="modal_sp2">
+			{{trans('blacklist_me_interaction_modal_text_when_your_recipient2')}}
+		</span>
+		<span class="modal_sp1">{{trans('blacklist_me_interaction_modal_text_if_you_have')}}</span>
+		<div class="modal_img_container">
+			<div class="modal_img_content1">
+				<img src="/assets/callburn/images/big_fire.png" class="modal_big_icon">
+				<span class="modal_sp5">{{trans('modal_callburn')}}</span>
+			</div>
+			<div class="modal_img_content2">
+				<span class="sp3">{{trans('modal_deliver_your_message')}}</span>
+				<img src="/assets/callburn/images/big_arrow_blue.png" class="modal_big_icon">
+				<img src="/assets/callburn/images/big_arrow2.png" class="modal_big_icon">
+				<span class="modal_absolute_sp1">{{trans('modal_message_delivery')}}</span>
+				<span class="modal_absolute_sp2">{{trans('modal_callmeback_request')}}</span>
+				<span class="interaction_modal_sp1">{{trans('callmeback_interaction_modal_red_text_recipient_request_callmeback')}}</span>
+			</div>
+			<div class="modal_img_content3">
+				<img src="/assets/callburn/images/big_phone.png" class="modal_big_icon">
+				<span class="modal_sp5">{{trans('modal_your_recipient')}}</span>
+			</div>
+		</div>
+		<div class="modal_img_container">
+			<div class="modal_img_content1">
+				<img src="/assets/callburn/images/big_tts.png" class="modal_big_icon">
+			</div>
+			<div class="modal_img_content2">
+				<div class="phonenumbers_source_export_content">
+					<!-- <div class="border_dashed border_dashed_modal" id="first_border_dashed_content"></div> -->
+					<div class="modal_sp_container">
+						<span class="sp3">{{trans('blacklist_me_interaction_modal_we_acknowledge')}}</span>
+						<span class="sp3">{{trans('blacklist_me_interaction_modal_about_callmeback')}}</span>
+					</div>
+					<!-- <div class="border_dashed border_dashed_modal" id="second_border_dashed_content"></div> -->
+				</div>
+				<img src="/assets/callburn/images/big_arrow1.png" class="modal_big_icon">
+				<span class="modal_absolute_sp3">{{trans('modal_ack_voice_message')}}</span>
+				<span class="interaction_modal_sp2">{{trans('callmeback_interaction_modal_red_text_second_voice_message')}}</span>
+			</div>
+			<div class="modal_img_content3">
+				<img src="/assets/callburn/images/big_phone.png" class="modal_big_icon">
+				<span class="modal_sp5">{{trans('modal_your_recipient')}}</span>
+			</div>
+		</div>
+		<span class="modal_sp1">{{trans('callmeback_interaction_modal_text_you_can_find')}}</span>
+		<span class="modal_sp3">{{trans('blacklist_me_interaction_modal_text_in_the_next_step')}}</span>
+		<div class="modal_btn_container">
+			<button class="modal_send_btn modal_send_btn1" ng-click="callbackStep = 2;">{{trans('button_proceed_to_next_step')}}</button>
+			<img src="/assets/callburn/images/pagination_arrow_right.png" class="modal_next_icon" id="modal_first_next_icon">
+			<img src="/assets/callburn/images/pagination_arrow_right.png" class="modal_next_icon">
+			<img src="/assets/callburn/images/pagination_arrow_right.png" class="modal_next_icon">
+		</div>
+	</div>
+</div>
+<div class="modal_window modaleffect" ng-if="callbackStep == 2" >
+	<div class="modal_container">
+		<div class="modal_top_content" ng-click="hideOverlay()">
+			{{trans('modal_title_active_new_interaction')}}
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon">
+		</div>
+		<div class="compose_method_container compose_method_container_modal">
+			<span class="compose_sp">{{trans('callback_modal_method1')}}</span>
+			<span class="compose_sp">{{trans('callback_modal_method1_text')}}</span>
+			<div class="compose_method">
+				<div class="choose_lang_and_voice_container">
+					<callburn-select
+							ng-model="ttsData.language"
+							options="CampaignComposeService.ttsLanguages"
+							show-attr="selectView"
+							image-url="/assets/callburn/images/TTSicon@2x.png"
+							keep-attr='ttsEngine'
+							select-text="{{trans('compose_step_1_method_1_select_default')}}">
+					</callburn-select>
+					<!--<select class="choose_lang_and_voice" ng-model="callbackTtsData.language">
+						<option value="" disabled>Choose preferred language and voice</option>
+						<option ng-repeat="ttsLanguage in CampaignComposeService.ttsLanguages" value="{{ttsLanguage.ttsEngine}}">{{ttsLanguage.languageName + '-' + ttsLanguage.ttsEngine}}</option>
+					</select>
+					<img src="/assets/callburn/images/Settingicon.png" class="drop_down_arrow">-->
+				</div>
+				<textarea ng-model="callbackTtsData.text" class="compose_method1_textarea"
+				placeholder="{{trans('callback_modal_method1_textarea_placeholder')}}"></textarea>
+				<button class="compose_method1_btn" ng-click="createAudioFromTextForCallback()">{{trans('button_compose_it_now')}}</button>
+			</div>
+		</div>
+		<div class="compose_method_container compose_method_container_modal"  ng-if="callbackStep">
+			<span class="compose_sp">{{trans('callback_modal_method2')}}</span>
+			<span class="compose_sp">{{trans('callback_modal_method2_text')}}</span>
+			<div class="compose_method">
+				<div class="compose_method2_drag_container">
+					<img src="/assets/callburn/images/Attachment.png" class="compose_method2_input_img">
+					<input readonly="true" type="text"class="compose_method2_input" placeholder="{{trans('callback_modal_method2_input_placeholder')}}" />
+					<input ng-show="false" id="campaignCallbackFileInput"  type="file" nv-file-select uploader="callbackDigitFileUpload" />
+					<div class="compose_method2_input_btns_container"><button class="compose_method2_input_btns" ng-click='openCallbackFileSelect()'>{{trans('button_upload')}}</button></div>
+					<div nv-file-drop=""  uploader="callbackDigitFileUpload" class="drag_drop">
+						<p ng-show="uploadingCallbackAudioName">{{uploadingCallbackAudioName}}</p>
+						<p ng-show="!uploadingCallbackAudioName">{{trans('compose_step_1_method_2_dropzone1')}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="compose_method_container compose_method_container_modal">
+			<span class="compose_sp">{{trans('callback_modal_method3')}}</span>
+			<span class="compose_sp">{{trans('callback_modal_method4_text')}}</span>
+			<div class="compose_method">
+				<div class="choose_lang_and_voice_container">
+
+					<callburn-select ng-model="tempAudioTemplateModel"
+									 options="CampaignComposeService.audioTemplates"
+									 show-attr="selectView"
+									 keep-attr='languageId'
+									 image-url="/assets/callburn/images/dsf.png"
+									 select-text="Select your audio"
+									 ng-change="callbackAudioTemplateSelected(tempAudioTemplateModel)" keep-object="true">
+					</callburn-select>
+					<!--<img src="/assets/callburn/images/dsf.png" class="modal_select_icon modal_select_icon1">
+					<select class="choose_lang_and_voice" ng-model="tempAudioTemplateModel" ng-change="callbackAudioTemplateSelected(tempAudioTemplateModel)">
+						<option ng-repeat="audioTemplate in  CampaignComposeService.audioTemplates" value="{{audioTemplate}}">
+							{{audioTemplate.orig_filename + ' - ' + audioTemplate.length + '"'}}
+						</option>
+					</select>-->
+					<audio id="callbackAudioFileTemplate" ng-if="selectedCallbackAudioTemplateFile._id" ng-show="false" ng-src="{{getAudioSource(selectedCallbackAudioTemplateFile._id)}}" controls></audio>
+					<!--<img ng-click="showCallbackTemplateSelectDropDown = !showCallbackTemplateSelectDropDown" src="/assets/callburn/images/Settingicon.png" class="drop_down_arrow">-->
+				</div>
+				<div class="compose_method3_content_container" ng-show="selectedCallbackAudioTemplateFile.orig_filename">
+					<div class="compose_method3_content">
+						<img src="/assets/callburn/images/stop1.png" ng-show="isCallbackTemplateFilePlaying" ng-click="playPauseCallbackTemplateAudio('pause')" class="compose_method3_icons" />
+						<img src="/assets/callburn/images/play.png" ng-show="!isCallbackTemplateFilePlaying" ng-click="playPauseCallbackTemplateAudio('play')" class="compose_method3_icons" />
+						<span class="compose_method3_span" ng-show="!isCallbackTemplateFilePlaying">{{trans('callback_modal_method3_play')}}</span>
+						<span class="compose_method3_span" ng-show="isCallbackTemplateFilePlaying">{{trans('callback_modal_method3_pause')}}</span>
+					</div>
+					<div class="compose_method3_content" ng-hide="isCallbackAlreadyAdded()">
+						<img ng-click="saveTemplateAsCallback()" src="/assets/callburn/images/draft.png" class="compose_method3_icons" />
+						<span class="compose_method3_span">{{trans('callback_modal_method3_save')}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="compose_method_container compose_method_container_modal">
+			<span class="compose_sp compose_red_sp">{{trans('callback_modal_method4_red_text')}}</span>
+			<div class="compose_method">
+				<div class="choose_lang_and_voice_container">
+					<callburn-select ng-model="tempNewCreatedModel"
+									 options="callbackAudioFiles"
+									 show-attr="viewSelect"
+									 keep-attr='file'
+									 image-url="/assets/callburn/images/dsf.png"
+									 select-text="Select your audio"
+									 ng-change="selectCallbackNewCreatedAudioFile(tempNewCreatedModel)" keep-object="true">
+					</callburn-select>
+					<!--<img src="/assets/callburn/images/dsf.png" class="modal_select_icon modal_select_icon1">
+					<select class="choose_lang_and_voice" ng-model="tempNewCreatedModel" ng-change="selectCallbackNewCreatedAudioFile(tempNewCreatedModel)">
+						<option ng-repeat="audioFile in callbackAudioFiles" value="{{audioFile.file}}" ng-selected="audioFile.file._id == newCallbackSelectedAudioFile._id">
+							{{ audioFile.file.orig_filename + ' - ' + audioFile.file.length + '"' }}
+						</option>
+					</select>-->
+					<audio id="callbackCreatedAudioFile" ng-if="newCallbackSelectedAudioFile._id" ng-show="false" ng-src="{{getAudioSource(newCallbackSelectedAudioFile._id)}}" controls></audio>
+					<!--<img ng-click="showNewCreatedCallbacksDropDown = !showNewCreatedCallbacksDropDown" src="/assets/callburn/images/Settingicon.png" class="drop_down_arrow">-->
+				</div>
+				<div class="compose_method3_content_container" ng-show="newCallbackSelectedAudioFile._id">
+					<div class="compose_method3_content">
+						<img src="/assets/callburn/images/stop1.png" ng-show="isCallbackNewCreatedFilePlaying" ng-click="playPauseCallbackNewCreatedAudio('pause')" class="compose_method3_icons" />
+						<img src="/assets/callburn/images/play.png" ng-show="!isCallbackNewCreatedFilePlaying" ng-click="playPauseCallbackNewCreatedAudio('play')" class="compose_method3_icons" />
+						<span class="compose_method3_span" ng-show="!isCallbackNewCreatedFilePlaying">{{trans('callback_modal_method3_play')}}</span>
+						<span class="compose_method3_span" ng-show="isCallbackNewCreatedFilePlaying">{{trans('callback_modal_method3_pause')}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal_check_container">
+			<div class="modal_check_content" ng-click="CampaignComposeService.callbackDigit.checkboxChecked = !CampaignComposeService.callbackDigit.checkboxChecked">
+				<img src="/assets/callburn/images/check-icon.png" class="modal_check_icon" ng-show="CampaignComposeService.callbackDigit.checkboxChecked">
+			</div>
+			<span class="modal_sp4">{{trans('check_container_text')}}</span>
+		</div>
+		<div class="modal_btn_container">
+			<button class="modal_send_btn" ng-disabled="!CampaignComposeService.callbackDigit.checkboxChecked" ng-click="activateCallbackDigit()">{{trans('button_activate_callback')}}</button>
+		</div>
+	</div>
+</div>
+<!-- END CALL ME BACK INTERACTION MODALS -->

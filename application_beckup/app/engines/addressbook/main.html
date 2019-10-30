@@ -1,0 +1,51 @@
+<div>
+	<div class="phonebook_menu">
+		<div class="phonebook_menu_content" ng-click="showHideIcon()">
+			<!-- <span class="phonebook_menu_icons_container" id="adressbook_contacts" ui-sref-active="selected_menu" ui-sref="addressbook.contacts"> -->
+			<span ng-class="{phonebook_menu_icons_container:true, selected_menu: phonenumberMenuItem.status == 'addressbook.contacts'}" ng-click="activePhonenumberMenu('addressbook.contacts')" id="adressbook_contacts" ui-sref="addressbook.contacts">
+				<img src="/assets/callburn/images/phonebook_menu_icons/contacts.png" ng-show="phonenumberMenuItem.status == 'addressbook.contacts'" class="phonebook_menu_icons">
+				<img src="/assets/callburn/images/phonebook_menu_icons/contacts_selected.png" ng-hide="phonenumberMenuItem.status == 'addressbook.contacts'" class="phonebook_menu_icons">
+				<span class="phonebook_menu_span">{{trans('addressbook_contacts')}}</span>
+			</span>	
+		</div>
+		<div class="phonebook_menu_content">
+			<!-- <span class="phonebook_menu_icons_container" id="adressbook_groups" ui-sref-active="selected_menu" ui-sref="addressbook.groups"> -->
+			<span id="adressbook_groups" ng-class="{phonebook_menu_icons_container:true, selected_menu: phonenumberMenuItem.status == 'addressbook.groups'}" ng-click="activePhonenumberMenu('addressbook.groups')" ui-sref="addressbook.groups">
+				<img src="/assets/callburn/images/phonebook_menu_icons/groups.png" ng-show="phonenumberMenuItem.status == 'addressbook.groups'" class="phonebook_menu_icons">
+				<img src="/assets/callburn/images/phonebook_menu_icons/groups_selected.png" ng-hide="phonenumberMenuItem.status == 'addressbook.groups'" class="phonebook_menu_icons">
+				<span class="phonebook_menu_span">{{trans('addressbook_groups')}}</span>
+			</span>
+		</div>
+		<div class="phonebook_menu_content">
+			<!-- <span class="phonebook_menu_icons_container" id="adressbook_import" ui-sref-active="selected_menu" ui-sref="addressbook.import"> -->
+			<span id="adressbook_import" ng-class="{phonebook_menu_icons_container:true, selected_menu: phonenumberMenuItem.status == 'addressbook.import'}"  ng-click="activePhonenumberMenu('addressbook.import')" ui-sref="addressbook.import">
+				<img src="/assets/callburn/images/phonebook_menu_icons/import.png" ng-show="phonenumberMenuItem.status == 'addressbook.import'" class="phonebook_menu_icons">
+				<img src="/assets/callburn/images/phonebook_menu_icons/import_selected.png" ng-hide="phonenumberMenuItem.status == 'addressbook.import'" class="phonebook_menu_icons">
+				<span class="phonebook_menu_span">{{trans('addressbook_import')}}</span>
+			</span>
+		</div>
+		<div class="phonebook_menu_content phonebook">
+			<!-- <span class="phonebook_menu_icons_container" id="adressbook_export" ui-sref-active="selected_menu" ui-sref="addressbook.export"> -->
+			<span id="adressbook_export" ng-class="{phonebook_menu_icons_container:true, selected_menu: phonenumberMenuItem.status == 'addressbook.export'}" ng-click="activePhonenumberMenu('addressbook.export')" ui-sref="addressbook.export">
+				<img src="/assets/callburn/images/phonebook_menu_icons/export.png" ng-show="phonenumberMenuItem.status == 'addressbook.export'" class="phonebook_menu_icons">
+				<img src="/assets/callburn/images/phonebook_menu_icons/export_selected.png" ng-hide="phonenumberMenuItem.status == 'addressbook.export'" class="phonebook_menu_icons">
+				<span class="phonebook_menu_span">{{trans('addressbook_export')}}</span>
+			</span>
+		</div>
+	</div>
+	<div class="back_next_container">
+		<div id="back" ng-show="showPreviousIcon" ng-click="previousStep()">
+			<span class="back_next_sp">BACK</span>
+		</div>
+		<div id="next" ng-show="showNextIcon" ng-click="nextStep()">
+			<span class="back_next_sp back_next_sp1">NEXT</span>
+		</div>
+	</div>
+	<div style="background: #fff;">	
+		<div class="phonebook_container">
+
+			<div ui-view></div>
+			
+		</div>	
+	</div>
+</div>

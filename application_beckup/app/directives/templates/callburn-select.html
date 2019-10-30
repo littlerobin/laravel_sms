@@ -1,0 +1,12 @@
+<div id="selectBoxMain" ng-click="showSelect = !showSelect;" class="select">
+    <img data-ng-show="imageUrl" ng-src="{{imageUrl}}">
+    {{selectedValue? selectedValue :selectText ? selectText : 'Select'}}
+    <img src="/assets/callburn/images/dropdown-icon.png" class="image-select"/>
+</div>
+<div class="arrow_box_select" ng-show="showSelect"></div>
+<ul ng-show="showSelect" class="select-open">
+    <li ng-repeat="option in options track by $index" ng-click="keepObject ? valueSelected(option,option,$index) : valueSelected(option[showAttr],option[keepAttr],$index)">
+        <img data-ng-show="imageAttr" ng-src="{{imageAttr[$index]}}">
+        {{option[showAttr]}}
+    </li>
+</ul>

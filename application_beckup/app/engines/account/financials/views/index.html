@@ -1,0 +1,221 @@
+<div class="financials_actual_value">
+	<span class="financials_actual_value_sp1">{{trans('account_financials_top_text')}}</span>
+	<span class="financials_actual_value_sp2">€ {{currentUser.balance}}.</span>	
+</div>
+<div class="financials_container">
+	<div class="financials_content_first_container">
+		<span class="financials_sp1">{{trans('account_financials_check_our_tariffs')}}</span>
+		<div class="financials_first_content">
+			<div class="financials_content">
+					
+				<span class="financials_sp2">1.{{trans('account_financials_input_top_text_message_destination')}}</span>
+				<div class="financials_select">
+					<ui-select ng-model="financialCalculator.callRoute" theme="select2" ng-disabled="disabled" style="min-width: 100%;">
+						<ui-select-match placeholder="Select Call route">
+							<img ng-src="/assets/callburn/images/flags/{{$select.selected.country.code}}.png">
+						  	+{{$select.selected.prefix}} ({{$select.selected.country.name}})
+						</ui-select-match>
+						<ui-select-choices repeat="callRoute in callRoutes | orderBy:'country.code' | filter:$select.search">
+						  	<img ng-src="/assets/callburn/images/flags/{{callRoute.country.code}}.png">
+						  	{{callRoute.country.name}} (+{{callRoute.prefix}})
+						</ui-select-choices>
+					</ui-select>
+				</div>
+				<span class="financials_sp3" ng-show="financialCalculator.callRoute">
+					{{trans('account_financials_text_in_this_country')}} {{financialCalculator.callRoute.custom_price}}€ {{trans('account_financials_text_for_every_minute')}}
+				</span>
+			</div>
+			<div class="financials_content" ng-show="financialCalculator.step > 1;">
+				<span class="financials_sp2">2.{{trans('account_financials_input_top_text_total_message_length')}}</span>
+				<input type="text" class="financials_input" ng-disabled="!financialCalculator.callRoute" ng-model="financialCalculator.length">
+				<img src="/assets/callburn/images/dsf.png" class="financials_icons financials_icons2">
+				<span class="financials_sp3" ng-if="financialCalculator.length">
+					{{trans('account_financials_text_your_fully_listened')}} {{ getMaxCostforOneMessage() }}€ with a minimium of only {{ financialCalculator.callRoute.custom_price }}€ {{trans('account_financials_text_for_delivered_message')}}
+				</span>
+			</div>
+			<div class="financials_content"  ng-show="financialCalculator.step > 2;">
+				<span class="financials_sp2">3.{{trans('account_financials_input_top_text_successfull_deliver_quantity')}}</span>
+				<input type="text" class="financials_input" ng-model="financialCalculator.quantity" ng-disabled="!financialCalculator.length">
+				<img src="/assets/callburn/images/Fill160@2x.png" class="financials_icons financials_icons2">
+				<span class="financials_sp3" ng-if="financialCalculator.quantity">
+					{{trans('account_financials_text_all_these_messages')}} €{{getMaxCostForAllMessages()}}
+				</span>
+				<span class="financials_first_content_btn">
+					<img src="/assets/callburn/images/rechargeiconwithusandpig@2x.png" class="financials_btn_icons">
+					<span class="financials_btn_sp" ng-click="applyCalculatedCost()">{{trans('button_recharge_this_amount')}}</span>
+				</span>
+			</div>
+		</div>
+		<div class="financials_second_content">
+			<div class="financials_second_content_container">
+				<div class="financials_content1">
+					<span class="financials_sp1">
+						<img src="/assets/callburn/images/warning-icon.png" id="warning_icon">
+						{{trans('account_financials_input_top_text_low_balance_alert')}}
+					</span>
+					<div class="financials_select">
+						<p id="selectBoxMain" ng-click="showSelect = !showSelect;">{{selectedValue? selectedValue : 'Select'}}</p>
+						<ul ng-show="showSelect">
+						 	<li ng-repeat="opt in options track by $index" ng-click="valueSelected(opt[keepAttr])">{{opt[showAttr]}}</li>
+						</ul>
+						<!-- <select class="financials_input financials_input1" ng-change="enableDisableLowBalanceNotifications()" ng-model="notifyWhenBalanceIsLow">
+							<option value="">Disable</option>
+							<option ng-selected="currentUser.notify_when_balance_is_low == 5" value="5">{{trans('account_financials_input_placeholder_notify_me')}} 5€</option>
+							<option ng-selected="currentUser.notify_when_balance_is_low == 10" value="10">{{trans('account_financials_input_placeholder_notify_me')}} 10€</option>
+							<option ng-selected="currentUser.notify_when_balance_is_low == 15" value="15">{{trans('account_financials_input_placeholder_notify_me')}} 15€</option>
+							<option ng-selected="currentUser.notify_when_balance_is_low == 20" value="20">{{trans('account_financials_input_placeholder_notify_me')}} 20€</option>
+							<option ng-selected="currentUser.notify_when_balance_is_low == 25" value="25">{{trans('account_financials_input_placeholder_notify_me')}} 25€</option>
+							<option ng-selected="currentUser.notify_when_balance_is_low == 30" value="30">{{trans('account_financials_input_placeholder_notify_me')}} 30€</option>
+						</select> -->
+						<img src="/assets/callburn/images/Settingicon.png" class="financials_drop_down_arrow" />
+					</div>
+					<span class="financials_sp2">{{trans('account_financials_text_if_any_import')}}</span>
+				</div>
+				<div class="financials_content1">
+					
+				</div>
+			</div>
+			<div class="financials_second_content_container">
+				<div class="financials_content1">
+					<span class="financials_sp1">
+						{{trans('account_financials_input_top_text_autorecharge_on_low_balance')}}
+					</span>
+					<div class="financials_select">
+						<span class="financials_input3">
+							<span ng-if="currentUser.is_autobilling_active == 0">{{trans('account_financials_input_placeholder_disabled')}}</span>
+							<span ng-if="currentUser.is_autobilling_active == 1">Enabled</span>
+							<img src="/assets/callburn/images/autorecharge-icon.png" class="financials_icons financials_icons1">
+						</span>
+						<span class="balance_btn" ng-if="currentUser.is_autobilling_active == 0" ng-click="enableAutoRecharge()">{{trans('button_enable_it')}}</span>
+						<span class="balance_btn" ng-if="currentUser.is_autobilling_active == 1" ng-click="disableAutoRecharge()">Disable</span>
+					</div>	
+					<span class="financials_sp2">{{trans('account_financials_text_forget_about_low')}} 5&#8364;</span>
+				</div>
+				<img src="/assets/callburn/images/arrow-to-right.png" id="arrow_to_right" ng-if="currentUser.is_autobilling_active == 1;">
+				<div class="financials_content1" ng-if="currentUser.is_autobilling_active == 1;">
+					<div class="financials_select" id="financials_bottom_input">
+						<select class="financials_input financials_input1" ng-model="autorechargeWith" ng-change="autorechargeAmountChanged(autorechargeWith)">
+							<option ng-selected="currentUser.autobilling_amount == 5" value="5">{{trans('account_financials_autorecharge_with')}} 5&#8364;</option>
+							<option ng-selected="currentUser.autobilling_amount == 25" value="25">{{trans('account_financials_autorecharge_with')}} 25&#8364;</option>
+							<option ng-selected="currentUser.autobilling_amount == 50" value="50">{{trans('account_financials_autorecharge_with')}} 50&#8364;</option>
+						</select>
+						<img src="/assets/callburn/images/Settingicon.png" class="financials_drop_down_arrow" />
+					</div>
+					<span class="financials_sp2">
+						{{trans('account_financials_text_autorecharge_with1')}} 5&#8364; , 25&#8364; {{trans('account_financials_text_autorecharge_with2')}} 50&#8364;
+					</span>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="financials_second_content">
+			<div>
+				<div class="financials_content1" id="low_balance">
+					<span class="financials_sp1">
+						<img src="/assets/callburn/images/warning-icon.png" id="warning_icon">
+						{{trans('account_financials_input_top_text_low_balance_alert')}}
+					</span>
+					<div class="financials_select">
+						<select class="financials_input financials_input1" ng-model="notifyWhenBalanceIsLow">
+							<option value="5">{{trans('account_financials_input_placeholder_notify_me')}} 5€</option>
+							<option value="10">{{trans('account_financials_input_placeholder_notify_me')}} 10€</option>
+							<option value="15">{{trans('account_financials_input_placeholder_notify_me')}} 15€</option>
+							<option value="20">{{trans('account_financials_input_placeholder_notify_me')}} 20€</option>
+							<option value="25">{{trans('account_financials_input_placeholder_notify_me')}} 25€</option>
+							<option value="30">{{trans('account_financials_input_placeholder_notify_me')}} 30€</option>
+						</select>
+						<img src="/assets/callburn/images/Settingicon.png" class="financials_drop_down_arrow" />
+					</div>
+					<span class="financials_sp2">{{trans('account_financials_text_if_any_import')}}</span>
+				</div>
+				<div class="financials_content1">
+					<span class="financials_sp1" style="color: #fff;">{{trans('account_financials_input_top_text_low_balance_alert')}}</span>
+					<div class="financials_select">
+						<select class="financials_input financials_input1" ng-model="autoRecharge.amount">
+							<option value="5">{{trans('autorecharge_with')}} 5</option>
+							<option value="25">{{trans('autorecharge_with')}} 25</option>
+							<option value="50">{{trans('autorecharge_with')}} 50</option>
+						</select>
+						<img src="/assets/callburn/images/Settingicon.png" class="financials_drop_down_arrow" />
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="financials_content1">
+					<span class="financials_sp1">
+						{{trans('account_financials_input_top_text_autorecharge_on_low_balance')}}
+					</span>
+					<div class="financials_select">
+						<span class="financials_input financials_input3">
+							<span ng-if="currentUser.is_autobilling_active == 0">{{trans('account_financials_input_placeholder_disabled')}}</span>
+							<span ng-if="currentUser.is_autobilling_active == 1">Enabled</span>
+							<img src="/assets/callburn/images/autorecharge-icon.png" class="financials_icons financials_icons1">
+						</span>
+						<span class="balance_btn" ng-if="currentUser.is_autobilling_active == 0" ng-click="enableAutoRecharge()">{{trans('button_enable_it')}}</span>
+						<span class="balance_btn" ng-if="currentUser.is_autobilling_active == 1" ng-click="disableAutoRecharge()">Disable</span>
+					</div>	
+					<span class="financials_sp2">{{trans('account_financials_text_forget_about_low')}}</span>
+				</div>
+				<div class="financials_content1">
+					<div class="financials_select" id="financials_bottom_input">
+						<span class="financials_input financials_input3">
+							<span ng-if="currentUser.send_low_balance_notifications == 0">{{trans('account_financials_input_placeholder_disabled')}}</span>
+							<span ng-if="currentUser.send_low_balance_notifications == 1">Enabled</span>
+							<img src="/assets/callburn/images/postal-code-icon.png" class="financials_icons">
+						</span>
+						<span class="balance_btn" ng-if="currentUser.send_low_balance_notifications == 0" ng-click="enableDisableLowBalanceNotifications(1)">{{trans('button_enable_it')}}</span>
+						<span class="balance_btn" ng-if="currentUser.send_low_balance_notifications == 1" ng-click="enableDisableLowBalanceNotifications(0)">{{trans('account_financials_input_placeholder_disabled')}}</span>
+					</div>	
+				</div>
+			</div>
+		</div> -->
+	</div>
+	<div class="financials_content_second_container">
+		<span class="financials_sp1">{{trans('account_financials_summery_checkout')}}</span>
+		<div class="financials_third_content">
+			<div class="financials_sp_container">
+				<div class="financials_sp_contant">
+					<span class="financials_sp4">{{trans('account_financials_input_top_text_recharge_credit')}}</span>
+					<input class="financials_sp5 financials_input2" placeholder="50.00" ng-model="paymentData.amount" />
+				</div>
+				<div class="financials_sp_contant">
+					<span class="financials_sp4">{{trans('account_financials_total1')}}</span>
+					<span class="financials_sp5">€ {{paymentData.amount}}</span>
+				</div>
+				<div class="financials_sp_contant">
+					<span class="financials_sp4">{{trans('account_financials_total2')}} ({{taxData.standard_rate}}%)</span>
+					<span class="financials_sp5">€ {{paymentData.vat_amount}}</span>
+				</div>
+				<div class="financials_sp_contant">
+					<span class="financials_sp4">{{trans('account_financials_total3')}}</span>
+					<span class="financials_sp5">€ {{ paymentData.total_amount}}</span>
+				</div>
+				<div class="financials_sp_contant" ng-show="discountData.discount_percentage">
+					<span class="financials_sp4">{{discountData.type == 'discount' ? 'Discount' : 'Bonus'}} {{discountData.discount_percentage}}%</span>
+					<span class="financials_sp5">€ {{ paymentData.amount * discountData.discount_percentage / 100}}</span>
+				</div>
+			</div>
+			<span class="financials_first_content_btn">
+				<img src="/assets/callburn/images/rechargeiconwithusandpig@2x.png" class="financials_btn_icons">
+				<span class="financials_btn_sp" ng-click="createPreorder()">{{trans('button_create_order')}}</span>
+			</span>	
+			<div class="financials_second_content_input_conteiner">
+				<span class="financials_sp1">{{trans('account_financials_input_top_text_discount_code')}}</span>
+				<div class="financials_select">
+					<input type="text" class="financials_input" placeholder="{{trans('account_financials_input_placeholder_insert_discount_code')}}" ng-model="paymentData.discount_code">
+					<img src="/assets/callburn/images/Fill45@2x.png" class="financials_icons">
+					<span class="balance_btn" ng-click="checkCouponCode()">{{trans('button_apply_it')}}</span>
+				</div>
+				<span class="financials_sp2">{{trans('account_financials_text_usually_we_send')}}</span>
+			</div>
+			<div class="financials_second_content_input_conteiner">
+				<span class="financials_sp1">{{trans('account_financials_input_top_text_vat_id')}}</span>
+				<div class="financials_select">
+					<input type="text" class="financials_input" placeholder="{{trans('account_financials_input_placeholder_insert_vat_id')}}" ng-model="paymentData.vat_id">
+					<img src="/assets/callburn/images/star.png" class="financials_icons">
+					<span class="balance_btn" ng-click="checkVat()">{{trans('button_check_it')}}</span>
+				</div>
+				<span class="financials_sp2">{{trans('account_financials_text_if_you_are')}}</span>
+			</div>		
+		</div>
+	</div>
+</div>

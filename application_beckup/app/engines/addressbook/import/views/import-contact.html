@@ -1,0 +1,192 @@
+<div ng-show="import_step == 1">
+	<h3>
+		{{trans('addressbook_import_step1_text1')}}
+	</h3>
+	<h3>
+		{{trans('addressbook_import_step1_text2')}}
+	</h3>
+	<h3 style="text-align: center; color: #23bdff">
+		{{trans('addressbook_import_step1_text3')}}
+	</h3>
+	<h3>
+		{{trans('addressbook_import_step1_text4')}}
+	</h3>
+	<h3 style="text-align: center; color: #23bdff">
+		{{trans('addressbook_import_step1_text5')}}
+	</h3>
+	<div class="import_container">
+		<div class="import_methods_container">
+			<div class="import_step1">
+				<span>{{trans('addressbook_import_step1_method1')}}</span>
+				<span>{{trans('addressbook_import_step1_method1_text')}}</span>
+				<div class="import_step1_input_container">
+					<img src="/assets/callburn/images/Quickaddicon.png" class="import_step1_input_img">
+					<textarea ng-model="addedNumbers" class="import_step1_input" placeholder="Add Phonenumbers"></textarea>
+					<button class="import_step1_input_btns" ng-click="addNumbers()">{{trans('button_add')}}</button>
+				</div>
+			</div>
+			<div class="import_step1">
+				<span>{{trans('addressbook_import_step1_method2')}}</span>
+				<span>{{trans('addressbook_import_step1_method2_text')}}</span>
+				<div class="import_step1_input_container" id="import_step1_input_container">
+					<img src="/assets/callburn/images/Attachment.png" class="import_step1_input_img import_step1_input_img1">
+					<input readonly="true" type="text"class="import_step1_input" placeholder="No fole selected" />
+					<input ng-show="false" id="hiddenNumbersFileInput"  type="file" nv-file-select uploader="numbersFileUpload" />
+					<button class="import_step1_input_btns" ng-click='openFileSelect()'>{{trans('button_upload_file')}}</button>
+					<div nv-file-drop=""  uploader="numbersFileUpload" class="drag_drop">
+						<p ng-show="uploadingImageName">{{uploadingImageName}}</p>
+						<p ng-show="!uploadingImageName">{{trans('addressbook_import_step1_method2_dragzone')}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="import_methods_container">
+			<div class="import_step1" id="import_step3">
+				<span>{{trans('addressbook_import_step1_method3')}}</span>
+				<span>{{trans('addressbook_import_step1_method3_text')}}</span>
+				<div class="android_ios_img_container">
+					<img src="/assets/callburn/images/ios.png" class="android_ios_img" id="ios_img">
+					<img src="/assets/callburn/images/android.png" class="android_ios_img" id="android_img">
+				</div>
+			</div>
+		</div>		
+	</div>
+</div><!-- REMOVED
+<div ng-show="import_step == 2">
+	<h3>
+		You can easily batch add your contacts by uploading a file (csv, txt, xls, xlsx) or by pasting text. After importation you can specify a group name for these contacts. Don’t forget to put phonenumbers with international prefix. Group and name are not mandatory and can be specified in a second moment.
+	</h3>
+	<div class="import_container">
+		<div class="import_step2">
+			<span>{{numbersResponseData.success}} contacts successfully imported</span>
+			<span>
+				Want to add these contacts into a group? (you can also change idea later)
+			</span>
+			<div class="import_step2_input_container">
+				<div class="import_step2_btns">
+					<img src="/assets/callburn/images/checkicon.png" class="import_step2_btns_icons">	
+					<div>No</div>							
+				</div>
+				<div class="import_step2_btns">
+					<img src="/assets/callburn/images/checkicon.png" class="import_step2_btns_icons">	
+					<div>Yes</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+<div ng-show="import_step == 2">
+	<h3>
+		{{trans('addressbook_import_step3_text1')}}<br>{{numbersResponseData.success}} {{trans('addressbook_import_step3_text2')}} {{numbersResponseData.invalid + numbersResponseData.not_supported + numbersResponseData.duplicates}} {{trans('addressbook_import_step3_text3')}}
+	</h3>
+	<div class="second_menu_container">
+		<div class="second_menu_content second_menu_content1">
+			<img src="/assets/callburn/images/searchicon.png" class="icon1" />
+			<input type="text" placeholder="{{trans('addressbook_export_input_placeholder')}}" ng-init="searchData = {};" ng-model="searchData.number"/>
+		</div>
+		<div class="second_menu_content">
+			<span class="second_menu_content_center" ng-click="showErrorsFilter = !showErrorsFilter;">
+				<img src="/assets/callburn/images/reviewactions3.png" class="second_menu_icons" />
+				<span class="second_menu_span">{{trans('second_menu_show_errors_filter')}}</span>
+			</span>	
+		</div>
+		<div class="second_menu_content">
+			<span class="second_menu_content_center" ng-click="saveImportedNumbers()">
+				<img src="/assets/callburn/images/reviewactions2.png" class="second_menu_icons" />
+				<span class="second_menu_span">{{trans('second_menu_save')}}</span>
+			</span>
+		</div>
+		<div class="second_menu_content">
+			<span class="second_menu_content_center" ui-sref="addressbook.contacts">
+				<img src="/assets/callburn/images/reviewactions1.png" class="second_menu_icons" />
+				<span class="second_menu_span">{{trans('second_menu_discard')}}</span>
+			</span>	
+		</div>
+	</div>
+	<div class="phonenumbers_container">
+		<div class="table-responsive">
+			<table class="table">
+				<tr class="table_first_tr"  ng-click="checkUncheckAll()">
+					<td class="table_select_all">
+						<span class="check_span">
+							<img ng-show="isAllChecked" src="/assets/callburn/images/check-icon.png" class="check_icon2">
+						</span>
+					</td>
+					<td>{{trans('addressbook_table_phonenumbers')}}</td>
+					<td>{{trans('addressbook_table_group')}}</td>
+					<td>{{trans('addressbook_table_name')}}</td>
+					<td>{{trans('addressbook_table_import_status')}}</td>
+				</tr>
+				<tr ng-click="checkedUncheckContact(number.number)" ng-class="{selected_row: checkedContacts[number.number] }" ng-repeat="number in responsePhonenumbers | showErrors:this | limitTo: 10: listingSkip | filter:searchData" ng-if="responsePhonenumbers.length > 0">
+					<td class="table_select_all">
+					</td>
+					<td class="phonenumbers_content">
+						<p class="table_p" ng-show="number.tariff">
+							<img ng-src="/assets/callburn/images/flags/{{number.tariff.country.code}}.png" class="table_icons1">
+							{{ '+' + number.number }}
+						</p>
+						<p class="table_p" ng-show="!number.tariff">
+							<font color="#2aaee6" size="5px">?</font>
+							{{ number.number }}
+						</p>
+					</td>
+					<td class="phonenumbers_content">
+						<span ng-repeat="group in number.groups track by $index">
+							{{group.name}}
+							<span ng-click="removeGroup(number.number, $index)">X</span>
+						</span>
+						<select ng-model="selectedGroup[number.number]" ng-change="addGroup(number.number)">
+							<option value="">...</option>
+							<option value="{{group}}" ng-repeat="group in groups | notSelected:this:number.number">{{group.name}}</option>
+						</select>
+					</td>
+					<td class="phonenumbers_content" ng-show="number.name">{{ number.name }}</td>
+					<td class="phonenumbers_content" ng-show="!number.name">
+						<a href ng-init="showInput[number.number] = false;" ng-show="!showInput[number.number]" ng-click="showInput[number.number] = true;">{{trans('addressbook_table_add_name')}}</a>
+						<div ng-show="showInput[number.number]">
+							<img ng-click="showInput[number.number] = false;changeName(number.number, nameInputText[number.number])" src="/assets/callburn/images/check-icon.png" class="check_icon check_icon4">
+							<input type="text" ng-model="nameInputText[number.number]" class="table_input" />
+						</div>
+					</td>
+					<td class="phonenumbers_content">{{number.status}}</td>
+				</tr>
+			</table>
+			<div class="empty_table" ng-if="responsePhonenumbers.length == 0">{{trans('empty_table_text')}}</div>
+		</div>	
+		<div class="pagination_container" ng-if="responsePhonenumbers.length > 0">
+			<div class="pagination_right_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_right.png" ng-click="changePage(page + 1)" id="arrow_right" class="pagination_arrows" />
+				<img src="/assets/callburn/images/pagination_arrow_right1.png" ng-click="changePage(pagesCount - 1)" class="pagination_arrows1" />
+			</div>
+			<div class="pagination_left_arrow_container">
+				<img src="/assets/callburn/images/pagination_arrow_left1.png"  ng-click="changePage(0)" class="pagination_arrows1" />
+				<img src="/assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows"  ng-click="changePage(page - 1)"/>
+			</div>
+			<div class="pagination_content">{{trans('pagination_page')}} {{page + 1}} {{trans('pagination_of')}} {{pagesCount}}</div>
+		</div>	
+	</div>
+</div>
+
+<!-- Save contacts modal -->
+<div class="modal_window" ng-show="false">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			{{trans('modal_title_save_contacts')}}
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon">
+		</div>
+		<span class="modal_sp1">{{trans('save_contacts_modal_text_you_have_chosen')}}</span>
+		<div class="modal_select_container modal_select_container1">
+			<span class="modal_sp1">{{trans('save_contacts_modal_text_do_you_want')}}</span>
+			<div class="modal_select_content">
+				<select class="modal_select">
+					<option>{{trans('save_contacts_modal_select_placeholder')}}</option>
+				</select>
+				<img src="/assets/callburn/images/Settingicon.png" class="modal_drop_down_arrow">
+			</div>
+		</div>
+		<span class="modal_sp3">{{trans('save_contacts_modal_text_be_careful')}}</span>
+		<div class="modal_btn_container">	
+			<button class="modal_send_btn">{{trans('button_confirm_saving')}}</button>
+		</div>	
+	</div>	
+</div>

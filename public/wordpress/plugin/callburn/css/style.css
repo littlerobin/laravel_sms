@@ -1,0 +1,52 @@
+
+#callburn-logo {
+
+    width: 130px;
+    margin-left: 8px;
+
+}
+
+
+.ctc-info-text {
+
+    margin-left: 8px;
+
+}
+
+p.submit {
+    margin-left:9px;
+}
+
+h2 > a.callburn-logo :focus , h2 > a.callburn-logo :active{
+    box-shadow: none !important;
+}
+
+
+.choice-type {
+    position: relative;
+    top: 5px;
+    padding-bottom: 15px;
+    padding-top: 25px;
+}
+
+span.ctc-checkbox {
+    margin-left: 80px;
+}
+
+
+.wrap table {
+    width: 100%;
+}
+
+
+
+.apply {
+    color: #fff !important;
+    background-color: #5cb85c !important;
+    border-color: #5cb85c !important;
+}
+
+.apply-content {
+    padding-top: 22px;
+    padding-bottom: 10px;
+}

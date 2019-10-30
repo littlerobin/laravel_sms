@@ -1,0 +1,38 @@
+<!-- Message Delivery Speed modale -->
+<div class="modal_window modaleffect">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			{{trans('voice_message_schedule_modal1_message_delivery_speed')}}
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon" ng-click="hideOverlay()">
+		</div>
+		<span class="modal_sp1">{{trans('message_delivery_speed_modal_text_you_have_chosen')}}</span>
+		<span class="modal_sp2">{{trans('message_delivery_speed_modal_text_sometimes_message_delivery')}}</span>
+		<div class="modal_select_container">
+			<div class="modal_select_content">
+				<callburn-select
+						ng-model="campaignData.sending_time"
+						options="maxSpeedSelect"
+						show-attr="text"
+						keep-attr='value'
+						select-text="Select speed"
+						ng-change="selectSendingTime(campaignData)">
+				</callburn-select>
+				<!--<select class="modal_select" ng-model="campaignData.sending_time" ng-change="selectSendingTime(campaignData)">
+					<option  ng-selected="campaignData.sending_time == 0"  value="">Max Speed</option>
+					<option  ng-selected="campaignData.sending_time == 30" value="30">Inside 30 minutes</option>
+					<option  ng-selected="campaignData.sending_time == 60" value="60">Inside 60 minutes</option>
+					<option  ng-selected="campaignData.sending_time == 90" value="90">Inside 90 minutes</option>
+					<option  ng-selected="campaignData.sending_time == 120" value="120">Inside 120 minutes</option>
+				</select>
+				<img src="/assets/callburn/images/Settingicon.png" class="modal_drop_down_arrow">-->
+			</div>
+		</div>
+		<span class="modal_sp1">{{trans('message_delivery_speed_modal_text_with_this_setting')}}</span>
+		<span class="modal_sp3">{{trans('message_delivery_speed_modal_text_less_than_a_minute')}}</span>
+		<span class="modal_sp3">{{trans('message_delivery_speed_modal_text_be_careful')}}</span>
+		<div class="modal_btn_container">	
+			<button class="modal_send_btn modal_send_btn2" ng-click="hideOverlay()">{{trans('button_confirm_delivery_speed_settings')}}</button>
+		</div>	
+	</div>	
+</div>
+<!-- /Message Delivery Speed modale -->

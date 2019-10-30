@@ -1,0 +1,1035 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="images/favicon.ico" rel="icon" type="image/ico" />
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #272822;
+  background-color: #f92672;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #f8f8f2;
+}
+.highlight .p, .highlight .pi {
+  color: #f8f8f2;
+}
+.highlight .gi {
+  color: #a6e22e;
+}
+.highlight .gd {
+  color: #f92672;
+}
+.highlight .gh {
+  color: #66d9ef;
+  background-color: #272822;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #ae81ff;
+}
+.highlight .kc {
+  color: #fd971f;
+}
+.highlight .kt {
+  color: #fd971f;
+}
+.highlight .kd {
+  color: #fd971f;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sr {
+  color: #a1efe4;
+}
+.highlight .si {
+  color: #cc6633;
+}
+.highlight .se {
+  color: #cc6633;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #66d9ef;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #a6e22e;
+}
+.highlight .ss {
+  color: #a6e22e;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://callburn.com/contact-us'>Need support? Contact with us!</a></li>
+            <li><a href='https://callburn.com/contact-us'>Go to Callburn.com</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<h1 id="voice-messages">Callmessages</h1>
+
+<h2 id="what-are-voice-messages">What are Callmessages</h2>
+
+<p>Callburn is a <strong>Fast</strong>, <strong>Simple</strong>, and <strong>Flexible</strong> alternative to <a href="https://en.wikipedia.org/wiki/Short_Message_Service">SMS</a> &ldquo;Short Message Service&rdquo;, providing <strong>voice delivery</strong> instead of a text.</p>
+
+<p>We call them <strong>&ldquo;Callmessages&rdquo;</strong> and they <strong>ring</strong> instead of <em>a single sms tone</em>, requesting an answer to discover their content as &ldquo;<em>they arrive like a normal voice call and the content is inside that</em>&rdquo;.     </p>
+
+<h3 id="sms-disvantages">SMS disvantages</h3>
+
+<p>SMS are based on a very old technology, providing a lot of disadvantages, some examples:</p>
+
+<ul>
+<li><strong>Marketing SMS</strong> are less effective because <em>customers prefer a warm voice</em> over a cold text of 160 characters.</li>
+<li><strong>Emergencies SMS</strong> are not seen immediately, making them <strong>useless</strong> for <strong>urgent</strong> or <strong>important</strong> communications; </li>
+<li><strong>Customer Care SMS</strong> are really worst because doesn&rsquo;t support any kinda of live interactions from the user receiving it;</li>
+<li><strong>Fund Raising SMS</strong> costs a lot and doesn&rsquo;t provide any blacklist for letting user unsubscribe from the list</li>
+</ul>
+
+<p>With <strong>Callmessages</strong> all these disadvantages are gone, you can look a nice comparison table in <a href="#sms-comparison">Sms Comparison</a> section.        </p>
+
+<aside class="success">
+Callburn Callmessages **support interactions**, making you able to do a lot of things, like live call transfer, polls, ask questions, schedule a recall, inscribe to a list, and much more, with **infinities** possibilities 
+You can found more information about interactions [here](##Interactions)
+</aside>
+
+<h3 id="voice-or-text-as-source">Voice or Text as source?</h3>
+
+<p>You can provide both text and voice as source message content;<br>
+ `Our systems will <strong>always</strong> deliver a callmessage cause this is a <em>main feature</em> of <strong>Callburn Callmessages</strong> </p>
+
+<aside class="notice">
+Callburn uses **TTS** technology to transform text into voice. In case of a **text input** as message content, we will convert it to voice before sending. The conversion is done in **less than 1 second** and it&rsquo;s automatic.
+</aside>
+
+<p>Although Callburn is a new technology, <code class="prettyprint">it doesn&#39;t rely on mobile data</code> to deliver your callmessages and supports <strong>every kinda of device</strong> that can receive a normal phone call (like fixed phones or satellite).</p>
+
+<h3 id="cheaper-is-better">Cheaper is better!</h3>
+
+<p>Also is really a lot <strong>more cheaper than SMS</strong> and <em>all</em> undelivered messages are <strong>not charged</strong>.    </p>
+
+<p>No complicated long-term contracts or plans are required with Callburn; 
+<code class="prettyprint">We just work with prepaid credit</code><strong>, and you can recharge **exactly</strong> the amount you want to.
+<code class="prettyprint">We don&#39;t make any difference</code> if you are a small customer or a giant company, <strong>everyone will always have got the **same best price</strong>.   </p>
+
+<aside class="info">
+The name **Callburn** is just a mix of the words **call** and **burn** . We have chosen this name because sometimes we need to communicate something in urgent way, and impossibility to do that can change our life. Minutes, seconds, inside an emergency there is no time to loose. This was the first scope of **Callburn Callmessages**, providing an useful and better communication to the people. 
+</aside>
+
+<h3 id="some-examples">Some examples</h3>
+
+<p>Callburn can to be used by everyone, for a lot of purposes, some examples here:</p>
+
+<div class="clearfix"></div>
+
+<p><a href="#" ui-sref="docs({dir:'typical-uses/public-entities'})"> Emergencies</a>: sending time-critical informations<br>
+<a href="#" ui-sref="docs({dir:'typical-uses/public-entities'})"> Schools</a>: notify parents about children informations<br>
+<a href="#" ui-sref="docs({dir:'typical-uses/corporate-marketing'})"> Promotional</a>: marketing campaigns<br>
+<a href="#" ui-sref="docs({dir:'typical-uses/corporate-marketing'})"> CRM</a>: nice effective customer relationship management<br>
+<a href="#" ui-sref="docs({dir:'typical-uses/air-companies'})"> Air Companies</a>: notify flight schedulation changes<br>
+<a href="#" ui-sref="docs({dir:'typical-uses/banks'})"> Banks</a>: for increasing productivity offering better services<br>
+<a href="#" ui-sref="docs({dir:'typical-uses/politics'})"> Politicals</a>: for a better political message<br>
+<a href="#" ui-sref="docs({dir:'typical-uses/quality-assurance'})"> Quality Assurance</a>: immediately advice your customers      </p>
+
+<h3 id="callburn-story">Callburn Story</h3>
+
+<p>Callburn is not new in this world, since from 2005 we are providing our technology in Italy for many customers.<br>
+Due to an high request of services, we started to think about bringing up the service <em>Worldwide</em> making Callburn <em>alive</em> and <strong>better</strong>. The first goal that inspired us to do this was provide voice to all the handicapped mute users, making their lives <strong>better</strong>.</p>
+
+<p>The platform provides a wealth of features and functionality that can help <em>really</em> <strong>everyone</strong>.</p>
+
+<h3 id="start-to-use-callburn-now">Start to use Callburn now</h3>
+
+<p>You can try it <a href="#https://app.callburn.com">now</a>, or continue to read this documentation to deeply understand this awesome service.    </p>
+
+<p>If you have questions or for every kind of request, feel free to Contact us by our <strong>Live Chat</strong>, we will answer you very very fast.</p>
+
+<h2 id="sms-comparison">Sms Comparison</h2>
+
+<p>Callburn Callmessages are <strong>better</strong>, discover reason why with the help of this comparison table:</p>
+
+<p><img src="images/callburn_docs/Table.png" alt="Table" /></p>
+
+<h2 id="how-they-work">How they work</h2>
+
+<p>&ldquo;<em>Imagine a **callmessage</em>* that arrives like call, <em>ringing</em> until the destination doesn&rsquo;t pickup the call*&rdquo;</p>
+
+<p>For a <strong>better understandability</strong>, we want to show you some steps from the message creation until delivery:  </p>
+
+<ol>
+<li>User writes a text, or uploads an existing callmessage, then chooses some <strong>recipients</strong> (contacts),  and sends it (or decides to <a href="##Features-###Schedule">schedule</a> the send) &ndash; you can find all these steps documented <a href="##How%20to%20use">here</a>.</li>
+<li>Callburn will try to deliver the message by doing a maximum of <strong>5 delivery retries pausing 5 minutes between the attempts</strong></li>
+<li>If message gets delivered, the user&rsquo;s prepaid-credit will be charged for total message time (as indicated into <a href="##Prices"><strong>prices page</strong></a>)<br></li>
+</ol>
+
+<aside class="notice">
+Callburn works like a normal call and for this reason it doesn&rsquo;t rely on mobile data or applications.
+</aside>
+
+<p>The messages will be sent using your own fixed or mobile phone <strong>caller id</strong>, so the destination can immediately identify you.  </p>
+
+<aside class="warning">
+For work properly, the **destinations** *should have got an active phonenumber to be reached*.   
+If you can reach your destination by a normal phone call, then callburn can reach it **too**
+</aside>
+  
+
+<p>Callburn messages also supports <a href="##Features-###Interactions"><strong>interactions</strong></a> which gives ability to the user to make really great things.   </p>
+
+<p>Callburn allows you to create a personally and accessible <a href="#Phonebook"><strong>Phonebook</strong></a>, either to use it for sending callmessages or simply to save the phone numbers, and export them in a second time. You should also arrange the phone numbers saved in <strong>Groups</strong> that can be renamed, deleted and used for the sending of Callmessages with Callburn. </p>
+
+<p>Callburn gives you all instruments to compose a Callmessage and send it or schedule it. All these activities will be saved and available in <strong>Overview</strong> section where you can find all your <strong>saved</strong>, <strong>scheduled</strong> and <strong>sent</strong> callmessages. For every <em>callmessage</em> you can see associated recipients, its status, and all the <strong>resulted statistics</strong> if the message has been sent, like number of delivery attempt and interactions made, if any.    </p>
+
+<p><img src="assets/imagedoc/Overview.png" alt="Overview" /></p>
+
+<p>As we can see, for every item of the Overview table, Callburn provides <em>interactive mouseover</em> that can explain their functionalities and give to the user very useful informations about message&rsquo;s features. To view more details you can click both on <em>Cost</em> value or in <em>Show statistics</em> action, that can be found by clicking in <strong>More</strong> list. It will be shown the <strong>Overview statistics table</strong> (next image) where user should see and export all achieved results of the callmessages delivery.</p>
+
+<p><img src="images/callburn_docs/OverviewStat.png" alt="Overview Statistics Table" /></p>
+
+<p>For business users that want to integrate Callburn into their <strong>custom application</strong>, we also provide <strong>API</strong> to <strong>easily</strong> use Callburn as <strong>Callmessage Gateway</strong>.</p>
+
+<h2 id="how-to-use">How to use</h2>
+
+<p><img src="images/callburn_docs/How-it-works.png" alt="Callburn Steps" /></p>
+
+<p>Only <strong>three steps</strong> are required in order to send your Callmessage with Callburn</p>
+
+<ol>
+<li><strong>Compose your callmessage</strong>, from a <strong>text</strong> or an <strong>audio message</strong> </li>
+<li><strong>Choose recipients</strong>, (<em>contacts</em>) <strong>where</strong> you want to deliver your message</li>
+<li><strong>Send it</strong>, after to have configured some advanced features like the <strong>interactions</strong></li>
+</ol>
+
+<p>Using Callburn Technology it&rsquo;s extremely <strong>Simple</strong>, you can do it in different ways:</p>
+
+<ul>
+<li>From our  <a href="https://app.callburn.com"><strong>WEB application</strong></a> </li>
+<li>From our <strong>API</strong> by reading the developer <strong>API documentation</strong> that you can find in </li>
+</ul>
+
+<aside class="info">
+We are also working to deliver the possibility to use our service from dedicated **iOS** and **Android** applications. Stay tuned, cause we are actually working on that. 
+</aside>
+
+<h3 id="compose-voice-message">Compose Callmessage</h3>
+
+<p>As very first thing, you have got <strong>three</strong> methods for generating the voice content.     </p>
+
+<ul>
+<li>Write a text</li>
+<li>Upload an audio file</li>
+<li>Choose from Templates</li>
+</ul>
+
+<p>The first, and most flexible way, is <strong>write</strong> a <strong>text</strong> that will be <strong>converted</strong> into a voice, the other one is <strong>upload</strong> an existing audio file and the last one is to choose an audio file from the <strong>Templates table</strong>.</p>
+
+<p>In the first two methods, before send the message, you can always listen your chosen callmessage and also <strong>save</strong> it as a <strong>Template</strong>, to reuse it in another send. </p>
+
+<p>As you have seen in <a href="##How%20they%20work">How they work</a> section, Callburn allows you to see all your saved Callmessages in <strong>Overview</strong> section. It is also possible to reuse a specific callmessage in this table using the apposite <strong>Reuse Message</strong> function.  </p>
+
+<p><strong>Method 1: Write a text</strong> </p>
+
+<p>The easiest way to compose a Callburn <strong>callmessage</strong> is just writing it. </p>
+
+<aside class="notice">
+Text will always be converted in voice before sending, using __TTS technology__.
+</aside>
+
+<p>You can easily choose preferred voice (from a big number of voices) in a wide selection of available country languages.  </p>
+
+<p>This could be an obligated choice in some situations like:</p>
+
+<ul>
+<li>Impossibility to use the voice under certain circumstances </li>
+<li>Physical handicap </li>
+<li>Custom message for each sending<br></li>
+</ul>
+
+<aside class="info">
+We provide API&rsquo;s for all the companies, business and organizations that want to use Callburn **Callmessages** from their *custom applications* or CRM&rsquo;s; text source is really **helpful** for them.   
+More information can be found on <a href="#" ui-sref="docs({dir:'api'})"> **API**</a> page 
+</aside>
+
+<p><strong>Method 2: Upload an audio file</strong></p>
+
+<p>Another simple method, to provide the <em>callmessage</em> to send with Callburn, is to <strong>upload</strong> an existing audio file.</p>
+
+<p>It can be useful select also by using the drag and drop feature.</p>
+
+<aside class="warning">
+Callburn support both **.wav** and **.mp3** files. Before sending you can listen the preview of callmessage to be sure about it&rsquo;s content.
+</aside>
+
+<p><strong>Method 3: Choose from Templates</strong></p>
+
+<p>Callburn provides a specific section where customer can save all his created callmessages. </p>
+
+<p>Message templates are useful and let you to save a lot of time when sending generic messages.</p>
+
+<p>You can create <em>Callmessage templates</em> both from web or from your mobile device platform as you desire. After the creation you can find them, all together, in the Callmessage Templates table shown in the following image. </p>
+
+<p><img src="assets/imagedoc/TemplatesTable.png" alt="Message Templates Table" /></p>
+
+<h3 id="choosing-recipients">Choosing Recipients</h3>
+
+<p>After composing the message, you have to choose the recipients (contacts) to whom you want to send your <strong>callmessages</strong>.</p>
+
+<p><img src="assets/imagedoc/SelectSource.png" alt="Select source" /></p>
+
+<p>As you can see in the image, Callburn provides multiple ways to put <strong>recipients</strong> into the system, you can choose between these:</p>
+
+<ul>
+<li><a href="#" ng-href="/#/docs#option1">From Phonebook</a></li>
+<li><a href="#" ng-href="/#/docs#option2">From your mobile device</a></li>
+<li><a href="#" ng-href="/#/docs#option3">From file or manually input</a></li>
+</ul>
+
+<p>Like we have seen in the previous step, in  <strong>Overview</strong> section, it is also possible to reuse the recipients, already used for a callmessage, by using the apposite <strong>Reuse Recipients</strong> function.  </p>
+
+<aside class="notice">
+Note that recipients also may be chosen using together some phone numbers uploaded from a file and some others by typing them manually. The resulting set of recipients will be shown you before to proceed to the next step.
+</aside>
+
+<p><strong>Method 1: From Phonebook</strong></p>
+
+<p>As better explained in the <a href="#" ui-sref="docs({dir:'phonebook'})"> <strong>Phonebook</strong></a> page, Callburn allows you to save and manage, in a kind of virtual phonebook, your favorites phone numbers.</p>
+
+<p>In this step, you can easily select from Phonebook either <strong>Contacts</strong> or <strong>Groups</strong>, for send your callmessage.</p>
+
+<aside class="info">
+As we will see in the next step, it is possible to set a __repetition__ for the delivery. In this case, if a group was selected for the delivery, all changes related to this group (add or remove one or more contacts) they will impact on the number of recipients for next delivery.
+</aside> 
+
+<p>Moreover if you want to remove the entire group, you need to remember that there should be, one or more scheduled deliveries, that will not be able to be completed.   </p>
+
+<p><strong>Method 2: From your mobile device</strong></p>
+
+<p>We give you the possibility to link your Callburn account, created from web, with both iOS and Android platforms. </p>
+
+<p>So, in this step, you can import your entire <strong>device phonebook</strong> into Callburn account, to choose your personal contacts to send them a callmessage with Callburn. </p>
+
+<p><strong>Method 3: From file or manually input</strong></p>
+
+<p>You can choose your recipients by uploading a file with a list of phone numbers, or simply by typing them one by one, or also by pasting them in the provided box.</p>
+
+<blockquote>
+<p>We support both <em>txt, csv, xls and xlsx</em> files . </p>
+</blockquote>
+
+<aside class="warning">
+Phone numbers must include an international prefix, otherwise the system will detect the phone number as incomplete and will return a _not supported_ status.  
+</aside> 
+
+<p>If there are duplicates the system will detect them and will return a <em>duplicate</em> status.</p>
+
+<p>You can upload file from the web interface through basic file uploader or Drag&amp;Drop interface.</p>
+
+<aside class="success">
+Using Drag&Drop is simple, just move your file into Drag&Drop area to be uploaded
+</aside>
+
+<p>You can also choose to import recipients manually, in this case it is enough to remember to put phone numbers with international prefix, both if you type them than if you paste them.</p>
+
+<p>Before proceed with the next step, you can always have a preview of the imported list of recipients.</p>
+
+<h3 id="message-delivery">Message Delivery</h3>
+
+<p>We can say for sure that this last part, of <strong>Compose New</strong> section, is the most complete and powerful instrument that we could give you. Here you can revise and set a lot of features, to personalize your callmessage.</p>
+
+<p>In particular you can revise and set:</p>
+
+<ul>
+<li><a href="#" ng-href="/#/docs#option1"><strong>Playback</strong></a></li>
+<li><a href="#" ng-href="/#/docs#option2"><strong>Human Voice answer detection</strong></a></li>
+<li><a href="#" ng-href="/#/docs#option3"><strong>Delivery repetition</strong></a></li>
+<li><a href="#" ng-href="/#/docs#option4"><strong>Sending from Caller ID</strong></a></li>
+<li><a href="#" ng-href="/#/docs#option5"><strong>Estimated sending time</strong></a></li>
+<li><a href="#" ng-href="/#/docs#option6"><strong>Maximum costs</strong></a></li>
+<li><a href="#" ng-href="/#/docs#option7"><strong>Email notification</strong></a></li>
+</ul>
+
+<p>From here, you can also configure <strong>Message Interactions</strong>, that Callburn provides to make your communication as more as complete and useful, like we will see in detail in <a href="#" ui-sref="docs({dir:'interactions'})"> <strong>Interactions</strong></a> page.</p>
+
+<p>Every single interaction performed by the recipient will be saved and easily recovered in <strong>Statistics</strong> section of the <strong>Overview</strong> panel. as we have seen in <a href="#" ui-sref="docs({dir:'how-it-works'})"> <strong>How it works</strong></a> page.</p>
+
+<p>To make you sure that all features are correctly set, Callburn allows you to send a <strong>Preview Message on your mobile</strong>.  This call will be billed as a normal Callburn Callmessage.</p>
+
+<aside class="notice">
+When all the features are revised and confirmed, you can choose to **send immediately** or **schedule** your callmessage
+</aside>
+
+<p>When you push on <strong>&ldquo;Send now&rdquo;</strong> button, Callburn tries immediately to reach your destination by <strong>calling</strong> it.   </p>
+
+<blockquote>
+<p>For a better understanding, we explain in detail what happens: 
+  * Callburn calls your recipients once; if the destination answers, then the call will <strong>be billed</strong> to you and marked as <strong>&ldquo;Successful Call&rdquo;</strong>.<br>
+  * If your destination doesn&rsquo;t answer, the system will retry to call it other <strong>4 times every 5 minutes</strong> until it answers.<br>
+  * If your destination still doesn&rsquo;t answer, we will mark this call as <strong>&ldquo;Not Answered&rdquo;</strong> and the call will <strong>not be billed</strong> to you, as also <strong>busy</strong> and <strong>invalid</strong> recipients.</p>
+</blockquote>
+
+<p>If you want give a scheduling to your delivery, Callburn provides a very complete panel explained in detail in the next  <a href="#" ui-sref="docs({dir:'schedule'})"> <strong>Schedule</strong></a> page.</p>
+
+<aside class="info">
+It is also possible to __save__ all settings __as a draft__ and review all details in __Overview__ panel.
+</aside>
+  
+
+<p>Now, let&rsquo;s have a look to all the above features that you can set in this step, one by one.</p>
+
+<p><strong>Playback</strong></p>
+
+<p>You can set here, how many times the callmessage should be played back; by default the <strong>playback</strong> is only one time but we may set it until maximum of five times.</p>
+
+<p><strong>Human Voice answer detection</strong></p>
+
+<p>This parameter may be <em>enabled</em> or <em>disabled</em>.</p>
+
+<p>If <strong>enabled</strong>, Callburn will wait for an <strong>human voice</strong> answer before delivering your message and, if not detected, it will not deliver the message.</p>
+
+<aside class="notice">
+If no Human voice is detected, Callburn will charge you only the first 5 seconds of the call instead of minimum billable (20 seconds).
+</aside>
+
+<p>This will be useful to assure delivery to a real human answer instead of answering machines, robots, or low network coverage providing call quality issues.</p>
+
+<p>If <strong>disabled</strong>, all recipients may listen your callmessage after they pick up the phone.</p>
+
+<aside class="info">
+The _positive_ impact is that there will not be delays in sound playback or failed human voice detections. The _negative_ impact is that answering machines will cut the message, or it will not be delivered at all.
+</aside>
+
+<p>By default this functionality is enabled.</p>
+
+<p>Finally, if you enable Human voice detection, you can flag a box to allow to <em>retry delivery</em> of the callmessage until a human voice answer is detected. The number of allowed retries is usually five.</p>
+
+<p><strong>Delivery repetition</strong></p>
+
+<p>There are some situations where you must communicate with a group of recipients with a certain temporal frequency. </p>
+
+<p>Openings academic year , monthly business meetings, fiscal deadlines communication, are only a few examples.</p>
+
+<p><img src="assets/imagedoc/Repetitions.png" alt="Repetitions" /></p>
+
+<p>You can set, in the above panel, <strong>how many times</strong> you want to repeat your delivery, and <strong>how often</strong> (number of days between two repetitions).</p>
+
+<aside class="info">
+You can also set to repeat your delivery infinite times
+</aside>
+
+<p>You may always edit the next delivery from the <strong>overview</strong> section and see also all completed deliveries from <strong>overview statistics</strong> table, using the apposite <em>Batch</em> filter.</p>
+
+<p><strong>Sending from Caller ID</strong></p>
+
+<p>A great strength of Callburn is that all your recipients will be able to identify you always, because you can send the messages with your own Caller ID.</p>
+
+<p>You can add a not limited number of valid Caller IDs, in settings section of your account, and in this step, you can choose which to use for sending your callmessage.</p>
+
+<aside class="notice">
+If you haven&rsquo;t any Caller ID validated, you cannot send any callmessage.
+</aside>
+  
+
+<p><strong>Estimated sending time</strong></p>
+
+<p>Based on number of recipients, Callburn will give you an estimated time to deliver your callmessages. </p>
+
+<p>If you don&rsquo;t change this parameter, Callburn will try to deliver at maximum speed using all its free channels. </p>
+
+<aside class="warning">
+If some of your recipients will not be available to receive callmessage (busy phone, out of network coverage or no answer) our system will retry delivery other 4 times with 5 minutes pauses between them. This may affect total delivery time.
+</aside>
+
+<p>If you want to split delivery through more time, then you could change speed of delivery chosen from 30, 60, 90 and 120 minutes.</p>
+
+<p><strong>Maximum costs</strong></p>
+
+<p>This parameter allows you to have always a complete view of how much you will be charged, for deliver your callmessages.</p>
+
+<p>You can see all about the Callburn cost in <a href="#" ui-sref="docs({dir:'prices'})"> <strong>Prices</strong></a> page.</p>
+
+<p>Total cost of your delivery depends from a large amount of advanced settings. They are the <em>length</em> of callmessage, total <em>number of recipients</em>, how many times must be <em>played back</em> the callmessage, <em>interactions</em> if recipients will use them.</p>
+
+<aside class="notice">
+Here we can give only an estimated price, because the final one will be affected from how many recipients will answer to the phone and if they will interact with your voice massage (number of playback, used interactions).
+</aside>
+
+<p><strong>Email Notifications</strong></p>
+
+<p>As the last thing, you can enable in this step email notifications, to stay always updated about all our news and special offers, and to be warned on all that concern with your Callburn activities.</p>
+
+<p>You can enable email notifications also in <strong>settings</strong> page of your account.</p>
+
+<h2 id="features">Features</h2>
+
+<h3 id="interactions">Interactions</h3>
+
+<p>In  <a href="#" ui-sref="docs({dir:'how-to-use/message-delivery'})"> Message Delivery</a> page, Callburn allows recipient to configure Callmessage <strong>Interactions</strong>.</p>
+
+<p>This feature is one of the hard point of this application.</p>
+
+<blockquote>
+<p>Give power at your Callmessage using Interactions</p>
+</blockquote>
+
+<p>There are four actions that recipient can configure before sending a Callmessage:</p>
+
+<ul>
+<li><a href="#" ui-sref="docs({dir:'interactions/Replay'})"> <strong>Replay Callmessage</strong></a></li>
+<li><a href="#" ui-sref="docs({dir:'interactions/Transfer'})"> <strong>Call Live Transfer</strong></a></li>
+<li><a href="#" ui-sref="docs({dir:'interactions/Callback'})"> <strong>Call me back</strong></a></li>
+<li><a href="#" ui-sref="docs({dir:'interactions/Blacklist'})"> <strong>Blacklist me</strong></a></li>
+</ul>
+
+<p>It is possible to configure one or more of this features, for the same Callmessage, or don&rsquo;t configure none of them.</p>
+
+<p>It is also possible to nest interactions between them.</p>
+
+<p>There isn&rsquo;t limit for what Callburn allows to do!</p>
+
+<aside class="info">
+To create  __nested interactions__ see <a href="#" ui-sref="docs({dir:'api/campaigns'})"> API</a> page. For costs see <a href="#" ui-sref="docs({dir:'prices'})"> Prices</a> page.   
+</aside>
+ 
+
+<p><strong>Replay Callmessage</strong></p>
+
+<p>If the <em>callmessage</em> speaks about an address or telephone number or something else important, it is a good practice to use the <strong>Replay Callmessage</strong> feature. </p>
+
+<p>It allows the recipient, by simply pressing a digit on his phone keypad, to play back the message and take note of it.</p>
+
+<p>To activate Replay feature you must <strong>choose a keypress</strong> to associate with.</p>
+
+<aside class="notice">
+Be sure that your audio callmessage (or text if TTS) is giving this keypress indication to your recipient, otherwise your recipient cannot know about this interaction. 
+</aside>
+
+<p>Activate this feature may cause variations of final message length, then may change final cost. See details in <a href="#" ui-sref="docs({dir:'prices'})"> prices</a>.</p>
+
+<p>For example, if your total message length is 20’’ and anyone of your recipients, uses “Replay Callmessage”, your message will be replayed and total message length can become 40’’. </p>
+
+<aside class="warning">
+For security reasons, this action can be repeated for a maximum of three times. 
+</aside>
+
+<p><strong>Call Live Transfer</strong></p>
+
+<p>Through the <em>Call live transfer</em> interaction, Callburn is able to <strong>live transfer</strong> the recipient&rsquo;s call; the recipient has received your <em>Callmessage</em>, sent with your Caller ID, and asks for a transfer, simply by <strong>pressing a key</strong> in his receiving device.</p>
+
+<p>For better understand what really happens, let&rsquo;s a look to the image:</p>
+
+<p><img src="assets/imagedoc/CallLiveTransfer.png" alt="Call Live Transfer" /></p>
+
+<p>When your recipient asks for a <em>Live Transfer</em>, a <strong>second call</strong> to your CallerID number is made, and if successful, you will be connected to your recipient call (the one which received callmessage).  </p>
+
+<aside class="warning">
+In this way we bill two different costs, one for the callmessage delivery, and another one to transfer this message call to your caller ID, at the same tariffs as a normal message (see more into <a href="#" ui-sref="docs({dir:'prices'})">  prices</a> page).
+</aside>
+
+<p>To configure this interaction it is required to choose a keypress to associate with. 
+The request of live transfer will be sent by default at your main Caller ID, if you have more than one validated Caller ID, then you can change it and choose from your caller id list.</p>
+
+<p>To receive the <strong>transfer call</strong> request, remember to keep your phone ready for receiving calls (free and under network coverage).
+In case of busy Caller ID, Callburn tries to deliver the transfer as long the recipient stays waiting on to be connected.</p>
+
+<aside class="success">
+If your caller ID only supports 1 concurrent call, consider limiting messages delivery speed.
+</aside>
+
+<p>You should <strong>limit concurrent live transfers</strong> on your Caller ID, when decide to activate this Live transfer feature.  </p>
+
+<p>This is useful when your caller ID, receiving live transfers, cannot accept simultaneous calls (example, a mobile that supports to talk with only one person at time).  </p>
+
+<p>When this limit is reached, we will stop the delivery of other callmessages until the value is less than the configured one.</p>
+
+<p><strong>Call me Back</strong></p>
+
+<p><strong>Callback me back</strong> feature allows the recipient to book a callback to deepen the subject of the <em>callmessage</em>, in a more convenient time. </p>
+
+<p>The recipient may request a callback pressing the corresponding callback phone digit. </p>
+
+<p>Look the next image, to understand what Callburn really does: </p>
+
+<p><img src="assets/imagedoc/CallMeBack.png" alt="Call Me Back" /></p>
+
+<aside class="info">
+You can find all the CallMeBack requests into __message statistics__ of the _Overview_ section.
+</aside>
+
+<p>When your recipient asks for a Call Me Back, a <strong>second callmessage</strong> will be reproduced to inform him about request acknowledgement. For this reason, you must put a second callmessage.</p>
+
+<p>You can choose this second callmessage, by uploading an existing audio file or by choosing it from the saved templates callmessages. You can also compose this message also using the TTS technology. After composing you can listen the resulting audio file, before to choose it. </p>
+
+<aside class="warning">
+Like with the others interactions seen, activate this feature may cause variations of final message length since a second message will be played to your recipient. This may affect your final cost (see more into <a href="#" ui-sref="docs({dir:'prices'})"> prices</a> page).
+</aside>
+
+<p><strong>Blacklist me</strong></p>
+
+<p>The last advanced feature, to create an interactive communication, is the <strong>Blacklist me</strong>, that allows to identify who doesn&rsquo;t want to receive anymore calls from your Caller ID.</p>
+
+<p>To better understand this feature, let&rsquo;s have a look to the next image:</p>
+
+<p><img src="assets/imagedoc/BlacklistMe.png" alt="Blacklist me" /></p>
+
+<p>When your recipient asks for a “Blacklist me” interaction, a <strong>second callmessage</strong> will be reproduced to inform him about request acknowledgement, and his phone number may be deleted or deactivated for messages reception. </p>
+
+<aside class="info">
+You can find all the Blacklist me requests into __message statistics__ of the _Overview_ section, and here you can decide to delete these recipients from your Phonebook, if present. 
+</aside>
+
+<p>In some countries, “Blacklist me” feature, could be a legal requirement.</p>
+
+<p>You can choose the <em>second callmessage</em> by uploading an existing audio file or by choosing it from the saved templates callmessages. You can also compose this message using the TTS technology. After composing you can listen the resulting audio file before to choose it. </p>
+
+<aside class="warning">
+Like with other interactions, activating this feature may cause variations of final message length since a second message will be played to your recipient. This may affect your final cost (see more into <a href="#" ui-sref="docs({dir:'prices'})"> prices</a> page).
+</aside>
+
+<h3 id="schedule">Schedule</h3>
+
+<p>As we have seen in <a href="#" ui-sref="docs({dir:'how-to-use/message-delivery'})"> <strong>message delivery</strong></a>, Callburn supplies you a set of features to give more effect and power to your callmessages and, it allows also to <strong>schedule</strong> and split your deliveries through more days.</p>
+
+<p>For this purpose, Callburn&rsquo;s engineers developed a very complete, useful and intuitive panel, with a lot of graphical instruments that will lead you to do anything you need with your callmessages.</p>
+
+<p>Let&rsquo;s see in details how to schedule your callmessages, starting from the following image:</p>
+
+<p><img src="assets/imagedoc/Schedule1.png" alt="Scheduling Panel" /></p>
+
+<p>The first thing that you must select in this panel is the <em>day</em> of scheduling, choosing it from the <em>calendar</em> <strong>(1)</strong> and, if you want, you can also set a <em>time slot</em> <strong>(2)</strong> for that selected day, with hour and minute. </p>
+
+<p>For every day you can select until 4 time slots, everyone with its personal color, using <em>plus</em> icon, moreover for every time slot chosen, Callburn gives you the possibility to configure <em>message delivery speed</em> <strong>(3)</strong> that goes from zero (max speed) to 2 hours.  </p>
+
+<aside class="notice">
+If you want split your message delivery through more days, you can simply select the multiple days from the calendar, with the right side colors that identify the time slots chosen 
+</aside>
+
+<p>Finally, If you want to batch select same-days for more times you can do it clicking on <em>repetition</em> icon <strong>(4)</strong>, where you can set one or more days specifying for how many weeks you want the multiple select.  </p>
+
+<p>While you set all these parameters to schedule your delivery, Callburn gives you the result of your selections in real time. For the above image, for example, Callburn will give you the following settings:</p>
+
+<p><img src="assets/imagedoc/Settings.png" alt="Scheduling Settings" /></p>
+
+<p>As well as all your created messages, when you create your message and schedule its sending, you will find it in <strong>Overview table</strong>, and before to complete the delivery, you can always editing it if needed.</p>
+
+<h3 id="batch-send">Batch Send</h3>
+
+<p>A very useful functionality to create and send callmessages with Callburn, is the <strong>Batch Send</strong>.</p>
+
+<p>You can supply both recipients and callmessages all in one single file; moreover it is possible to send a different callmessage for every recipient of the list.</p>
+
+<p><strong>Batch send</strong> allows you to send multiple batch messages using a file, with this format:</p>
+
+<p>phonenumber, text message </p>
+
+<p>Allowed formats are <strong>.xls</strong>, <strong>.xlsx</strong>, <strong>.csv</strong>, <strong>.txt</strong> file. </p>
+
+<aside class="warning">
+Phonenumbers should contain international prefix (with or without + sign) and supported delimiter are:   __.__   __,__    __:__    __|__    __tab__
+</aside>
+
+<p>In the first step of Batch Send, you must select the language, and your preferred voice, to convert all the texts inside the file in a set of audio files using <em>TTS technology</em>.  </p>
+
+<p>After file uploading, you can review both recipients and texts, add functionalities and send your callmessages to recipients.</p>
+
+<p>As well other callmessages, you can find your batch delivery in <strong>Overview</strong> table and see all details of the delivery in <strong>Overview Statistics</strong> table. </p>
+
+<h3 id="phonebook">Phonebook</h3>
+
+<p>Callburn provides an entire section to manage your favorite phone numbers that can be <strong>saved</strong>, <strong>editing</strong>, <strong>deleting</strong>, <strong>grouping</strong> and so on.</p>
+
+<p>To create your <strong>Phonebook</strong> you can easily batch add your contacts by uploading a file (csv, txt, xls, xlsx) or by pasting text or simply typing a phone number at time.   </p>
+
+<p>You can upload file from the web interface through basic file uploader or Drag&amp;Drop interface.</p>
+
+<p>If you need, it is possible to add extra informations into the file. You can use one of the following supported delimiters: </p>
+
+<p>. , : | tab </p>
+
+<p>Supported format file is (separated by comma, for example):</p>
+
+<p>phonenumber, group name, name </p>
+
+<aside class="warning">
+The first value must be a phone number separated by a comma, semicolon or other delimiter from all other values that want to add. Other values are not mandatory. Don’t forget to put phone numbers with international prefix. 
+</aside>
+
+<p>As we have seen, to create callmessages, or to choose recipients, Callburn allows us to use both web application or mobile device platform; at same way, also in Phonebook, we may import phone numbers from the mobile phonebook, by using one of the available mobile applications. </p>
+
+<p> After <strong>Importing</strong> the contacts list, by pasting them or by uploading a file, you can can always revise the importation result, before saving it. </p>
+
+<p>You can check in this step, contacts correctly inserted and also errors, as shown in the next image.</p>
+
+<p><img src="assets/imagedoc/ImportedContacts.png" alt="Imported Contacts" /></p>
+
+<p>The Phonebook section has got two subsections: one that contains all imported <strong>contacts</strong> and the other one that shows all created <strong>groups</strong>. From either subsections it is possible to send a callmessage by using the apposite action.</p>
+
+<p><strong>Phonebook</strong> is a useful instrument, that gives you the possibility to organize all your phone numbers to send them <em>Callmessages</em>, avoiding to import them every time you need.</p>
+
+<p>Callburn allows also to <strong>Export</strong> your entire phonebook or some groups in a <em>.csv</em> file, that can be opened in various spreadsheet applications - like Excel.</p>
+
+<h2 id="prices">Prices</h2>
+
+<p>One of the strong points of <em>Callburn Callmessages</em> is <strong>their prices</strong>, really <strong>CHEAP</strong>! The other is our simple <strong>Pricing</strong>; only one plain, <strong>you will pay only if your message will be listened</strong>.  </p>
+
+<p>Think that a standard SMS, costs at least <strong>twice</strong> of a Callmessage, and you pay for <em>all sent messages</em>, instead of <strong>only for delivered</strong> ones.</p>
+
+<p>You can consider a standard SMS, which is composed by 160 characters, like a <strong>14&rsquo;&rsquo; audio callmessage</strong>.</p>
+
+<aside class="info">
+Callburn Callmessages work with a **pre-paid credit**, and they are **normal phone calls** billed with a _minimum billable time of 20 seconds_ for every single message delivered.
+</aside>
+
+<p>To make you free from any preoccupation and further simplify your life, Callburn provides an <strong>Autorecharge</strong> feature that, if enabled, it will recharge automatically your balance, whenever it goes lower than a minimum amount. </p>
+
+<p>After these first 20 seconds, only the <strong>EFFECTIVE DELIVERED message seconds</strong> will be billed.</p>
+
+<aside class="notice">
+For &ldquo;delivered message seconds&rdquo; we mean the **effective call length**.  
+</aside>
+
+<p>For example, if your recipient receives your message of 3 minutes, but he listens 24 seconds and hangs up the call, you will be billed for <strong>24 seconds only</strong>.</p>
+
+<p>There are no plans or strange bundles or tariffs to choose or understand; <code class="prettyprint">we offer the best tariff to all the users</code>, cause <strong>we don&rsquo;t make any difference between a small and a large customer</strong>.   </p>
+
+<h3 id="amount-calculator">Amount Calculator</h3>
+
+<p>You can always know exactly, how much you will spend with us, using our <a href="https://callburn.dev2/#/price"><strong>Amount calulator</strong></a>; it allows you to know total cost and shows the different prices between countries.  </p>
+
+<p>It&rsquo;s really simple, just put in <strong>message destination</strong>, <strong>total message length</strong> and finally <strong>successfully delivered quantity</strong>.</p>
+
+<aside class="success">
+An example? 
+An *SMS* sent to *Italy* with a *Professional SMS Gateway* costs **0,07€** (**160 characters is like 14 seconds callmessage**).   
+
+A **Callburn Callmessage** until 20 seconds, also sent to Italy*, costs only **0,029€**.    
+
+Just a little difference!!!
+</aside>
+
+<p>You can find it also in financials page of your account, so you can always know the effective cost for deliver your callmessages, before to recharge your Callburn balance.</p>
+
+<h3 id="voice-message-39-s-production">Callmessage&rsquo;s production</h3>
+
+<p>We provide various ways to create callmessages, as seen <a href="#" ui-sref="docs({dir:'how-to-use/message-creation'})"> <strong>here</strong></a>, with different prices:</p>
+
+<ul>
+<li><strong>Audio uploaded</strong>, both from web or mobile application, are totally <em>free of charge</em><br></li>
+<li><strong>BurnSpeaker</strong>, is a premium service available only in some countries and prices are made on request</li>
+<li><strong>TTS</strong>, is free for each audio created with it, from both <a href="https://app.callburn.com"><strong>Web Application</strong></a> or <a href="#" ui-sref="docs({dir:'api'})"> <strong>API</strong></a><br></li>
+</ul>
+
+<aside class="warning">
+In case of an intensive use of TTS technology in a single day, may appear a warning message that will inform you about the possibility to charge a cost from your credit.
+</aside>
+  
+
+<h2 id="typical-uses">Typical Uses</h2>
+
+<p>Now, we know well what is <strong>Callburn</strong> and how to use it. But someone could they think:</p>
+
+<blockquote>
+<p>What can be useful callburn?</p>
+</blockquote>
+
+<p>There are so many fields, of day life, in which Callburn finds its application, that we could write an encyclopedia. However we will limit to write the most important and common uses of this awesome application.   </p>
+
+<p>As you will see, Callburn is useful for activities that are also much different one from another. Let&rsquo;s see some of these in detail.</p>
+
+<h3 id="public-entities">Public Entities</h3>
+
+<p>There are many public activities that may use Callburn to give efficient services to the community.</p>
+
+<p>Let&rsquo;s see, for example, a <strong>school</strong> and the <strong>civil protection</strong>.</p>
+
+<p><strong>School</strong></p>
+
+<p>How many calls should make a school&rsquo;s secretary to inform the parents about schoolchildren&rsquo;s activities?</p>
+
+<p>By using Callburn, a <strong>School</strong> can simplify communication between parents and personal. </p>
+
+<aside class="success">
+Simply writing the text of the __Voice Message__ to send and, in a few seconds, hundreds of parents are updated about important notify.  
+</aside>
+
+<p>The secretary can focus on other important works, while communications will be delivered with certainty to the families concerned. </p>
+
+<p><strong>Civil Protection</strong></p>
+
+<p>The Civil Protection Department was created to ensure national security , trying to prevent and avoid human disasters in a country .</p>
+
+<p>When born the need to communicate an impending weather event, for example, <strong>timeliness</strong> is the watchword.</p>
+
+<p>To communicate an <strong>Emergency</strong> the faster and secure method is Callburn. </p>
+
+<p>A municipality may issue an <strong>alert</strong> to all residents by using Callburn. The timeliness in critical situations is very important, <strong>&ldquo;it may save many lifes&rdquo;</strong>.</p>
+
+<aside class="info">
+These and other public entities can use API&rsquo;s provided for those kind of companies that want to use Callburn **Callmessages** from their *custom applications*. More information can be found on [Developers](https://callburn.dev2/#/developers) section of our website.
+</aside>
+
+<h3 id="corporate-marketing">Corporate Marketing</h3>
+
+<p>Productivity of a company is measured, not only by the amount of goods or services capable of producing, but by <strong>how many will be able to sell</strong>.</p>
+
+<p>Callburn may be useful in many business activities that a company must do in action, to <em>increase customers</em> and better manage existing ones.</p>
+
+<aside class="notice">
+To advertise a new product , a company makes a __Campaign Marketing__ using callmessages Callburn. It can be used both for the knowledge of the new product and, at the same time, the user can reserve it, using the <a href="#" ui-sref="docs({dir:'interactions'})"> **interactions**</a>.
+</aside>
+
+<p>After taking care of the steps of <em>production</em>, <em>advertising</em> and <em>selling</em>, need to <strong>manage customer relationship</strong>.  </p>
+
+<p>Also in this last step, using Callburn application is the best way to keep live the communications. It can be used for <em>order management</em>, <em>billing communication</em>, <em>customer satisfaction</em>, and so on.</p>
+
+<h3 id="quality-assurance">Quality Assurance</h3>
+
+<p>&ldquo;<a href="https://en.wikipedia.org/wiki/Quality_assurance"><strong>Quality assurance</strong></a> comprises administrative and procedural activities implemented in a <em>quality system</em> so that requirements and goals for a product, service or activity will be fulfilled.&rdquo;</p>
+
+<p>To ensure the success of a new product, a company must perform many steps and the most important one is the QA.</p>
+
+<p>Despite this, it is possible that , after the release on the market, a product has a defect not expected.</p>
+
+<p>In situations like this, Callburn may be very useful.</p>
+
+<p>A <strong>callmessage</strong> may inform you of the recall of the product that you have purchased, simply by a <strong>call</strong> . It may also communicate, to go back where you have purchased, to replace the product with another in which the bug was solved.</p>
+
+<h3 id="politics">Politics</h3>
+
+<p>There is a moment, in every democracy, when politicians ​try to ​persuade ​people to ​vote for them. We speak about <strong>Election Campaign</strong>.</p>
+
+<p>During the period before the <em>Election Day</em>, all the political candidates use a lot of methods (legal or not) to manifest their intentions and make many promises to the people.</p>
+
+<p>What better opportunity to use Callburn! It can be used <em>before</em> , to do a poll on voting preferences, <em>during</em> , to try to influence people&rsquo;s thinking, and <em>after</em> , for thanks.</p>
+
+<aside class="success">
+Using Callburn for the __polls__  saves time and money, allowing you to get wonderful results as only an __&ldquo;automatic call system&rdquo;__ can do.
+</aside>
+
+<h3 id="air-companies">Air Companies</h3>
+
+<p>Are you arrived in the airport and your flight was canceled? 
+Have you tried to find the reason and discover that an sms or mail massage was sent to you, but you don&rsquo;t have seen it?</p>
+
+<p>Keep calm! Callburn will not allow that this could happen another time! </p>
+
+<p>By using Callburn, the <strong>air company</strong> knows well if a communication was received or not from you, since Callburn calls you on your mobile and it is able to be very, very insistent.  </p>
+
+<aside class="notice">
+If the call doesn&rsquo;t receive any answer, Callburn will _retry_  other 4 times every 5 minutes until you don&rsquo;t answer the call. See more on <a href="#" ui-sref="docs({dir:'how-to-use/message-delivery'})"> Message Delivery</a> page
+</aside>
+
+<h3 id="banks">Banks</h3>
+
+<p>Banks play two roles in contemporary days.</p>
+
+<p>They <em>Give Credit</em> providing a service to the community and, in the same time, they <em>sell</em> various products to their customers, trying to be as competitive as all the other companies in the market.</p>
+
+<p>For both these functions a bank can use Callburn application.</p>
+
+<p>A bank can use Callburn , to handle daily communication with account holders, both for essential communications and urgent, and for the less urgent ones, but equally important.</p>
+
+<aside class="success">
+An example _Voice Message_ may be:    
+
+&ldquo;Gentle Mrs. King, today , on her account, has received a request to charge by the Vodafone amounting to € 100.   
+To confirm press the button _one_.   
+To reject push the button _two_.   
+For more information press the button _three_.  
+Thank you, have a nice day.&rdquo;  
+
+</aside>
+
+<p>In addition to managing the relationship with the customer, a bank offers new banking products to increase its profits. It can use a <em>callmessage</em> to ask its customers to see, for example, all the advantages of the low-rate mortgage .</p>
+
+<h3 id="job-hunting">Job Hunting</h3>
+
+<p>The easiest way, for a company, to find staff, is to do it with Callburn.</p>
+
+<p>An agency usually has a list of candidates seeking a job and, periodically, has to call one by one all of them , to offer employment opportunities . For each call , it must be assessed the degree of interest of the candidate, taking an appointment or not.</p>
+
+<p>All these long and tedious steps can be bypassed by putting phone numbers list, writing a text message and lunching Callburn application that easily reaches all candidates who can automatically express their interest in the position available.
+By pressing a telephone key, candidate can replay the callmessage, or ask for more information to the agency, or schedule a recall.</p>
+
+<aside class="notice">
+Callburn is different from others applications because allows you to give interaction in the communication. You can see all the allowed actions on <a href="#" ui-sref="docs({dir:'interactions'})"> **Interactions**</a> page.  
+</aside>
+ 
+
+<h2 id="frequent-asked-questions">Frequent Asked Questions</h2>
+
+<ol>
+<li><a href="#" ng-href="/#/docs#1"><strong>What is Callburn?</strong></a></li>
+<li> <a href="#" ng-href="/#/docs#2"><strong>How it works?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#3"><strong>How much does the service cost?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#4"><strong>What should i do to start using Callburn?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#5"><strong>Can I call only mobile phones?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#6"><strong>When i have to pay?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#7"><strong>How can i add a callmessage?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#8"><strong>There is a message length limit?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#9"><strong>Can i use my personal caller ID?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#10"><strong>Can i choose to hide my caller ID?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#11"><strong>How can i understand if my callmessage is delivered?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#12"><strong>Can i schedule callmessages sending?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#13"><strong>How can i recharge my credit?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#14"><strong>There is an expiration for the credit?</strong></a></li>
+<li><a href="#" ng-href="/#/docs#15"><strong>What happens if my credit is insufficient to send out messages?</strong></a></li>
+</ol>
+
+<p><a id="1"></a></p>
+
+<h3 id="1-what-is-callburn">1. What is Callburn?</h3>
+
+<p>Callburn is the evolution of mobile SMS (short message service), using <strong>voice instead of text</strong>, giving a lot of benefits that sms can’t offer.
+See more <a href="#" ui-sref="docs({dir:'what-is-callburn/sms-comparison'})"> here</a>.</p>
+
+<p><a id="2"></a></p>
+
+<h3 id="2-how-it-works">2. How it works?</h3>
+
+<p>The recipient will receive a <strong>normal call</strong> instead of a SMS notification and will have to answer to hear the message content. The call will be made using your personal Caller ID and only answered messages will be charged. For more information go in <a href="#" ui-sref="docs({dir:'how-it-works'})"> how it works</a> page.</p>
+
+<p><a id="3"></a></p>
+
+<h3 id="3-how-much-does-the-service-cost">3. How much does the service cost?</h3>
+
+<p>The cost of Callburn is simple to calculate ad also very cheap. Starting from 2,9 eurocents for the first 20 seconds and then you will pay only for the effective length of the call (billed at the second).<br>
+<a href="https://callburn.dev2/#/price">Here</a> there is an useful instrument to calculate your cost. Find more details in the <a href="#" ui-sref="docs({dir:'prices'})"> prices</a> page. </p>
+
+<p><a id="4"></a></p>
+
+<h3 id="4-what-should-i-do-to-start-using-callburn">4. What should i do to start using Callburn?</h3>
+
+<p>You can start using Callburn easily from our <a href="http://www.callburn.com"><strong>web site</strong></a>, going in the <strong>register</strong> section is requested to put a valid email address where we will send a confirmation email. After confirmed your email address you should supply a valid Caller ID that will be used to start send Callburn Callmessages.   </p>
+
+<p><a id="5"></a></p>
+
+<h3 id="5-can-i-call-only-mobile-phones">5. Can I call only mobile phones?</h3>
+
+<p>No. With Callburn, your Callmessages can be delivered to every kinda of phones including landline and satellite. </p>
+
+<p><a id="6"></a></p>
+
+<h3 id="6-when-i-have-to-pay">6. When i have to pay?</h3>
+
+<p>You have to pay only after a message is delivered, since your credit will be charged only after the delivery of the message. No cost will be applied for undelivered messages (no answer, impossible to reach, inexistent phone number, busy phone, and so on). You can find more informations <a href="#" ui-sref="docs({dir:'prices'})"> here</a>.</p>
+
+<p><a id="7"></a></p>
+
+<h3 id="7-how-can-i-add-a-voice-message">7. How can i add a callmessage?</h3>
+
+<p>Adding a <strong>Callmessage</strong> is fast and simple. You can do this in different ways. One is to write your text using our TTS (text to speak technology). You can also upload an existing audio file that you have first created, for example, recording your own voice. See more in <a href="#" ui-sref="docs({dir:'how-to-use/message-creation'})"> Compose Callmessage</a> page.</p>
+
+<p><a id="8"></a></p>
+
+<h3 id="8-there-is-a-message-length-limit">8. There is a message length limit?</h3>
+
+<p>No. Callburn will deliver your callmessage, both if it lasts 5 seconds and if it lasts 30 seconds, and until 20 seconds you will pay always the same cost, as best explained <a href="#" ui-sref="docs({dir:'prices'})"> here</a>.</p>
+
+<p><a id="9"></a></p>
+
+<h3 id="9-can-i-use-my-personal-caller-id">9. Can i use my personal caller ID?</h3>
+
+<p>Yes. When you register in the Callburn application, you must enter a valid caller ID, and you must use it for deliver your callmessages. Moreover you can add others valid caller ID, in a second time, and choose one of these for the following deliveries.  See details <a href="#" ui-sref="docs({dir:'how-to-use/message-delivery'})"> here</a>.</p>
+
+<p><a id="10"></a></p>
+
+<h3 id="10-can-i-choose-to-hide-my-caller-id">10. Can i choose to hide my caller ID</h3>
+
+<p>No, caller ID can’t be hidden. </p>
+
+<p><a id="11"></a></p>
+
+<h3 id="11-how-can-i-understand-if-my-voice-message-is-delivered">11. How can i understand if my callmessage is delivered?</h3>
+
+<p>Callburn application will give you detailed <strong>sending statistics</strong> in the <strong>Overview</strong> section of Messages, where you can see all states of your callmessages, if delivered or undelivered, in addition to many other informations. </p>
+
+<p><a id="12"></a></p>
+
+<h3 id="12-can-i-schedule-voice-messages-sending">12. Can i schedule callmessages sending?</h3>
+
+<p>Yes. You can create a callmessage and schedule it, to be sent in different times or days. You can also schedule recurrent send. See more <a href="#" ui-sref="docs({dir:'how-to-use/message-delivery'})"> here</a> and in <a href="#" ui-sref="docs({dir:'schedule'})"> Schedule</a> page.</p>
+
+<p><a id="13"></a></p>
+
+<h3 id="13-how-can-i-recharge-my-credit">13. How can i recharge my credit?</h3>
+
+<p>Credit can easily recharged using secure PayPal circuit or Bank Transfer.</p>
+
+<p><a id="14"></a></p>
+
+<h3 id="14-there-is-an-expiration-for-the-credit">14. There is an expiration for the credit?</h3>
+
+<p>No, your credit will never expire.</p>
+
+<p><a id="15"></a></p>
+
+<h3 id="15-what-happens-if-my-credit-is-insufficient-to-send-out-messages">15. What happens if my credit is insufficient to send out messages?</h3>
+
+<p>You will receive a notification from us and your deliveries will be temporary stopped until a recharge will be made. You can configure the lower limit under which we will notify you. You can also enable <strong>auto recharge</strong> feature, that allows us to directly bill you when your balance goes down the low balance alert value. Go <a href="#" ui-sref="docs({dir:'prices'})"> here</a> for details.</p>
+
+<h1 id="click-to-call">Click To Call</h1>
+
+<h2 id="what-is-the-click-to-call">What is the Click To Call</h2>
+
+<h2 id="how-it-works">How it works</h2>
+
+<h2 id="features">Features</h2>
+
+<h2 id="prices">Prices</h2>
+
+      </div>
+      <!-- <div class="dark-box">
+      </div> -->
+    </div>
+  </body>
+</html>

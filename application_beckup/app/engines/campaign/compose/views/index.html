@@ -1,0 +1,9 @@
+<h3 class="campaign_sp1">
+	<span ng-if="CampaignComposeService.composeStep == 1">{{trans('compose_step_1_header')}}</span>
+	<span ng-if="CampaignComposeService.composeStep == 2">{{trans('compose_step_2_header')}}</span>
+	<span ng-if="CampaignComposeService.composeStep == 3">{{trans('compose_step_3_header')}}</span>
+</h3>
+
+<ng-include src="'/app/engines/campaign/compose/views/compose-step-1.html'" ng-controller="ComposeStep1Controller" ng-show="CampaignComposeService.composeStep == 1"></ng-include>
+<ng-include src="'/app/engines/campaign/compose/views/compose-step-2.html'" ng-controller="ComposeStep2Controller" ng-show="CampaignComposeService.composeStep == 2"></ng-include>
+<ng-include src="'/app/engines/campaign/compose/views/compose-step-3.html'" ng-controller="ComposeStep3Controller" ng-show="CampaignComposeService.composeStep == 3"></ng-include>

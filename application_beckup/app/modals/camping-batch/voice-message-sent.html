@@ -1,0 +1,15 @@
+<!-- Voice Message Sent modale -->
+<div class="modal_window modaleffect">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			{{trans('modal_title_voice_message_sent')}}
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon" ng-click="goToOverview()">
+		</div>
+		<span class="modal_sp1">{{trans('voice_message_sent_modal_text_your_voice_message')}}</span>
+		<span class="modal_sp1">{{trans('voice_message_sent_modal_text_delivery_statistics_can')}}</span>
+		<span class="modal_sp3">{{trans('voice_message_sent_modal_text_you_should_receive')}}</span>
+		<span class="modal_sp1">{{trans('voice_message_sent_modal_text_thank_you_for')}}</span>
+		<button class="modal_close_btn" ng-click="goToOverview()">{{trans('button_close')}}</button>
+	</div>	
+</div>
+<!-- /Voice Message Sent modale -->

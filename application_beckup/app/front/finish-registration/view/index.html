@@ -1,0 +1,12 @@
+<span ng-show="regVerificationStepError">* {{regVerificationStepError}}</span>
+<input type="text" ng-model="finishRegistrationData.phonenumber">
+<button ng-click="sendVerificationCallReg()">Make call</button>
+<div ng-show="regVerificationStep > 1">
+	<input type="text" ng-model="finishRegistrationData.voice_code">
+	<button ng-click="validateVoiceCodeReg()">Check code</button>
+</div>
+<div ng-show="regVerificationStep > 2">
+	<input type="text" ng-model="finishRegistrationData.password">
+	<input type="text" ng-model="finishRegistrationData.password_confirmation">
+	<button ng-click="submitSaving()">Submit</button>
+</div>

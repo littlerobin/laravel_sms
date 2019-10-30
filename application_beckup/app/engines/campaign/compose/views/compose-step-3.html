@@ -1,0 +1,239 @@
+<div class="compose_container">
+	<div class="compose3_content_container">
+		<div class="sp_container">
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_voice_message')}}</span>
+				<span class="blue_sp"></span>
+				<span class="blue_sp_min" ng-click="composeStep = 1;">{{CampaignComposeService.finalStepData.voiceFile.orig_filename + ' - ' + CampaignComposeService.finalStepData.voiceFile.length}}"({{trans('compose_step_3_text_revise_or_preview')}})</span>
+			</div>
+			<div class="sp_content">
+				<div class="second_menu_min_content" id="playback_count">
+					<span class="playback_count_sp">Playback count</span>
+					<div class="playback_count_container">
+						<span class="playback_count_content">1x</span>
+						<span class="playback_count_content">2x</span>
+						<span class="playback_count_content">3x</span>
+						<span class="playback_count_content">4x</span>
+						<span class="playback_count_content">5x</span>
+					</div>
+				</div>
+				<div class="second_menu_min_content">
+					<span class="second_menu_min_content_center">
+						<span class="second_menu_min_span ng-binding" id="compose_step3_sp1">Preview</span>
+						<audio ng-src="{{getAudioSource(CampaignComposeService.finalStepData.voiceFile.map_filename)}}" controls id="compose_step1_play_icon" data-ng-show="false"></audio>
+						<img src="/assets/callburn/images/play.png" class="second_menu_min_icons"  data-ng-if="!isComposePreviewPlaying" data-ng-click="playPausePreviewAudio('play')">
+						<img src="/assets/callburn/images/fill-76.png" class="second_menu_min_icons" data-ng-if="isComposePreviewPlaying" data-ng-click="playPausePreviewAudio('pause')">
+					</span>
+				</div>
+				<div class="second_menu_min_content" data-ng-show="showSaveTemlate">
+					<span class="second_menu_min_content_center" ng-click="saveAsTemplate()">
+						<img src="/assets/callburn/images/draft.png" class="second_menu_min_icons">
+						<span class="second_menu_min_span ng-binding" id="compose_step3_sp">
+							Save as Template
+						</span>
+					</span>	
+				</div>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_recipients')}}</span>
+				<span class="blue_sp">{{finalStepData.numbersCount}}:</span>
+				<span class="blue_sp_min" ng-click="CampaignComposeService.composeStep = 2;">({{trans('compose_step_3_text_revise')}})</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">Human Voice answer detection</span>
+				<div class="on_off_content1" data-ng-if="voiceHuman.onOff == 'on'" data-ng-click="voiceHuman.onOff = 'off'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content1" data-ng-if="voiceHuman.onOff == 'off'" data-ng-click="voiceHuman.onOff = 'on'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+			</div>
+			<div class="sp_content" data-ng-if="voiceHuman.onOff == 'on'">
+				<div class="compose_check_container">
+					<div class="compose_check_content" data-ng-click="voiceHuman.checked = !voiceHuman.checked">
+						<img src="/assets/callburn/images/check-icon.png" class="compose_check_icon" data-ng-if="voiceHuman.checked">
+					</div>
+					<span class="blue_sp_min">Allow Callburn to retry deliver of voice message until a Human Voice answer is detected<br>(until maximum number of retries are reached)</span>
+				</div>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_sending_from_callerID')}}</span>
+				<span class="blue_sp">+{{campaignData.caller_id}}</span>
+				<span class="blue_sp_min" ng-click="showCallerIdModal()">({{trans('compose_step_3_text_select_another')}})</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_estimated_sending_time')}}</span>
+				<span class="blue_sp">Less than {{finalStepData.sendingTime}} minute</span>
+				<span class="blue_sp_min" ng-click="showBatchesChangeMessageDeliverySpeedModal()">({{trans('compose_step_3_text_change')}})</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">{{trans('compose_step_3_text_maximum_costs')}}</span>
+				<span class="blue_sp">{{CampaignComposeService.finalStepData.maxCost}}</span>
+				<span class="blue_sp_min">({{trans('compose_step_3_text_why')}}?)</span>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">Delivery repetition</span>
+				<div class="on_off_content1" ng-show="CampaignComposeService.campaignData.remaining_repeats" ng-click="CampaignComposeService.campaignData.remaining_repeats = null; CampaignComposeService.campaignData.repeat_days_interval = null;">
+					<span class="on">{{trans('compose_step_3_on')}}({{CampaignComposeService.campaignData.remaining_repeats}})</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content1" ng-show="!CampaignComposeService.campaignData.remaining_repeats" ng-click="showChangeRepeatsCountModal()">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+			</div>
+			<div class="sp_content">
+				<span class="gray_sp">Email notifications</span>
+				<div class="on_off_content1" ng-click="CampaignComposeService.campaignData.get_email_notifications = 0;" ng-show="CampaignComposeService.campaignData.get_email_notifications">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content1" ng-click="CampaignComposeService.campaignData.get_email_notifications = 1;" ng-show="!CampaignComposeService.campaignData.get_email_notifications">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="compose3_left_container">
+			<div id="tag_with_name">
+				<img src="/assets/callburn/images/icons-tag.png" id="tag_with_name_icon" class="compose_step3_btn_icon">
+				<input class="btn_sp" id="tag_with_name_sp" placeholder="{{trans('button_tag_with_name')}}" ng-model="CampaignComposeService.campaignData.campaign_name"/>
+			</div>
+			<div class="compose3_send_it_container">
+				<div class="compose3_send_it_content_container">
+					<span class="sp2">{{trans('compose_step_3_buttons_top_text')}}</span>
+					<div class="compose3_send_it_content">
+						<div class="source_contents1" ng-click="CampaignComposeService.doValitation('start')">
+							<img src="/assets/callburn/images/WhiteSendIcon@2x.png" id="send_white_icon" class="compose_step3_btn_icon">
+							{{trans('button_now')}}
+						</div>
+						<div class="source_contents1" ng-click="showSchedulationModal = true;">
+							<img src="/assets/callburn/images/WhiteCalendarIconCopy@2x.png" id="calendar_white_icon" class="compose_step3_btn_icon">
+							{{trans('button_schedule')}}
+						</div>
+					</div>
+				</div>
+				<div class="source_contents2" data-ng-click="showSendPreviewModal()">
+					<img src="/assets/callburn/images/messages_selected.png" class="compose_step3_btn_icon">
+					<span class="btn_sp">{{trans('button_preview_the_message_on_your_mobile')}}</span>
+				</div>
+			</div>
+			<div class="compose3_left_second_container">
+				<span class="compose3_sp3">{{trans('button_save_as_draft_text')}}</span>
+				<span class="save_as_draft" ng-click="CampaignComposeService.doValitation('saved')">
+					<img src="/assets/callburn/images/draft.png" id="save_as_draft_icon" class="compose_step3_btn_icon">
+					{{trans('button_save_as_draft')}}
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="compose3_content_container">
+		<span class="compose3_sp4">{{trans('compose_step_3_text_give_more_power')}}!</span>
+		<div class="choose_keypress_container">
+			<div class="choose_keypress_content">
+				<div class="on_off_content" ng-click="replayDigit.onOff = 'off';" ng-show="replayDigit.onOff == 'on'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content" ng-click="showInteractionModal()" ng-show="replayDigit.onOff == 'off'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+				<span class="keypress_sp1">{{trans('compose_step_3_replay_voice_message')}}</span>
+				<span class="keypress_sp2">{{trans('compose_step_3_let_your_recipients')}}</span>
+				<div class="choose_keypress_select_container">
+					<div class="choose_keypress_select">
+						<span class="keypress_sp3" ng-click="CampaignComposeService.replayDigit.showNumbersSelect = !CampaignComposeService.replayDigit.showNumbersSelect">
+							<img src="/assets/callburn/images/keypress-icon.png" class="choose_keypress_icon">
+							{{ CampaignComposeService.campaignData.replay_digit ? 'Keypress ' + CampaignComposeService.campaignData.replay_digit : 'Choose a keypress' }}
+						</span>
+						<div class="choose_keypress_select_container_open" ng-show="CampaignComposeService.replayDigit.showNumbersSelect" >
+							<select-number interaction="'replay_digit'" camelinteraction="replayDigit" origscope="this"></select-number>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="choose_keypress_content">
+				<div class="on_off_content" ng-click="transferDigit.onOff = 'off';" ng-show="transferDigit.onOff == 'on'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content" ng-click="showTransferModal()" ng-show="transferDigit.onOff == 'off'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+				<span class="keypress_sp1">{{trans('compose_step_3_call_live_tranfer')}}</span>
+				<span class="keypress_sp2">{{trans('compose_step_3_let_your_recipients_request')}}</span>
+				<div class="choose_keypress_select_container">
+					<div class="choose_keypress_select">	
+						<span class="keypress_sp3" ng-click="CampaignComposeService.transferDigit.showNumbersSelect = !CampaignComposeService.transferDigit.showNumbersSelect">
+							<img src="/assets/callburn/images/keypress-icon.png" class="choose_keypress_icon">
+							{{ CampaignComposeService.campaignData.transfer_digit ? 'Keypress ' + CampaignComposeService.campaignData.transfer_digit : 'Choose a keypress' }}
+						</span>
+						<div class="choose_keypress_select_container_open" ng-show="CampaignComposeService.transferDigit.showNumbersSelect">
+							<select-number interaction="'transfer_digit'" camelinteraction="transferDigit" origscope="this"></select-number>
+						</div>
+					</div>
+				</div>
+				<span class="choose_voice_message" ng-click="showTransferModal()">
+					Choose caller id
+				</span>
+			</div>
+			<div class="choose_keypress_content">
+				<div class="on_off_content" ng-click="CampaignComposeService.callbackDigit.onOff = 'off';" ng-show="CampaignComposeService.callbackDigit.onOff == 'on'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content" ng-click="showComposeActivateCallbackModal()" ng-show="CampaignComposeService.callbackDigit.onOff == 'off'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+				<span class="keypress_sp1">{{trans('compose_step_3_call_me_back')}}</span>
+				<span class="keypress_sp2">{{trans('compose_step_3_let_your_recipients_request_recall')}}</span>
+				<div class="choose_keypress_select_container">
+					<div class="choose_keypress_select">	
+						<span class="keypress_sp3" ng-click="CampaignComposeService.callbackDigit.showNumbersSelect = !CampaignComposeService.callbackDigit.showNumbersSelect">
+							<img src="/assets/callburn/images/keypress-icon.png" class="choose_keypress_icon">
+							{{ CampaignComposeService.campaignData.callback_digit ? 'Keypress ' + CampaignComposeService.campaignData.callback_digit : 'Choose a keypress' }}
+						</span>
+						<div class="choose_keypress_select_container_open" ng-show="CampaignComposeService.callbackDigit.showNumbersSelect">
+							<select-number interaction="'callback_digit'" camelinteraction="callbackDigit" origscope="this"></select-number>
+						</div>
+					</div>
+				</div>
+				<span class="choose_voice_message" ng-click="showComposeActivateCallbackModal()">
+					{{trans('compose_step_3_choose_voice_message')}}
+				</span>
+			</div>
+			<div class="choose_keypress_content">
+				<div class="on_off_content" ng-click="doNotCallDigit.onOff = 'off';" ng-show="doNotCallDigit.onOff == 'on'">
+					<span class="on">{{trans('compose_step_3_on')}}</span>
+					<span class="on_off_check"></span>
+				</div>
+				<div class="on_off_content"  ng-click="showDoNotCallModal()" ng-show="doNotCallDigit.onOff == 'off'">
+					<span class="on_off_uncheck"></span>
+					<span class="off">{{trans('compose_step_3_off')}}</span>
+				</div>
+				<span class="keypress_sp1">{{trans('compose_step_3_blacklist_me')}}</span>
+				<span class="keypress_sp2">{{trans('compose_step_3_let_your_recipients_unsubscribe')}}</span>
+				<div class="choose_keypress_select_container">
+					<div class="choose_keypress_select">	
+						<span class="keypress_sp3" ng-click="CampaignComposeService.doNotCallDigit.showNumbersSelect = !CampaignComposeService.doNotCallDigit.showNumbersSelect">
+							<img src="/assets/callburn/images/keypress-icon.png" class="choose_keypress_icon">
+							{{ CampaignComposeService.campaignData.do_not_call_digit ? 'Keypress ' + CampaignComposeService.campaignData.do_not_call_digit : 'Choose a keypress' }}
+						</span>
+						<div class="choose_keypress_select_container_open" ng-show="CampaignComposeService.doNotCallDigit.showNumbersSelect">
+							<select-number interaction="'do_not_call_digit'" camelinteraction="doNotCallDigit" origscope="this"></select-number>
+						</div>
+					</div>
+				</div>
+				<span class="choose_voice_message" ng-click="showDoNotCallModal()">
+					{{trans('compose_step_3_choose_voice_message')}}
+				</span>		
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end compose step 3 -->

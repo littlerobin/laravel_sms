@@ -1,0 +1,127 @@
+<!-- CALL LIVE TRANSFER INTERACTION MODAL  -->
+<div class="modal_window modaleffect" ng-show="transferStep != 2">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			{{trans('modal_title_active_new_interaction')}}
+			<img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon" ng-click="hideOverlay()">
+		</div>
+		<span class="modal_sp1">{{trans('blacklist_me_interaction_modal_text_you_have_chosen')}}</span>
+		<span class="modal_sp2">{{trans('blacklist_me_interaction_modal_text_call_live_transfer')}}</span>
+		<span class="modal_sp1">{{trans('blacklist_me_interaction_modal_text_activating_this_feature1')}}</span>
+		<span class="modal_sp2">
+			{{trans('blacklist_me_interaction_modal_text_when_your_recipient1')}}
+		</span>
+		<span class="modal_sp1">{{trans('blacklist_me_interaction_modal_text_if_you_have')}}</span>
+		<div class="modal_img_container">
+			<div class="modal_img_content1">
+				<img src="/assets/callburn/images/big_fire.png" class="modal_big_icon">
+				<span class="modal_sp5">{{trans('modal_callburn')}}</span>
+			</div>
+			<div class="modal_img_content2">
+				<div class="phonenumbers_source_export_content">
+					<!-- <div class="border_dashed border_dashed_modal" id="first_border_dashed_content"></div> -->
+					<div class="modal_sp_container">
+						<span class="sp3">{{trans('blacklist_me_interaction_modal_text_callburn_launch')}}</span>
+						<span class="sp3">{{trans('blacklist_me_interaction_modal_text_deliver_your_message')}}</span>
+					</div>
+					<!-- <div class="border_dashed border_dashed_modal" id="second_border_dashed_content"></div> -->
+				</div>
+				<img src="/assets/callburn/images/big_arrow_blue.png" class="modal_big_icon">
+				<img src="/assets/callburn/images/big_arrow2.png" class="modal_big_icon">
+				<span class="modal_absolute_sp1 modal_absolute_sp12">{{trans('modal_message_delivery')}}</span>
+				<span class="modal_absolute_sp2 modal_absolute_sp22">{{trans('modal_transfer_request')}}</span>
+				<span class="interaction_modal_sp3">{{trans('linetransfer_interaction_modal_red_text_first_call')}}</span>
+				<span class="interaction_modal_sp4">{{trans('linetransfer_interaction_modal_red_text_recipient_requesting_transfer')}}</span>
+			</div>
+			<div class="modal_img_content3">
+				<img src="/assets/callburn/images/big_phone.png" class="modal_big_icon">
+				<span class="modal_sp5">{{trans('modal_your_recipient')}}</span>
+			</div>
+		</div>
+		<div class="modal_img_container">
+			<div class="modal_img_content1">
+			</div>
+			<div class="modal_img_content2">
+				<div class="phonenumbers_source_export_content">
+					<!-- <div class="border_dashed border_dashed_modal" id="first_border_dashed_content"></div> -->
+					<div class="modal_sp_container">
+						<span class="sp3">{{trans('blacklist_me_interaction_modal_text_second_call')}}</span>
+						<span class="sp3">{{trans('blacklist_me_interaction_modal_text_made_to_connect')}}</span>
+					</div>
+					<!-- <div class="border_dashed border_dashed_modal" id="second_border_dashed_content"></div> -->
+				</div>
+				<img src="/assets/callburn/images/big_arrow_blue1.png" class="modal_big_icon">
+				<span class="modal_absolute_sp1 modal_absolute_sp12">{{trans('modal_live_transfer_call')}}</span>
+				<span class="interaction_modal_sp5">{{trans('linetransfer_interaction_modal_red_text_second_call')}}</span>
+				<span class="interaction_modal_sp6">{{trans('linetransfer_interaction_modal_red_text_keep_your_phone_free')}}</span>
+			</div>
+			<div class="modal_img_content3">
+				<img src="/assets/callburn/images/big_phone.png" class="modal_big_icon">
+				<span class="modal_sp5">{{trans('modal_your_phone')}}</span>
+			</div>
+		</div>
+		<span class="modal_sp1">
+			{{trans('blacklist_me_interaction_modal_text_remember_to_keep')}}
+		</span>
+		<span class="modal_sp3">
+			{{trans('blacklist_me_interaction_modal_text_in_case_of_busy')}}
+		</span>
+		<div class="live_transfer_modal_select_container">
+			<span class="modal_sp1">{{trans('live_transfer_modal_text_concurrent_transfer_limiter')}}</span>
+			<div class="live_transfer_modal_select_content">
+				<img src="/assets/callburn/images/Settingicon.png" class="modal_drop_down_arrow" />
+				<select class="live_transfer_modal_select">
+					<option>1 concurrent live transfer</option>
+				</select>
+			</div>
+		</div>
+		<span class="modal_sp1">{{trans('blacklist_me_interaction_modal_text_you_can_limit_concurrent')}}</span>
+		<span class="modal_sp3">{{trans('blacklist_me_interaction_modal_text_when_this_limit')}}</span>
+		<!-- <div class="modal_check_container">
+			<div class="modal_check_content">
+				<img src="/assets/callburn/images/check-icon.png" class="modal_check_icon">
+			</div>
+			<span class="modal_sp4">{{trans('check_container_text')}}</span>
+		</div> -->
+		<div class="modal_btn_container">	
+			<button class="modal_send_btn" ng-click="transferStep = 2;">{{trans('button_activate_call_live_transfer')}}</button>
+		</div>	
+	</div>	
+</div>
+<div class="modal_window modaleffect" ng-show="transferStep == 2">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			Choose caller ID for transfer
+			<img ng-click="hideOverlay()" src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon">
+		</div>
+		<span class="modal_sp1">Choose one or more phone numbers, from your caller ID list, where transfer calls</span>
+		<div class="modal_table_container">
+			<div class="table-responsive"></div>
+			<table class="table">
+				<tr class="table_first_tr">
+					<td>{{trans('change_caller_id_modal_table_caller_id')}}</td>
+					<td>{{trans('change_caller_id_modal_table_name')}}</td>
+				</tr>
+				<tr ng-class="{selected_row: liveTransferNumbers.indexOf(number.phone_number) != -1}" ng-repeat="number in currentUser.numbers" ng-click="addRemoveTransfer(number.phone_number, number.tariff_id)">
+					<td class="modal_table_td">
+						<p class="table_p">
+							{{number.phone_number}}
+						</p>
+					</td>
+					<td class="modal_table_td">{{number.name==""?trans('change_caller_id_modal_table_no_name_specified'):number.name}}</td>
+				</tr>
+			</table>
+			<div class="empty_table" ng-if="!currentUser.numbers">{{trans('empty_table_text')}}</div>
+		</div>
+		<div class="modal_check_container">
+			<div class="modal_check_content" ng-click="CampaignComposeService.transferDigit.checkboxChecked = !CampaignComposeService.transferDigit.checkboxChecked">
+				<img src="/assets/callburn/images/check-icon.png" class="modal_check_icon" ng-show="CampaignComposeService.transferDigit.checkboxChecked">
+			</div>
+			<span class="modal_sp4">{{trans('check_container_text')}}</span>
+		</div>
+		<div class="modal_btn_container">	
+			<button class="modal_send_btn" ng-click="activateTransferDigit()">{{trans('button_activate_live_transfer')}}</button>
+		</div>	
+	</div>	
+</div>
+<!-- /CALL LIVE TRANSFER INTERACTION MODAL -->

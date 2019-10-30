@@ -1,0 +1,383 @@
+<div class="settings_container">
+    <h3>{{trans('account_settings_welcome')}}</h3>
+    <div class="settings_content_container">
+        <div class="settings_content">
+            <div class="setting_input_container">
+                <span class="settings_sp1">{{trans('account_settings_email_address')}}</span>
+                <input type="text" class="settings_input" placeholder="{{currentUser.email}}" readonly="true">
+                <button class="settings_btn" ng-click="showChangeEmailModal = true;">{{trans('button_change_email')}}
+                </button>
+                <img src="/assets/callburn/images/contacts_selected.png" class="settings_input_icons"/>
+            </div>
+            <div class="check_container">
+                <div class="check_icon_container" ng-click="updateNewsletterSubscription()">
+                    <img src="/assets/callburn/images/check-icon.png" class="settings_check_icon"
+                         ng-show="currentUser.send_newsletter"/>
+                </div>
+                <span class="settings_sp2">{{trans('account_settings_check_text')}}</span>
+            </div>
+            <div class="setting_input_container">
+                <div class="data_container">
+                    <span class="settings_sp1">Your Name</span>
+                    <div class="data_input_container">
+                        <input type="text" placeholder="Just your name" class="data_input"/>
+                        <img src="/assets/callburn/images/path1.png" class="data_icons"/>
+                    </div>
+                </div>
+                <div class="data_container">
+                    <span class="settings_sp1">Your Birthday</span>
+                    <div class="data_input_container">
+                        <input type="text" placeholder="" class="data_input"/>
+                        <img src="/assets/callburn/images/lovecookie.png" class="data_icons"/>
+                    </div>
+                </div>
+            </div>
+            <div class="setting_input_container">
+                <span class="settings_sp1">{{trans('account_settings_password')}}</span>
+                <input type="text" class="settings_input"
+                       placeholder="{{trans('account_settings_input_placeholder_password_hidden')}}" readonly="true">
+                <button class="settings_btn" ng-click="showEditPasswordModal = true;">
+                    {{trans('button_change_password')}}
+                </button>
+                <img src="/assets/callburn/images/key-icon.png" class="settings_input_icons"/>
+            </div>
+        </div>
+        <div class="settings_content">
+            <div class="lang_timezone_container">
+                <div class="lang_input_continer">
+                    <span class="settings_sp1">{{trans('account_settings_language')}}</span>
+                    <div class="lang_select_container">
+                        <callburn-select
+                                ng-model="userEditableData.language_id"
+                                options="languages"
+                                show-attr="name"
+                                keep-attr='_id'
+                                image-url="/assets/callburn/images/flags/{{currentLanguage}}.png"
+                                select-text="{{currentLanguageName | uppercase}}"
+                                ng-change="editMainDetails()"
+                                image-attr="flags">
+                        </callburn-select>
+                        <!--<select class="settings_input setting_select" ng-model="userEditableData.language_id"
+                                ng-options="language._id as language.name for language in languages"
+                                ng-change="editMainDetails()">
+                            <option value="">Language</option>
+                        </select>-->
+                    </div>
+                    <!--<img src="/assets/callburn/images/language_icon.png"
+                         class="settings_input_icons settings_input_icons5"/>
+                    <img src="/assets/callburn/images/Settingicon.png" class="settings_drop_down_arrow"/>-->
+                </div>
+                <div class="timezone_input_continer">
+                    <span class="settings_sp1">{{trans('account_settings_time_zone')}}</span>
+                    <timezone-selector ng-model="userEditableData.timezone" id="timezone" ng-change="editMainDetails()">
+                        <img src="/assets/callburn/images/ClockIcon@2x.png"
+                             class="settings_input_icons settings_input_icons5"/>
+                        <img src="/assets/callburn/images/Settingicon.png" class="settings_drop_down_arrow"/>
+                </div>
+            </div>
+            <div class="billing_informations_container">
+                <span class="settings_sp1">{{trans('account_settings_billing_informations')}}</span>
+                <div class="billing_informations_content">
+                    <input type="text" class="settings_input"
+                           placeholder="{{trans('account_settings_input_placeholder_campany_name')}}"
+                           ng-model="userEditableData.first_name" ng-blur="editMainDetails()">
+                    <img src="/assets/callburn/images/icons-tag.png"
+                         class="settings_input_icons settings_input_icons1"/>
+                </div>
+                <div class="billing_informations_content">
+                    <input type="text" class="settings_input" placeholder="Address or registered office address"
+                           ng-model="userEditableData.address" ng-blur="editMainDetails()">
+                    <img src="/assets/callburn/images/address-icon.png"
+                         class="settings_input_icons settings_input_icons2"/>
+                </div>
+                <div class="billing_informations_content">
+                    <div class="right_input_container right_input_container1">
+                        <callburn-select ng-model="userEditableData.country_code"
+                                         options="countries"
+                                         show-attr="name"
+                                         keep-attr='code'
+                                         image-url="/assets/callburn/images/language_icon.png"
+                                         select-text="{{trans('account_settings_input_placeholder_select_country')}}"
+                                         ng-change="countryChanged()">
+                        </callburn-select>
+                        <!--<select class="settings_input setting_select" ng-model="userEditableData.country_code"
+                                placeholder="country" ng-change="countryChanged()">
+                            <option value="">{{trans('account_settings_input_placeholder_select_country')}}</option>
+                            <option ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+                        </select>
+                        <img src="/assets/callburn/images/language_icon.png"
+                             class="settings_input_icons settings_input_icons4"/>
+                        <img src="/assets/callburn/images/Settingicon.png"
+                             class="settings_drop_down_arrow settings_drop_down_arrow1"/>-->
+                    </div>
+                    <div class="left_input_container">
+                        <input type="text" class="settings_input"
+                               placeholder="{{trans('account_settings_input_placeholder_postal_code')}}"
+                               ng-model="userEditableData.postal_code" ng-blur="editMainDetails()">
+                        <img src="/assets/callburn/images/postal-code-icon.png"
+                             class="settings_input_icons settings_input_icons3"/>
+                    </div>
+                </div>
+                <div class="billing_informations_content">
+                    <div class="right_input_container" id="city_input">
+                        <callburn-select ng-model="userEditableData.city_id"
+                                         options="cities"
+                                         show-attr="city"
+                                         keep-attr='_id'
+                                         image-url="/assets/callburn/images/icons-map.png"
+                                         select-text="{{trans('account_settings_input_placeholder_city')}}"
+                                         ng-change="editMainDetails()">
+                        </callburn-select>
+                        <!--<select class="settings_input setting_select" ng-model="userEditableData.city_id"
+                                ng-options="city._id as city.city for city in cities" ng-change="editMainDetails()">
+                            <option value="">{{trans('account_settings_input_placeholder_city')}}</option>
+                        </select>
+                        <img src="/assets/callburn/images/icons-map.png"
+                             class="settings_input_icons settings_input_icons3"/>
+                        <img src="/assets/callburn/images/Settingicon.png"
+                             class="settings_drop_down_arrow settings_drop_down_arrow1"/>-->
+                    </div>
+                    <div class="left_input_container" id="id_input">
+                        <input type="text" class="settings_input"
+                               placeholder="{{trans('account_settings_input_placeholder_vat_id')}}"
+                               ng-model="userEditableData.vat" ng-blur="editMainDetails()">
+                        <img src="/assets/callburn/images/star.png" class="settings_input_icons settings_input_icons3"/>
+                    </div>
+                </div>
+                <!-- <button class="settings_submit_btn" ng-click="editMainDetails()">{{trans('button_submit')}}</button> -->
+            </div>
+        </div>
+    </div>
+    <div class="settings_content_container">
+        <!-- <div class="settings_content">
+            <span class="settings_sp1">{{trans('account_settings_add_callerid')}}</span>
+            <div class="callerid_container">
+                <div class="billing_informations_content">
+                    <input type="text" class="settings_input settings_input2" placeholder="{{trans('account_settings_input_placeholder_insert_number')}}" ng-model="verificationCall.phonenumber">
+                </div>
+            </div>
+            <div class="callerid_container">
+                <div class="billing_informations_content">
+                    <input type="text" class="settings_input settings_input2" placeholder="{{trans('account_settings_input_placeholder_give_name')}}" ng-model="verificationCall.name">
+                    <img src="/assets/callburn/images/icons-tag.png" class="settings_input_icons settings_input_icons1" />
+                </div>
+            </div>
+            <span class="settings_sp2">
+                {{trans('account_settings_text_before_pressing')}}
+            </span>
+            <button class="callerid_container_btn" ng-click="sendVerificationCall()">
+                <img src="/assets/callburn/images/send-verification-code-icon.png" class="settings_input_icons" id="caller_id_icon" />
+                {{trans('button_send_verification_code')}}
+            </button>
+        </div> -->
+
+        <div class="settings_content">
+            <span class="settings_sp1">Your Browsers and Devices</span>
+            <span class="settings_sp2">For increasing your account security, your active sessions will be shown here; if you don’t know a session, just close it pressing the trash icon</span>
+            <div class="settings_table_container">
+                <div class="table-tesponsive">
+                    <table class="table">
+                        <tr class="table_first_tr">
+                            <td>Device</td>
+                            <td>Date</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="token in currentUser.api_tokens" ng-if="currentUser.api_tokens.length > 0">
+                            <td class="settings_table_td">
+                                {{token.agent}}
+                            </td>
+                            <td class="settings_table_td">
+                                {{token.updated_at}}
+                            </td>
+                            <td>
+                                <img src="/assets/callburn/images/basket.png" class="settings_teble_icons"
+                                     ng-click="removeToken(token._id)">
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="empty_table" ng-if="currentUser.api_tokens.length == 0">{{trans('empty_table_text')}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <img src="/assets/callburn/images/arrow-to-right.png" class="arrow_to_right">
+        <img src="/assets/callburn/images/arrow-to-bottom.png" class="arrow_to_bottom"> -->
+        <div class="settings_content">
+            <div id="settings_dashed_container">
+                <span class="settings_sp1">{{trans('account_settings_add_callerid')}}</span>
+                <div class="callerid_container">
+                    <div class="billing_informations_content">
+                        <input type="text" class="settings_input settings_input2"
+                               placeholder="{{trans('account_settings_input_placeholder_insert_number')}}"
+                               ng-model="verificationCall.phonenumber">
+                    </div>
+                </div>
+                <div class="callerid_container">
+                    <div class="billing_informations_content">
+                        <input type="text" class="settings_input settings_input2"
+                               placeholder="{{trans('account_settings_input_placeholder_give_name')}}"
+                               ng-model="verificationCall.name">
+                        <img src="/assets/callburn/images/icons-tag.png"
+                             class="settings_input_icons settings_input_icons1"/>
+                    </div>
+                </div>
+				<span class="settings_sp2">
+					{{trans('account_settings_text_before_pressing')}}
+				</span>
+                <button class="callerid_container_btn" ng-click="sendVerificationCall()">
+                    <img src="/assets/callburn/images/send-verification-code-icon.png" class="settings_input_icons"
+                         id="caller_id_icon"/>
+                    {{trans('button_send_verification_code')}}
+                </button>
+            </div>
+            <div>
+                <span class="settings_sp1">{{trans('account_settings_active_callerid')}}</span>
+                <div class="settings_table_container">
+                    <div class="table-tesponsive">
+                        <table class="table">
+                            <tr class="table_first_tr">
+                                <td>{{trans('account_settings_table_callerid')}}</td>
+                                <td>{{trans('account_settings_table_name')}}</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="callerId in currentUser.numbers" ng-show="callerId != ''"
+                                ng-if="currentUser.numbers.length > 0">
+                                <td class="settings_table_td">
+                                    <p class="table_p" ng-show="true">
+                                        <img ng-src="/assets/callburn/images/flags/{{callerId.tariff.country.code}}.png"
+                                             class="table_icons1">
+                                        +{{callerId.phone_number}}
+                                    </p>
+                                    <p class="table_p" ng-show="false">
+                                        <font color="#2aaee6" size="5px">?</font>
+                                        +{{callerId.phone_number}}
+                                    </p>
+                                </td>
+                                <td class="settings_table_td">
+                                    <a href
+                                       ng-init="showCallerIdInput[callerId._id] = false; nameInputText[callerId._id] = callerId.name;"
+                                       ng-show="!showCallerIdInput[callerId._id]"
+                                       ng-click="showCallerIdInput[callerId._id] = true;">{{ callerId.name ?
+                                        callerId.name : 'Add Name' }}</a>
+                                    <div ng-show="showCallerIdInput[callerId._id]">
+                                        <img ng-click="changeCallerIdName(callerId._id, nameInputText[callerId._id])"
+                                             src="/assets/callburn/images/check-icon.png" class="check_icon">
+                                        <input type="text" ng-model="nameInputText[callerId._id]" class="table_input"/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <img ng-click="removeNumber(callerId._id)" src="/assets/callburn/images/basket.png"
+                                         class="settings_teble_icons">
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="empty_table" ng-if="currentUser.numbers.length == 0">{{trans('empty_table_text')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Change your EMAIL modal -->
+<div class="modal_window modaleffect" ng-show="showChangeEmailModal">
+    <div class="modal_container">
+        <div class="modal_top_content">
+            {{trans('modal_title_change_email')}}
+            <img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon"
+                 ng-click="showChangeEmailModal = false;">
+        </div>
+        <span class="modal_sp1">{{trans('change_email_modal_actual_email_address')}}</span>
+        <span class="modal_sp2">{{currentUser.email}}</span>
+        <div class="modal_select_container modal_select_container1">
+            <div class="modal_select_content">
+                <span class="modal_sp1">{{trans('change_email_modal_new_email')}}</span>
+                <input type="text" class="modal_password" ng-model="editEmailData.email"/>
+            </div>
+            <div class="modal_select_content">
+                <span class="modal_sp1">{{trans('change_email_modal_new_email_confirmation')}}</span>
+                <input type="text" class="modal_password" ng-model="editEmailData.email_confirmation"/>
+            </div>
+            <div class="modal_select_content">
+                <span class="modal_sp1">{{trans('change_email_modal_password')}}</span>
+                <input type="text" class="modal_password" ng-model="editEmailData.password"/>
+            </div>
+            <div class="modal_error_text_container">
+                <img src="/assets/callburn/images/be-careful@3x.png" class="modal_red_icon">
+                <span class="modal_sp3">{{trans('change_email_modal_error_text')}}</span>
+                <span class="modal_sp3" ng-show="updateEmailErrorMessage">{{updateEmailErrorMessage}}</span>
+            </div>
+        </div>
+        <div class="modal_btn_container">
+            <button class="modal_send_btn" ng-click="editEmail()">{{trans('button_confirm_and_verify')}}</button>
+        </div>
+    </div>
+</div>
+<!-- /Change your EMAIL modal -->
+
+<!-- Change your password modal -->
+<div class="modal_window modaleffect" ng-show="showEditPasswordModal">
+    <div class="modal_container">
+        <div class="modal_top_content">
+            {{trans('modal_title_change_password')}}
+            <img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon"
+                 ng-click="showEditPasswordModal = false;">
+        </div>
+        <!-- <span class="modal_sp1">{{trans('change_password_modal_you_have_chosen')}}<br> 13/11/2015</span> -->
+        <div class="modal_select_container modal_select_container1">
+            <div class="modal_select_content">
+                <span class="modal_sp1">{{trans('change_password_modal_old_password')}}</span>
+                <input type="password" class="modal_password" ng-model="editPasswordData.old_password"/>
+            </div>
+            <div class="modal_select_content">
+                <span class="modal_sp1">{{trans('change_password_modal_new_password')}}</span>
+                <input type="password" class="modal_password" ng-model="editPasswordData.new_password"/>
+            </div>
+            <div class="modal_select_content">
+                <span class="modal_sp1">{{trans('change_password_modal_confirm_new_password')}}</span>
+                <input type="password" class="modal_password" ng-model="editPasswordData.new_password_confirmation"/>
+            </div>
+        </div>
+        <div class="modal_error_text_container" ng-show="updatePasswordErrorMessage">
+            <img src="/assets/callburn/images/be-careful@3x.png" class="modal_red_icon">
+            <span class="modal_sp3">{{updatePasswordErrorMessage}}</span>
+        </div>
+        <div class="modal_btn_container">
+            <button class="modal_send_btn" ng-click="editPassword()">{{trans('button_confirm_saving')}}</button>
+        </div>
+    </div>
+</div>
+<!-- /Change your password modal -->
+
+
+<!-- New caller id -->
+<div class="modal_window modaleffect" ng-show="showVerificationModal">
+    <div class="modal_container">
+        <div class="modal_top_content">
+            {{trans('modal_title_add_callerid')}}
+            <img src="/assets/callburn/images/exit_icon.png" class="modal_exit_icon"
+                 ng-click="showVerificationModal = false;">
+        </div>
+        <span class="modal_sp1">{{trans('caller_id_modal_text')}}</span>
+        <span class="modal_sp2">{{verificationCall.phonenumber}}</span>
+        <div class="modal_select_container modal_select_container1">
+            <div class="modal_select_content">
+                <span class="modal_sp1">{{trans('caller_id_modal_verification_code')}}</span>
+                <input type="text" class="confirm_code" ng-model="verificationCall.voice_code"/>
+            </div>
+        </div>
+        <div class="modal_error_text_container" ng-show="verificationModalErrorMessage">
+            <img src="/assets/callburn/images/be-careful@3x.png" class="modal_red_icon">
+            <span class="modal_sp3">{{verificationModalErrorMessage}}</span>
+        </div>
+        <div class="modal_btn_container">
+            <button class="modal_send_btn" ng-click="checkVerificationCode()">{{trans('button_confirm_callerid')}}
+            </button>
+        </div>
+        <span class="modal_sp1">{{trans('caller_id_modal_havent_received_verification_code')}}</span>
+    </div>
+</div>
+<!-- /new caller id -->

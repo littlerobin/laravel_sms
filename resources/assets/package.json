@@ -1,0 +1,19 @@
+{
+  "name": "assets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "angular": "^1.6.2",
+    "satellizer": "^0.15.5"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "moment": "^2.18.1"
+  }
+}

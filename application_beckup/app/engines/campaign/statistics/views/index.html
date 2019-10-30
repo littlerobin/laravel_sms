@@ -1,0 +1,161 @@
+<h3 class="campaign_sp1">
+	<span>{{trans('overview_statistics_top_text')}}</span>
+</h3>	
+<div class="overview_container">
+	<div class="overwiev_border_dashed_container">
+		<div class="overwiev_statistic_border_dashed_container1 overwiev_statistic_border_dashed_container2">
+			<span class="sp1">{{trans('overview_choose_filter')}}:</span>
+			<div class="overwiev_border_dashed_content_container3">
+				<span class="sp2">Interactions</span>
+				<div class="overwiev_border_dashed_content">
+					<img src="assets/callburn/images/interactions-icon.png" class="overview_source_icon" id="overview_source_phone_icon1">
+					<select class="source_contents3 overvieew_src" ng-model="filterData.action" ng-change="filterChanged()"> 
+						<option value="">{{trans('overview_statistics_select_option')}}</option>
+						<option ng-repeat="(key, phonecallStatus) in phonecallStatuses" value="{{key}}">{{phonecallStatus}}</option>
+					</select>
+					<img src="assets/callburn/images/dropdown-icon.png" class="drop_down_arrow1">
+				</div>
+			</div>
+			<div class="overwiev_border_dashed_content_container3">
+				<span class="sp2">{{trans('overview_statistics_status')}}</span>
+				<div class="overwiev_border_dashed_content">
+					<img src="/assets/callburn/images/delivery-status-icon.png" class="overview_source_icon" id="overview_source_phone_icon1">
+					<select class="source_contents3 overvieew_src" ng-model="filterData.status" ng-change="filterChanged()">
+						<option value="">{{trans('overview_statistics_select_option')}}</option>
+						<option value="success">DELIVERED</option>
+						<option value="failed">NOT DELIVERED</option>
+					</select>
+					<img src="assets/callburn/images/dropdown-icon.png" class="drop_down_arrow1">
+				</div>
+			</div>
+			<div class="overwiev_border_dashed_content_container3" ng-show="repeatCampaigns">
+				<span class="sp2">Batch</span>
+				<div class="overwiev_border_dashed_content">
+					<img src="/assets/callburn/images/fill-112.png" class="overview_source_icon" id="overview_source_phone_icon2">
+					<select class="source_contents3 overvieew_src" ng-model="filterData.campaign_id" ng-change="filterChanged()">
+						<option ng-repeat="camp in repeatCampaigns track by $index" value="{{camp._id}}">Batch #{{$index + 1}}</option>
+					</select>
+					<img src="assets/callburn/images/dropdown-icon.png" class="drop_down_arrow1">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="second_menu_container">
+		<div class="second_menu_content second_menu_content1">
+			<img src="assets/callburn/images/searchicon.png" class="icon1" />
+			<input type="text" placeholder="{{trans('overview_statistics_input_placeholder')}}" />
+		</div>
+		<div class="second_menu_content" ng-click="exportCampaign()">
+			<span class="second_menu_content_center">
+				<img src="assets/callburn/images/export_icon.png" class="second_menu_icons"/>
+				<span class="second_menu_span">{{trans('second_menu_export')}}</span>
+			</span>	
+		</div>
+		<div class="second_menu_content second_menu_content" ng-click="removeFromPhonebook()">
+			<span class="second_menu_content_center">
+				<img src="assets/callburn/images/remove-from-phonebook-icon.png" class="second_menu_icons" id="overview_statistics_seconc_menu_book_icon" />
+				<span class="second_menu_span">Remove from phonebook</span>
+			</span>
+		</div>
+		<div class="second_menu_content" ng-click="sendAgain()">
+			<span class="second_menu_content_center">
+				<img src="assets/callburn/images/phone_icon.png" class="second_menu_icons" id="overview_menu_phone_icon" />
+				<span class="second_menu_span" id="send_again">{{trans('second_menu_send_again')}}!</span>
+				<img src="assets/callburn/images/pagination_arrow_right1.png" class="second_menu_icons second_menu_send_arrow" />
+			</span>
+		</div>
+	</div>
+	<div class="overview_table_container">
+		<div class="table-responsive">
+			<table class="table">
+				<tr class="table_first_tr">
+					<td id="table_select_all">
+						<span class="check_span" ng-click="checkUncheckAll()">
+							<img src="assets/callburn/images/check-icon.png" class="check_icon2" ng-show="isAllChecked == true">
+						</span>
+					</td>
+					<td ng-click="changeOrder('phone_no')">{{trans('overview_statistics_table_recipient')}}</td>
+					<td ng-show="isMultiple!= 'false'">{{trans('overview_table_message')}}</td>
+					<td ng-click="changeOrder('dialled_datetime')">{{trans('overview_statistics_table_delivered_on')}}</td>
+					<td ng-click="changeOrder('retries')">{{trans('overview_statistics_table_attempts')}}</td>
+					<td>{{trans('overview_statistics_table_interactions')}}</td>
+					<td ng-click="changeOrder('duration')">{{trans('overview_statistics_table_total_time')}}</td>
+					<td>{{trans('overview_statistics_table_cost')}}</td>
+				</tr>
+				<tr ng-repeat="phonenumber in phonenumbers" ng-if="phonenumbers.length > 0" ng-click="checkedUncheckPhonenumber(phonenumber._id, $event)" ng-class="{selected_row: checkedPhonenumbers[phonenumber._id] }">
+					<td id="table_select_all">
+					</td>
+					<td class="phonenumbers_content">
+						<img ng-src="/assets/callburn/images/flags/{{phonenumber.tariff.country.code}}.png">
+						+{{phonenumber.phone_no}}
+					</td>
+					<td class="phonenumbers_content" ng-if="isMultiple != 'false'">
+						<span tooltips tooltip-html="{{getAudioTooltipHtml(phonenumber.campaign)}}" tooltip-title="Preview" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="bottom" tooltip-show-trigger="click" tooltip-hide-trigger="click" tooltip-size="small">
+							{{phonenumber.campaign.voice_file.length}}
+						</span>
+					</td>
+					<td class="phonenumbers_content">
+						<span ng-if="phonenumber.call_status == 'ANSWERED' || phonenumber.call_status == 'TRANSFER'">{{phonenumber.dialled_datetime}}</span>
+						<span ng-if="phonenumber.call_status != 'ANSWERED' && phonenumber.call_status != 'TRANSFER'">Not delivered</span>
+					</td>
+					<td class="phonenumbers_content" ng-click="openActionsModal(phonenumber)">{{phonenumber.retries}}</td>
+					<td class="phonenumbers_content">
+						<span ng-repeat="action in phonenumber.actions_log">
+							<span ng-if="action.call_status == 'CALLBACK_REQUESTED'" tooltips tooltip-html="{{getAudioTooltipHtml(phonenumber.campaign, 'callback')}}" tooltip-title="Preview" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="bottom" tooltip-show-trigger="click" tooltip-hide-trigger="click" tooltip-size="small">
+								Callback Requested
+							</span>
+							<span ng-if="action.call_status == 'DONOTCALL_REQUESTED'" tooltips tooltip-html="{{getAudioTooltipHtml(phonenumber.campaign, 'donotcall')}}" tooltip-title="Preview" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="bottom" tooltip-show-trigger="click" tooltip-hide-trigger="click" tooltip-size="small">
+								Do not call Requested
+							</span>
+							<span ng-if="action.call_status == 'TRANSFER_ENDED'" tooltips tooltip-title="Call was transfered to: {{action.transfered_to}}" tooltip-class="customizeTooltip bottom_tooltip" tooltip-side="bottom" tooltip-show-trigger="click" tooltip-hide-trigger="click" tooltip-size="small">
+								Transfer Requested
+							</span>
+							<span ng-if="action.call_status == 'REPLAY_REQUESTED'">
+								Replay Requested
+							</span>
+						</span>
+					</td>
+					<td class="phonenumbers_content">{{phonenumber.duration}}</td>
+					<td class="phonenumbers_content">€{{phonenumber.cost}}</td>
+				</tr>
+			</table>
+			<div class="empty_table" ng-if="phonenumbers.length == 0">No data to show</div>
+		</div>	
+	</div>
+	<div class="pagination_container" ng-if="phonenumbers.length > 0">
+		<div class="pagination_right_arrow_container">
+			<img src="assets/callburn/images/pagination_arrow_right.png" id="arrow_right" class="pagination_arrows" ng-click="changePage(phonenumbersPage)"/>
+			<img src="assets/callburn/images/pagination_arrow_right1.png" class="pagination_arrows1" ng-click="changePage(pagesCount - 1)"/>
+		</div>
+		<div class="pagination_left_arrow_container">
+			<img src="assets/callburn/images/pagination_arrow_left1.png" class="pagination_arrows1" ng-click="changePage(phonenumbersPage - 1)"/>
+			<img src="assets/callburn/images/pagination_arrow_left.png" id="arrow_left" class="pagination_arrows" ng-click="changePage(0)" />
+		</div>
+		<div class="pagination_content">{{trans('pagination_page')}} {{phonenumbersPage}} {{trans('pagination_of')}} {{pagesCount}}</div>
+	</div>
+</div>
+<!-- end Overview statistic -->
+
+<div class="modal_window" ng-show="showAttemptsModal">
+	<div class="modal_container">
+		<div class="modal_top_content">
+			<img ng-click="showAttemptsModal = false;" src="assets/callburn/images/exit_icon.png" class="modal_exit_icon">
+			Attempts
+		</div>
+		<div class="groups_modal_table_container">
+			<div class="table-responsive">
+				<table class="table">
+					<tr class="table_first_tr">
+						<td>DateTime</td>
+						<td>Status</td>
+					</tr>
+					<tr class="modal_table_tr" ng-repeat="action in activePhonenumber.retry_log" ng-if="activePhonenumber.retry_log.length > 0">
+						<td class="groups_modal_table_td">{{action.datetime}}</td>
+						<td class="groups_modal_table_td">{{action.call_status}}</td>
+					</tr>
+				</table>
+				<div class="empty_table" ng-if="activePhonenumber.retry_log.length > 0">{{trans('empty_table_text')}}</div>
+			</div>	
+		</div>
+	</div>	
+</div>

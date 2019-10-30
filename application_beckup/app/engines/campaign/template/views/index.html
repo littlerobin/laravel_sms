@@ -1,0 +1,115 @@
+<div class="template_container">
+	<div class="campaign_absolute_container" ng-if="false">
+		<span class="campaign_sp campaign_first_sp">{{trans('campaign_text_got_any_tamplate')}}</span>
+		<span class="campaign_sp">{{trans('campaign_text_message_templates')}}</span>
+		<span class="campaign_sp">{{trans('campaign_text_you_can_create')}}</span>
+		<span class="campaign_sp2">{{trans('campaign_text_your_first_template')}}!</span>
+	</div>
+	<div>
+		<div class="phonenumbers_source_export_container">
+			<span class="sp1">Choose a view filter:</span>
+			<div class="phonenumbers_source_export_content_container">
+				<span class="sp2">Type</span>
+				<div class="phonenumbers_source_export_content">
+					<div ng-class="{source_contents_selected: filterData.type == 'ALL' , source_contents: true}" ng-click="chanegActiveTab('ALL')">
+						<img src="assets/callburn/images/phone_icon.png" ng-hide="filterData.type == 'ALL'" class="overview_source_icon overview_source_icon1"id="overview_source_phone_icon">
+						<img src="assets/callburn/images/messages_selected.png" ng-show="filterData.type == 'ALL'" class="overview_source_icon overview_source_icon1"id="overview_source_phone_icon">
+						All
+					</div>
+					<div ng-class="{source_contents_selected: filterData.type == 'UPLOADED' , source_contents: true}" ng-click="chanegActiveTab('UPLOADED')">
+						<img src="assets/callburn/images/Attachment.png" ng-hide="filterData.type == 'UPLOADED'" class="overview_source_icon overview_source_icon1">
+						<img src="assets/callburn/images/icons-attachment-white.png" ng-show="filterData.type == 'UPLOADED'" class="overview_source_icon overview_source_icon1">
+						File Upload
+					</div>
+					<div ng-class="{source_contents_selected: filterData.type == 'TTS' , source_contents: true}" ng-click="chanegActiveTab('TTS')">
+						<img src="assets/callburn/images/t-t-s-icon.png" ng-hide="filterData.type == 'TTS'" class="overview_source_icon overview_source_icon1">
+						<img src="assets/callburn/images/t-t-s-icon-white.png" ng-show="filterData.type == 'TTS'" class="overview_source_icon overview_source_icon1">
+						TTS generated
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="second_menu_container">
+			<div class="second_menu_content second_menu_content1" id="template_second_menu_input">
+				<img src="assets/callburn/images/searchicon.png" class="icon1" />
+				<input type="text" placeholder="Search/filter by name or text" />
+			</div>
+			<div class="second_menu_content second_menu_content2" ui-sref="campaign.addtemplate">
+				<span class="second_menu_content_center">
+					<img src="assets/callburn/images/path.png" class="second_menu_icons" />
+					<span class="second_menu_span">Add new</span>
+				</span>
+			</div>
+			<!-- <fieldset class="second_menu_content second_menu_content2" ng-disabled="!isOnlyOneSelected()" ng-click="cloneAudioTemplate()">
+				<span class="second_menu_content_center">
+					<img src="assets/callburn/images/clone-icon.png" class="second_menu_icons" id="template_clone_icon" />
+					<span class="second_menu_span">Clone</span>
+				</span>
+			</fieldset> -->
+			<fieldset class="second_menu_content second_menu_content2" ng-click="deleteAudioTemplates()">
+				<span class="second_menu_content_center">
+					<img src="assets/callburn/images/basket.png" class="second_menu_icons" />
+					<span class="second_menu_span">Delete</span>
+				</span>
+			</fieldset>
+			<fieldset class="second_menu_content second_menu_content2 second_menu_last_content" ng-disabled="!isOnlyOneSelected()" ng-click="sendMessageAgain()">
+				<span class="second_menu_content_center">
+					<img src="assets/callburn/images/phone-icon.png" class="second_menu_icons" id="template_phone_icon" />
+					<span class="second_menu_span">Send</span>
+					<img src="assets/callburn/images/pagination_arrow_right1.png" class="second_menu_icons second_menu_send_arrow">
+				</span>
+			</fieldset>
+		</div>
+		<div class="template_table_container">
+			<div class="table-responsive">
+				<table class="table">
+					<tr class="table_first_tr">
+						<td id="table_select_all" ng-click="checkUncheckAll()">
+							<span class="check_span">
+								<img ng-show="isAllChecked" src="assets/callburn/images/check-icon.png" class="check_icon2">
+							</span>
+						</td>
+						<td>Created</td>
+						<td>Voice Message</td>
+						<td>Type</td>
+						<td>Length</td>
+						<td>Text Preview</td>
+					</tr>
+					<tr ng-class="{selected_row: checkedTemplates[template._id]}" ng-repeat="template in templates track by $index" ng-if="templates.length > 0" ng-click="checkedTemplates[template._id] = !checkedTemplates[template._id]">
+						<td></td>
+						<td>{{template.created_at}}</td>
+						<td>
+							<a href ng-init="showFilesInput[template._id] = false; nameInputText[template._id] = template.orig_filename;" ng-show="!showFilesInput[template._id]" ng-click="showFilesInput[template._id] = true;">{{ template.orig_filename ? template.orig_filename : 'Add Name' }}</a>
+							<div  ng-show="showFilesInput[template._id]">
+								<img ng-click="changeFileName(template._id, nameInputText[template._id])" src="assets/callburn/images/check-icon.png" class="check_icon">
+								<input type="text" ng-model="nameInputText[template._id]" class="table_input" />
+							</div>
+						</td>
+						<td>{{template.type}}</td>
+						<td>{{template.length}}’’</td>
+						<td>{{template.tts_text ? template.tts_text: 'Not Available' }}</td>
+					</tr>
+				</table>
+				<div class="empty_table" ng-if="templates.length == 0">{{trans('empty_table_text')}}</div>
+			</div>	
+		</div>
+		<div class="template_play_stop_icon_container" ng-hide="!isOnlyOneSelected()">
+			<span ng-click="playPauseAudio('play')" ng-show="!isFilePlaying">
+				<img src="assets/callburn/images/play.png"> Play
+			</span>
+			<span ng-click="playPauseAudio('pause')" ng-show="isFilePlaying">
+				<img src="assets/callburn/images/stop.png"> Stop
+			</span>
+			<audio ng-show="false" controls id="messageAudioFile" ng-src="{{getAudioSource()}}"></audio>
+		</div>
+		<div class="pagination_container" ng-if="templates.length > 0">
+			<div class="pagination_right_arrow_container">
+				<img src="assets/callburn/images/pagination_arrow_right.png" id="arrow_right1" class="pagination_arrows" ng-click="changeTemplatesPage(templatesPage)"/>
+			</div>
+			<div class="pagination_left_arrow_container">
+				<img src="assets/callburn/images/pagination_arrow_left.png" id="arrow_left1" class="pagination_arrows" ng-click="changeTemplatesPage(templatesPage - 2)"/>
+			</div>
+			<div class="pagination_content">Page {{templatesPage}} of {{templatesPagesCount}}</div>
+		</div>
+	</div>	
+</div>
